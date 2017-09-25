@@ -1,0 +1,87 @@
+{
+
+  "logs": {
+    "type": {
+      "?" : "Tipo de log, segun esto se relacionan los identificadores asignados",
+      "1" : "user_removed :: Usuario eliminado"
+    },
+    "id_1, ..." : "Identificadores de referencia para consultas"
+  },
+
+	"users": {
+		"state": {
+			"0": "Eliminado",
+			"1": "Habilitado",
+			"2": "Bloqueado"
+		}
+	},
+
+  "menu": {
+    "id_parent": "Id del principal de ser tipo menu y submenu",
+    "type": {
+      "1": "Menu: se puede modificar, y se muestra en el menu lateral",
+      "2": "Accion: no se puede modificar y son las acciones: editar, agregar, etc.."
+    },
+    "code": "Codigo unico no modificable para acceso on consultas acciones"
+  },
+
+  "propres": {
+    "?": "Presentaciones de productos"
+  },
+
+  "orders": {
+    "state": {
+      "0": "Eliminado",
+      "1": "Pendiente",
+      "2": "Despachado (puede estar cobrando o simplemente necesita liberar la mesa para atender a otro)",
+      "3": "Pagado"
+    }
+  },
+
+  "ordpros": {
+    "state": {
+      "0": "Eliminado",
+      "1": "Solicitado/Pendiente",
+      "2": "En preparacion",
+      "3": "Despachado"
+    }
+  },
+
+  "regboxes": {
+    "?": "Registro de cajas",
+    "state": {
+      "0": "Eliminado",
+      "1": "Habierto",
+      "2": "Cerrado"
+    }
+  },
+
+  "transactions": {
+    "?": "Registro de cualquier transaccion de dinero",
+    "type": {
+      "?": "Tipo de transaccion",
+      "1": {
+        "?": "INGRESO: cobro de un pedido:",
+        "id_ref": "id_order",
+        "id_ref2": "es el numero de cuenta pagada, en caso que se haya solicitado dividir cuentas"
+      },
+      "2": "INGRESO : Registro de un ingreso",
+      "3": "EGRESO : Registro de un egreso"
+    },
+    "id_ref": "Relativo segun campo 'type'",
+    "id_ref2": "Relativo segun campo 'type'",
+    "state": {
+      "0": "Eliminado/Anulado",
+      "1": "Activo"
+    }
+  },
+
+  "kardex": {
+    "type": {
+      "1": "Ingreso",
+      "2": "Salida",
+      "3": "Saldo"
+    }
+  }
+
+}

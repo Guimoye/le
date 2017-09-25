@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="58af63c1-db10-4688-b0e8-532dffe95989" name="BETA" url="http://localhost/leasecapital/">
+        <fileTransfer host="beta.focusit.pe" port="21" rootFolder="/var/www/html/leasecapital">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
