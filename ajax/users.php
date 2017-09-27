@@ -13,7 +13,7 @@ switch($action){
 		$isEdit = (is_numeric($id) && $id > 0);
 
 		$data = array();
-		$data['id_branch'] 		= $user->id_branch;
+		$data['id_branch'] 		= 0;
 		$data['name'] 			= isset($_POST['name']) 		? trim($_POST['name']) 			: '';
 		$data['surname'] 		= isset($_POST['surname']) 		? trim($_POST['surname']) 		: '';
 		$data['username'] 		= isset($_POST['username']) 	? trim($_POST['username']) 		: '';
@@ -98,7 +98,7 @@ switch($action){
 
 		$rsp['total'] = 0;
 
-		$WHERE = "us.state > 0 AND us.id_branch = ".$user->id_branch;
+		$WHERE = "us.state > 0";
 
 		if(!empty($date_from) && !empty($date_to)){
 			$WHERE .= " AND DATE(us.date_added) between '$date_from' and '$date_to'";
@@ -113,10 +113,8 @@ switch($action){
 
 		$SQL = "SELECT us.*,
                        DATE_FORMAT(us.date_added, '%d-%m-%Y %h:%i %p') date_added,
-                       le.name le_name,
-                       br.name br_name
+                       le.name le_name
                 FROM users us
-                  LEFT JOIN branches br ON br.id = us.id_branch
                   LEFT JOIN levels le ON le.id = us.id_level
                 WHERE $WHERE
                 ORDER BY us.name

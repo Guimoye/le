@@ -25,6 +25,35 @@ if(isLocal()){
 	define('URL_CMS','http://beta.focusit.pe/leasecapital/');
 }
 
+/**
+ * Obtener valores GET
+ */
+function _GET($name, $default_value = ''){
+    $val = trim(@$_GET[$name]);
+    return !empty($val) ? $val : $default_value;
+}
+
+function _GET_INT($name, $default_value = 0){
+    $val = @$_GET[$name];
+    return is_numeric($val) ? $val : $default_value;
+}
+
+/**
+ * Obtener valores POST
+ */
+function _POST($name, $default_value = ''){
+    $val = trim(@$_POST[$name]);
+    return !empty($val) ? $val : $default_value;
+}
+
+function _POST_INT($name, $default_value = 0){
+    $val = @$_POST[$name];
+    return is_numeric($val) ? $val : $default_value;
+}
+
+/**
+ * Class Util
+ */
 class Util{
 
 	public function __construct(){}

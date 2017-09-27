@@ -3,20 +3,56 @@ include("_base.php");
 include("../inc/arrays.php");
 global $db,$user,$rsp,$st_driver;
 
-$action = isset($_POST['action']) 	? $_POST['action'] 	: '';
-$id 	= (isset($_POST['id']) 		? $_POST['id'] 		: 0 );
+$action = _POST('action');
+$id 	= _POST('id',0);
 
 switch($action){
 	case 'add':
 		$isEdit = (is_numeric($id) && $id > 0);
 
 		$data = array();
-		$data['name'] 			= isset($_POST['name']) 		? trim($_POST['name']) 			: '';
-		$data['surname'] 		= isset($_POST['surname']) 		? trim($_POST['surname']) 		: '';
-		$data['email'] 			= isset($_POST['email']) 		? trim($_POST['email']) 		: '';
-		$data['password'] 		= isset($_POST['password']) 	? trim($_POST['password']) 		: '';
-		$data['phone'] 			= isset($_POST['phone']) 		? trim($_POST['phone']) 		: '';
-		$data['state']			= isset($_POST['state'])		? trim($_POST['state'])			: 1; // Activo
+		$data['name'] 			    = _POST('name');
+		$data['surname'] 			= _POST('surname');
+		$data['date_birth'] 		= _POST('date_birth');
+		$data['dni'] 			    = _POST('dni');
+		$data['ruc'] 			    = _POST('ruc');
+		$data['driver_licence'] 	= _POST('driver_licence');
+		$data['city'] 			    = _POST('city');
+		$data['district'] 			= _POST('district');
+		$data['phone_cell'] 		= _POST('phone_cell');
+		$data['phone_house'] 		= _POST('phone_house');
+		$data['email'] 			    = _POST('email');
+		$data['civil_status'] 		= _POST('civil_status');
+		$data['wife_name'] 			= _POST('wife_name');
+		$data['wife_dni'] 			= _POST('wife_dni');
+		$data['bank_name'] 			= _POST('bank_name');
+		$data['bank_account'] 		= _POST('bank_account');
+
+		$data['gt_name'] 			= _POST('gt_name');
+		$data['gt_dni'] 			= _POST('gt_dni');
+		$data['gt_district'] 		= _POST('gt_district');
+		$data['gt_address'] 		= _POST('gt_address');
+		$data['gt_phone'] 			= _POST('gt_phone');
+		$data['gt_email'] 			= _POST('gt_email');
+		$data['gt_job_place'] 		= _POST('gt_job_place');
+		$data['gt_job_role'] 		= _POST('gt_job_role');
+		$data['gt_job_address'] 	= _POST('gt_job_address');
+		$data['gt_job_district'] 	= _POST('gt_job_district');
+		$data['gt_job_phone'] 		= _POST('gt_job_phone');
+		$data['gt_job_boss_name'] 	= _POST('gt_job_boss_name');
+		$data['gt_job_boss_role'] 	= _POST('gt_job_boss_role');
+		$data['gt_job_boss_email'] 	= _POST('gt_job_boss_email');
+
+		$data['vh_brand'] 			= _POST('vh_brand');
+		$data['vh_model'] 			= _POST('vh_model');
+		$data['vh_plate'] 			= _POST('vh_plate');
+		$data['vh_year'] 			= _POST('vh_year');
+		$data['vh_color'] 			= _POST('vh_color');
+		$data['vh_engine_number'] 	= _POST('vh_engine_number');
+		$data['vh_serial_chassis'] 	= _POST('vh_serial_chassis');
+		$data['vh_fuel'] 			= _POST('vh_fuel');
+		$data['vh_gps_number'] 		= _POST('vh_gps_number');
+		$data['state']			    = _POST('state', 1);
 
 		if(empty($data['name'])){
 			$rsp['msg'] = '<b>Nombre</b> incorrecto';
@@ -24,28 +60,8 @@ switch($action){
 		} else if(empty($data['surname'])){
 			$rsp['msg'] = '<b>Apellido</b> incorrecto';
 
-		} else if(!$uu->isEmail($data['email'])){
-			$rsp['msg'] = '<b>Email</b> incorrecto';
-
-		} else if($db->has("SELECT * FROM drivers WHERE email = '".$data['email']."' AND id != '$id'")){
-			$rsp['msg'] = '<b>Email</b> ya está en uso';
-
-		} else if(!$isEdit && empty($data['password'])){
-			$rsp['msg'] = '<b>Contraseña</b> incorrecta';
-
-		} else if(empty($data['phone'])){
-			$rsp['msg'] = '<b>Teléfono</b> incorrecto';
-
-		} else if(!is_numeric($data['state'])){
-			$rsp['msg'] = '<b>Estado</b> inválido';
-
 		} else {
 			if($isEdit){
-				if(empty($data['password'])){
-					unset($data['password']);
-				} else {
-					$data['password'] = md5($data['password']);
-				}
 				if($db->update('drivers', $data, $id)){
 					$rsp['ok'] = true;
 					$rsp['id'] = $id;
@@ -54,7 +70,6 @@ switch($action){
 				}
 			} else {
 				$data['id_user'] 	= $user->id;
-				$data['password'] 	= md5($data['password']);
 				if($db->insert('drivers', $data)){
 					$rsp['ok'] = true;
 					$rsp['id'] = $db->lastID();
@@ -93,7 +108,7 @@ switch($action){
 		}
 		if(!empty($word)){
 			$word = '%'.str_replace(' ', '%', $word).'%';
-			$WHERE .= " AND (CONCAT(name,surname,email,phone) LIKE '$word')";
+			$WHERE .= " AND (CONCAT(name,surname) LIKE '$word')";
 		}
 		if(is_numeric($state)){
 			$WHERE .= " AND state = $state";
@@ -121,15 +136,20 @@ switch($action){
 
 				$table .= '
 					<tr>
-						<td> '.$o->id.' </td>
-						<td> <div style="white-space: nowrap; overflow: hidden; text-overflow:ellipsis"> '.$o->name.' '.$o->surname.' </div></td>
-						<td> '.$o->email.' </td>
-						<td> '.$o->phone.' </td>
-						<td> '.$o->date_added.' </td>
-						<td> <span class="label label-sm label-'.$estado.'"> '.$st_driver[$o->state].' </span> </td>
-						<td> <a href="'.$link.'" class="btn btn-outline btn-circle dark btn-sm"><i class="fa fa-user"></i></a> </td>
 						<td>
-							<span class="btn btn-outline btn-circle dark btn-sm" onclick="MDriver.edit(Pager.items['.$o->id.']);">
+						    <a href="'.$link.'">'.$o->name.' '.$o->surname.'</a>
+						    <div style="font-size:12px;color:red">Mant. 20,000km</div>
+						</td>
+						<td> '.$o->vh_plate.' </td>
+						<td> --- </td>
+						<td> '.$o->date_added.' </td>
+						<td> --- </td>
+						<td> '.$stg->coin.' -.-- </td>
+						<td class="nowrap">
+						    <a href="'.$link.'" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-eye"></i></a>
+						    <a href="feed_fental.php?id='.$o->id.'" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-bar-chart"></i></a>
+						    
+							<span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MDriver.edit(Pager.items['.$o->id.']);">
 								<i class="fa fa-pencil"></i>
 							</span>
 						</td>

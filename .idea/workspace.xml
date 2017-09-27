@@ -4,7 +4,141 @@
     <bookmark url="file://$PROJECT_DIR$/inc/stock.php" line="112" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6ef41d0-86c3-462e-87a4-a986f3ae332a" name="Default" comment="" />
+    <list default="true" id="e6ef41d0-86c3-462e-87a4-a986f3ae332a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/m_driver.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/accounting.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/areas.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/box.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/boxes.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/branches.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/categories.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/clients.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/dispatch.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/dispatcher.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/live.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/orders.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/print.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/products.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/promos.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/proofs.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/providers.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/purchases.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/request.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/rooms.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/storages.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/supplies.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/tasks.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/turns.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ajax/unimeds.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/annul_purchases.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/annul_sales.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/areas.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/box.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/boxes.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/branches.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/categories.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/clients.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/dispatch.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/dispatcher.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/orders.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dispatcher.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/expenses.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/igv.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/incomes.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/inventory.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/box.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/buy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/c_supply.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/core.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/dispatcher.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/fares.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/ktc.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/live.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_area.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_box.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_branch.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_categories.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_client.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_expense.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_income.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_product.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_promo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_proof.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_provider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_request.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_room.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_storage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_supply.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_turn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/m_unimed.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/mdriver.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/print.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/task.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/zones.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kardex.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/open_box.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/orders.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/products.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/promos.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/proofs.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/providers.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/purchases.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/purchases_export.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/request.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/rooms.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sales.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sales_export.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storages.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/supplies.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tasks.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/accounting.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/annul_purchases.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/annul_sales.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/areas.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/box.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/boxes.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/branches.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/categories.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/clients.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/dispatcher.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/expenses.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/igv.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/incomes.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/inventory.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/kardex.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/open_box.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/orders.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/products.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/promos.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/proofs.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/providers.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/purchases.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/purchases_export.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/request.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/rooms.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/sales.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/sales_export.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/storages.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/supplies.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/tasks.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/turns.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/unimeds.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/xxx.tpl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/turns.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/unimeds.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ajax/_base.php" afterPath="$PROJECT_DIR$/ajax/_base.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ajax/drivers.php" afterPath="$PROJECT_DIR$/ajax/drivers.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ajax/users.php" afterPath="$PROJECT_DIR$/ajax/users.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/core.css" afterPath="$PROJECT_DIR$/css/core.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/mysql.php" afterPath="$PROJECT_DIR$/inc/mysql.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/user.php" afterPath="$PROJECT_DIR$/inc/user.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/util.php" afterPath="$PROJECT_DIR$/inc/util.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/_footer.tpl" afterPath="$PROJECT_DIR$/templates/_footer.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/drivers.tpl" afterPath="$PROJECT_DIR$/templates/drivers.tpl" />
+    </list>
     <ignored path="SmartRest.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -36,6 +170,12 @@
         <item name="LOCAL" type="e3449647:DbNodeDescriptor" />
         <item name="leasecapital" type="e3449647:DbNodeDescriptor" />
       </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="LOCAL" type="e3449647:DbNodeDescriptor" />
+        <item name="leasecapital" type="e3449647:DbNodeDescriptor" />
+        <item name="dues_rental" type="e3449647:DbNodeDescriptor" />
+      </path>
     </expand>
     <select />
   </component>
@@ -43,7 +183,75 @@
     <favorites_list name="SmartRest" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="dues_rental.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dues_rental.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="146" column="56" lean-forward="true" selection-start-line="146" selection-start-column="56" selection-end-line="146" selection-end-column="56" />
+              <folding>
+                <marker date="1506548607000" expanded="true" signature="529:573" ph="SELECT * FRO... dues_rental" />
+                <marker date="1506548607000" expanded="true" signature="529:584" ph="SELECT * FRO... dues_rental" />
+                <marker date="1506548607000" expanded="true" signature="3798:3865" ph="SELECT * FRO... dues_rental" />
+                <marker date="1506548607000" expanded="true" signature="4556:4624" ph="UPDATE dues_... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="m_dues_rental.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/m_dues_rental.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="635">
+              <caret line="115" column="21" lean-forward="true" selection-start-line="115" selection-start-column="21" selection-end-line="115" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dues_rental.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/dues_rental.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="488">
+              <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+              <folding>
+                <element signature="e#764#787#0#HTML" expanded="true" />
+                <element signature="e#3236#5508#0#HTML" expanded="false" />
+                <element signature="e#6642#6648#0#HTML" expanded="true" />
+                <element signature="e#6832#6871#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="drivers.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../SmartCab/ajax/drivers.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="1" column="21" lean-forward="true" selection-start-line="1" selection-start-column="21" selection-end-line="2" selection-end-column="48" />
+              <folding>
+                <marker date="1504559222000" expanded="true" signature="5696:5773" ph="SELECT id FR... conductores" />
+                <marker date="1504559222000" expanded="true" signature="9662:9704" ph="SELECT estad... conductores" />
+                <marker date="1504559222000" expanded="true" signature="9842:9890" ph="UPDATE condu... " />
+                <marker date="1504559222000" expanded="true" signature="10032:10069" ph="SELECT * FRO... conductores" />
+                <marker date="1504559222000" expanded="true" signature="11014:11087" ph="SELECT email... conductores" />
+                <marker date="1504559222000" expanded="true" signature="11732:11789" ph="SELECT id, f... conductores" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="m_driver.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../SmartCab/assets/js/m_driver.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="596" column="14" lean-forward="true" selection-start-line="596" selection-start-column="14" selection-end-line="613" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,22 +263,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>RQST.order.ordpros</find>
-      <find>RQST.order.ordpros[</find>
-      <find>addNotePP</find>
-      <find>id_propre</find>
-      <find>updateTotal</find>
-      <find>remove</find>
-      <find>seguro</find>
-      <find>stock</find>
-      <find>op_q</find>
-      <find>impriomi</find>
-      <find>imprimir</find>
-      <find>serie</find>
-      <find>.serie</find>
-      <find>branc</find>
-      <find>branch</find>
-      <find>branch_</find>
       <find>send:</find>
       <find>id_proof</find>
       <find>setItems</find>
@@ -85,6 +277,22 @@
       <find>$_is_lcl</find>
       <find>isLocal(</find>
       <find>isMobile</find>
+      <find>whats</find>
+      <find>what</find>
+      <find>C0554y</find>
+      <find>f1881y</find>
+      <find>phone_</find>
+      <find>name</find>
+      <find>date</find>
+      <find>now</find>
+      <find>Live.</find>
+      <find>setLocalBranch</find>
+      <find>branch</find>
+      <find>branc</find>
+      <find>br.</find>
+      <find>isDat</find>
+      <find>sa</find>
+      <find>$foto_auto</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -96,15 +304,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/supplies.tpl" />
-        <option value="$PROJECT_DIR$/DB-NOTES.json" />
-        <option value="$PROJECT_DIR$/ajax/purchases.php" />
-        <option value="$PROJECT_DIR$/inc/stock.php" />
-        <option value="$PROJECT_DIR$/templates/sales_export.tpl" />
-        <option value="$PROJECT_DIR$/inc/user.php" />
-        <option value="$PROJECT_DIR$/ajax/settings.php" />
-        <option value="$PROJECT_DIR$/templates/settings.tpl" />
-        <option value="$PROJECT_DIR$/settings.php" />
         <option value="$PROJECT_DIR$/ajax/products.php" />
         <option value="$PROJECT_DIR$/products.php" />
         <option value="$PROJECT_DIR$/kardex.php" />
@@ -130,23 +329,32 @@
         <option value="$PROJECT_DIR$/js/m_box.js" />
         <option value="$PROJECT_DIR$/ajax/boxes.php" />
         <option value="$PROJECT_DIR$/inc/uprint.php" />
-        <option value="$PROJECT_DIR$/_base.php" />
-        <option value="$PROJECT_DIR$/ajax/users.php" />
         <option value="$PROJECT_DIR$/orders.php" />
         <option value="$PROJECT_DIR$/cache.manifest" />
         <option value="$PROJECT_DIR$/offline/offline.html" />
         <option value="$PROJECT_DIR$/offline/cache.manifest" />
         <option value="$PROJECT_DIR$/templates/box.tpl" />
-        <option value="$PROJECT_DIR$/css/core.css" />
-        <option value="$PROJECT_DIR$/inc/util.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/console.sql" />
-        <option value="$PROJECT_DIR$/templates/_footer.tpl" />
         <option value="$PROJECT_DIR$/templates/login.tpl" />
         <option value="$PROJECT_DIR$/templates/_header.tpl" />
         <option value="$PROJECT_DIR$/ajax/controller.php" />
-        <option value="$PROJECT_DIR$/js/core.js" />
         <option value="$PROJECT_DIR$/js/mdriver.js" />
+        <option value="$PROJECT_DIR$/css/core.css" />
         <option value="$PROJECT_DIR$/templates/drivers.tpl" />
+        <option value="$PROJECT_DIR$/ajax/drivers.php" />
+        <option value="$PROJECT_DIR$/driver.php" />
+        <option value="$PROJECT_DIR$/_base.php" />
+        <option value="$PROJECT_DIR$/templates/_footer.tpl" />
+        <option value="$PROJECT_DIR$/js/core.js" />
+        <option value="$PROJECT_DIR$/templates/driver.tpl" />
+        <option value="$PROJECT_DIR$/inc/user.php" />
+        <option value="$PROJECT_DIR$/inc/util.php" />
+        <option value="$PROJECT_DIR$/ajax/_base.php" />
+        <option value="$PROJECT_DIR$/ajax/users.php" />
+        <option value="$PROJECT_DIR$/inc/mysql.php" />
+        <option value="$PROJECT_DIR$/templates/dues_rental.tpl" />
+        <option value="$PROJECT_DIR$/js/m_dues_rental.js" />
+        <option value="$PROJECT_DIR$/dues_rental.php" />
       </list>
     </option>
   </component>
@@ -218,7 +426,22 @@
             <path>
               <item name="LeaseCapital" type="b2602c69:ProjectViewProjectNode" />
               <item name="LeaseCapital" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="ajax" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="LeaseCapital" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeaseCapital" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="LeaseCapital" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeaseCapital" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="LeaseCapital" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LeaseCapital" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -246,11 +469,11 @@
       <recent name="$PROJECT_DIR$/offline" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/global/plugins" />
       <recent name="$PROJECT_DIR$/inc" />
-      <recent name="$PROJECT_DIR$/ajax" />
       <recent name="$PROJECT_DIR$/js" />
-      <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -416,27 +639,31 @@
       <workItem from="1505329124559" duration="3957000" />
       <workItem from="1505393757538" duration="5684000" />
       <workItem from="1506095481562" duration="6977000" />
-      <workItem from="1506348026502" duration="633000" />
+      <workItem from="1506348026502" duration="11485000" />
+      <workItem from="1506368981814" duration="6278000" />
+      <workItem from="1506523711396" duration="16914000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="614253000" />
+    <option name="totallyTimeSpent" value="648297000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="303" y="23" width="1617" height="993" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18603174" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18984127" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20698413" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2031746" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32628062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280363" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22617246" sideWeight="0.50653595" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39932126" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22617246" sideWeight="0.50653595" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -447,7 +674,6 @@
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43207127" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -496,229 +722,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sales.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/box.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="16" selection-end-column="55" />
-          <folding>
-            <marker date="1498483876000" expanded="true" signature="209:457" ph="SELECT re.*,... regboxes" />
-            <marker date="1498483876000" expanded="true" signature="601:669" ph="SELECT * FRO... rooms" />
-            <marker date="1498483876000" expanded="true" signature="734:797" ph="SELECT * FRO... tables" />
-            <marker date="1498483876000" expanded="true" signature="847:1038" ph="SELECT pr.*,... products" />
-            <marker date="1498483876000" expanded="true" signature="1124:1185" ph="SELECT * FRO... propres" />
-            <marker date="1498483876000" expanded="true" signature="1281:1331" ph="SELECT * FRO... proofs" />
-            <marker date="1498483876000" expanded="true" signature="1414:1485" ph="SELECT * FRO... categories" />
-            <marker date="1498483876000" expanded="true" signature="1543:1597" ph="SELECT * FRO... categories" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/925304ea/0b870746-7383-425f-b80c-c6e57b38d723/smartrest.proofs" />
-    <entry file="file://$PROJECT_DIR$/ajax/box.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="37" column="60" lean-forward="true" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <marker date="1504796299000" expanded="true" signature="230:298" ph="SELECT * FRO... rooms" />
-            <marker date="1504796299000" expanded="true" signature="380:443" ph="SELECT * FRO... tables" />
-            <marker date="1504796299000" expanded="true" signature="503:694" ph="SELECT pr.*,... products" />
-            <marker date="1504796299000" expanded="true" signature="797:858" ph="SELECT * FRO... propres" />
-            <marker date="1504796299000" expanded="true" signature="1006:1077" ph="SELECT * FRO... categories" />
-            <marker date="1504796299000" expanded="true" signature="1135:1189" ph="SELECT * FRO... categories" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/m_request.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="39" column="32" lean-forward="true" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/m_menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-155">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ajax/menu.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/request.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="180" column="14" lean-forward="true" selection-start-line="180" selection-start-column="14" selection-end-line="180" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../EasyRestMini/print/models/precuenta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="47" column="16" lean-forward="true" selection-start-line="47" selection-start-column="16" selection-end-line="49" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../EasyRestMini/print/models/factura.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="69" column="22" lean-forward="false" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../EasyRestMini/print/printer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1275">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../EasyRestMini/print/models/boleta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="761">
-          <caret line="56" column="22" lean-forward="false" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../EasyRestMini/print/print.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0b870746-7383-425f-b80c-c6e57b38d723/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="54" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/8a2ef799-604b-426f-ab75-edb7c658dd9c/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/print.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="60" column="4" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/m_box.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="84" column="72" lean-forward="true" selection-start-line="84" selection-start-column="72" selection-end-line="84" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ajax/boxes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="67" lean-forward="true" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/boxes.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="122" column="26" lean-forward="true" selection-start-line="122" selection-start-column="26" selection-end-line="122" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inc/uprint.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ajax/users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="106" column="57" lean-forward="true" selection-start-line="106" selection-start-column="57" selection-end-line="106" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/925304ea/8a2ef799-604b-426f-ab75-edb7c658dd9c/easyrest_amore.menu" />
-    <entry file="das://table:/925304ea/0b870746-7383-425f-b80c-c6e57b38d723/smartrest.menu" />
-    <entry file="file://$PROJECT_DIR$/ajax/print.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inc/user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2358">
-          <caret line="131" column="34" lean-forward="false" selection-start-line="131" selection-start-column="34" selection-end-line="131" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/925304ea/8a2ef799-604b-426f-ab75-edb7c658dd9c/easyrest_amore.users" />
-    <entry file="file://$PROJECT_DIR$/orders.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding>
-            <marker date="1505332703000" expanded="true" signature="230:298" ph="SELECT * FRO... rooms" />
-            <marker date="1505332703000" expanded="true" signature="380:443" ph="SELECT * FRO... tables" />
-            <marker date="1505332703000" expanded="true" signature="503:694" ph="SELECT pr.*,... products" />
-            <marker date="1505332703000" expanded="true" signature="797:858" ph="SELECT * FRO... propres" />
-            <marker date="1505332703000" expanded="true" signature="963:1031" ph="SELECT * FRO... areas" />
-            <marker date="1505332703000" expanded="true" signature="1115:1186" ph="SELECT * FRO... categories" />
-            <marker date="1505332703000" expanded="true" signature="1244:1298" ph="SELECT * FRO... categories" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/box.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="129" column="77" lean-forward="true" selection-start-line="129" selection-start-column="77" selection-end-line="129" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/offline/cache.manifest" />
-    <entry file="file://$PROJECT_DIR$/offline/offline.html" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -727,20 +730,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aaa.php" />
-    <entry file="file://$PROJECT_DIR$/css/core.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="63" column="41" lean-forward="false" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inc/mysql.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="60" column="20" lean-forward="false" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/6b9c2ae1/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.users">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -762,24 +751,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/6b9c2ae1/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.menu">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/6b9c2ae1/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.perms">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/_footer.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="40" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -790,17 +765,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inc/util.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ajax/controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <marker date="1506098810000" expanded="true" signature="163:183" ph="SELECT * FRO... levels" />
+            <marker date="1506098810000" expanded="true" signature="295:332" ph="SELECT * FRO... unimeds" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -811,32 +783,338 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/mdriver.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="58" column="45" lean-forward="true" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/drivers.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="314" column="50" lean-forward="true" selection-start-line="314" selection-start-column="50" selection-end-line="314" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/drivers.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/AppLockFingerprintUnlock_v1.0.3_apkpure.com_source_from_JADX/com/cleanmaster/applocklib/p025j/C0555z.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2736">
+          <caret line="152" column="67" lean-forward="true" selection-start-line="152" selection-start-column="67" selection-end-line="152" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/AppLockFingerprintUnlock_v1.0.3_apkpure.com_source_from_JADX/com/cleanmaster/applocklib/p025j/C0553x.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/AppLockFingerprintUnlock_v1.0.3_apkpure.com_source_from_JADX/com/cleanmaster/applocklib/p025j/C0548s.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="80" column="33" lean-forward="false" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/AppLockFingerprintUnlock_v1.0.3_apkpure.com_source_from_JADX/res/values/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/products.tpl" />
+    <entry file="file://$PROJECT_DIR$/js/m_driver.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3528">
+          <caret line="196" column="71" lean-forward="false" selection-start-line="196" selection-start-column="71" selection-end-line="196" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/promos.tpl" />
+    <entry file="file://$PROJECT_DIR$/ajax/boxes.php" />
+    <entry file="file://$PROJECT_DIR$/ajax/box.php" />
+    <entry file="file://$PROJECT_DIR$/css/core.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="972">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/AppLockFingerprintUnlock_v1.0.3_apkpure.com_source_from_JADX/com/cleanmaster/fingerprint/StartFingerPrintSettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/accounting.tpl" />
+    <entry file="file://$PROJECT_DIR$/js/zones.js" />
+    <entry file="file://$PROJECT_DIR$/templates/_footer.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="45" lean-forward="false" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/live.js" />
+    <entry file="file://$PROJECT_DIR$/js/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="177" column="22" lean-forward="true" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/driver.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="70" column="42" lean-forward="false" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="121" column="15" lean-forward="true" selection-start-line="121" selection-start-column="15" selection-end-line="121" selection-end-column="15" />
+          <folding>
+            <marker date="1506524184000" expanded="true" signature="498:529" ph="SELECT * FRO... users" />
+            <marker date="1506524184000" expanded="true" signature="1034:1232" ph="SELECT * FRO... perms" />
+            <marker date="1506524184000" expanded="true" signature="2647:2695" ph="SELECT * FRO... menu" />
+            <marker date="1506524184000" expanded="true" signature="3194:3277" ph="SELECT * FRO... users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="44" lean-forward="true" selection-start-line="4" selection-start-column="44" selection-end-line="9" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/6b9c2ae1/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.menu">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/util.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="217" column="25" lean-forward="false" selection-start-line="217" selection-start-column="20" selection-end-line="217" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/6b9c2ae1/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.drivers">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ajax/users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-865">
+          <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <folding>
+            <marker date="1506533401000" expanded="true" signature="1373:1449" ph="SELECT * FRO... users" />
+            <marker date="1506533401000" expanded="true" signature="2602:2682" ph="UPDATE users... " />
+            <marker date="1506533401000" expanded="true" signature="3941:4259" ph="SELECT us.*,... users" />
+            <marker date="1506533401000" expanded="true" signature="4811:4872" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/6b9c2ae1/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.dues_rental">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SmartRest/templates/expenses.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="33" column="42" lean-forward="false" selection-start-line="33" selection-start-column="42" selection-end-line="51" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/drivers.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ajax/_base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="34" lean-forward="false" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/mysql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="48" column="39" lean-forward="false" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="39" />
+          <folding>
+            <marker date="1498483876000" expanded="true" signature="691:729" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1498483876000" expanded="true" signature="770:800" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1498483876000" expanded="true" signature="1373:1419" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1498483876000" expanded="true" signature="1460:1502" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1498483876000" expanded="true" signature="1782:1828" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1498483876000" expanded="true" signature="1869:1911" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1498483876000" expanded="true" signature="2333:2374" ph="SELECT ${$id... ${$sql}" />
+            <marker date="1498483876000" expanded="true" signature="2412:2443" ph="SELECT id FR... ${$sql}" />
+            <marker date="1498483876000" expanded="true" signature="3239:3262" ph="INSERT INTO ${$table}... " />
+            <marker date="1498483876000" expanded="true" signature="3917:3947" ph="UPDATE ${$ta... " />
+            <marker date="1498483876000" expanded="true" signature="4346:4377" ph="SELECT name,... settings" />
+            <marker date="1498483876000" expanded="true" signature="4579:4622" ph="SELECT * FRO... settings" />
+            <marker date="1498483876000" expanded="true" signature="4979:5057" ph="INSERT INTO logs... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ajax/drivers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="147" column="27" lean-forward="false" selection-start-line="147" selection-start-column="27" selection-end-line="147" selection-end-column="42" />
+          <folding>
+            <marker date="1506360329000" expanded="true" signature="2790:2830" ph="UPDATE drive... " />
+            <marker date="1506360329000" expanded="true" signature="3870:3936" ph="SELECT * FRO... drivers" />
+            <marker date="1506360329000" expanded="true" signature="4363:4642" ph="..." />
+            <marker date="1506360329000" expanded="true" signature="4363:4643" ph="..." />
+            <marker date="1506360329000" expanded="true" signature="4363:5153" ph="..." />
+            <marker date="1506360329000" expanded="true" signature="4374:4518" ph="..." />
+            <marker date="1506360329000" expanded="true" signature="4461:4485" ph="..." />
+            <marker date="1506360329000" expanded="true" signature="4693:4847" ph="..." />
+            <marker date="1506360329000" expanded="true" signature="4693:5142" ph="..." />
+            <marker date="1506360329000" expanded="true" signature="5078:5130" ph="..." />
+            <marker date="1506360329000" expanded="true" signature="5422:5505" ph="SELECT * FRO... drivers" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SmartCab/driver-info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <marker date="1503344218000" expanded="true" signature="1700:1751" ph="SELECT SUM(m... pagos" />
+            <marker date="1503344218000" expanded="true" signature="1832:1896" ph="SELECT * FRO... pagos" />
+            <marker date="1503344218000" expanded="true" signature="2062:2106" ph="SELECT id FR... carreras" />
+            <marker date="1503344218000" expanded="true" signature="2143:2205" ph="SELECT * FRO... registros" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SmartCab/_base_driver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="44" />
+          <folding>
+            <marker date="1504558538000" expanded="true" signature="82:154" ph="SELECT estre... carreras" />
+            <marker date="1504558538000" expanded="true" signature="998:1089" ph="SELECT c.*, conductores" />
+            <marker date="1504558538000" expanded="true" signature="1523:1543" ph="SELECT * FRO... marcas" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SmartCab/assets/js/m_driver.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="596" column="14" lean-forward="true" selection-start-line="596" selection-start-column="14" selection-end-line="613" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/plugins/ImageResize.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="499" column="20" lean-forward="false" selection-start-line="499" selection-start-column="20" selection-end-line="499" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/global/plugins/jquery.form.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../SmartCab/ajax/drivers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="21" lean-forward="true" selection-start-line="1" selection-start-column="21" selection-end-line="2" selection-end-column="48" />
+          <folding>
+            <marker date="1504559222000" expanded="true" signature="5696:5773" ph="SELECT id FR... conductores" />
+            <marker date="1504559222000" expanded="true" signature="9662:9704" ph="SELECT estad... conductores" />
+            <marker date="1504559222000" expanded="true" signature="9842:9890" ph="UPDATE condu... " />
+            <marker date="1504559222000" expanded="true" signature="10032:10069" ph="SELECT * FRO... conductores" />
+            <marker date="1504559222000" expanded="true" signature="11014:11087" ph="SELECT email... conductores" />
+            <marker date="1504559222000" expanded="true" signature="11732:11789" ph="SELECT id, f... conductores" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uploads/5b215eeb24e8f16fa1a9e59a214150e2.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dues_rental.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding>
+            <element signature="e#764#787#0#HTML" expanded="true" />
+            <element signature="e#3236#5508#0#HTML" expanded="false" />
+            <element signature="e#6642#6648#0#HTML" expanded="true" />
+            <element signature="e#6832#6871#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/m_dues_rental.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="115" column="21" lean-forward="true" selection-start-line="115" selection-start-column="21" selection-end-line="115" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dues_rental.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="146" column="56" lean-forward="true" selection-start-line="146" selection-start-column="56" selection-end-line="146" selection-end-column="56" />
+          <folding>
+            <marker date="1506548607000" expanded="true" signature="529:573" ph="SELECT * FRO... dues_rental" />
+            <marker date="1506548607000" expanded="true" signature="529:584" ph="SELECT * FRO... dues_rental" />
+            <marker date="1506548607000" expanded="true" signature="3798:3865" ph="SELECT * FRO... dues_rental" />
+            <marker date="1506548607000" expanded="true" signature="4556:4624" ph="UPDATE dues_... " />
+          </folding>
         </state>
       </provider>
     </entry>

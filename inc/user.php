@@ -11,8 +11,6 @@ class User{
 	public $username;
 	public $avatar;
 	public $state;
-	public $id_branch;
-	public $branch_name;
 
     private $perms;
 
@@ -34,9 +32,6 @@ class User{
 				$this->surname 	= $user->surname;
 				$this->username = $user->username;
 				$this->state 	= $user->state;
-
-				$this->id_branch    = $_SESSION['branch']['id'];
-				$this->branch_name  = $_SESSION['branch']['name'];
 			}
 		}
 	}
@@ -108,9 +103,7 @@ class User{
 			'name' 		=> $this->name,
 			'surname' 	=> $this->surname,
 			'username'	=> $this->username,
-			'state' 	=> $this->state,
-			'id_branch' 	=> $this->id_branch,
-			'branch_name' 	=> $this->branch_name,
+			'state' 	=> $this->state
 		];
 	}
 
@@ -129,9 +122,6 @@ class User{
 		if($o){
 			$db->update('users', ['date_login'=>'NOW()'], $o->id);
 			$_SESSION['id_user'] = $o->id;
-            if($o->id_branch > 0){
-                $this->setLocalBranch($o->id_branch);
-            }
 			return true;
 		} else {
 			return false;
@@ -143,18 +133,5 @@ class User{
 
 		//return ($o != false);
 	}
-
-    // Cambiar SUCURSAL
-    public function setLocalBranch($id){
-        global $db;
-
-        $o = $db->o('branches', $id);
-        $_SESSION['branch'] = [
-            'id'    => $o->id,
-            'name'  => $o->name
-        ];
-        
-        return true;
-    }
 	
 }

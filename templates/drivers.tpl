@@ -17,7 +17,7 @@
         <form class="form-inline" id="filters" action="ajax/drivers.php">
             <div class="form-group">
                 <label>Consulta</label><br>
-                <input class="form-control" name="word" placeholder="nombre,email,celular"/>
+                <input class="form-control" name="word" placeholder="Nombre de conductor"/>
             </div>
             <div class="form-group">
                 <label>&nbsp;</label><br>
@@ -27,16 +27,16 @@
         </form>
         <!-- END FILTERS -->
 
-        <table class="table table-striped table-bordered table-hover dt-responsive" style="margin-top:10px">
+        <table class="table table-striped table-bordered table-hover dt-responsive mdl-td" style="margin-top:10px">
             <thead>
             <tr>
-                <th width="1%"> # </th>
-                <th> Nombre </th>
-                <th width="1%"> Email </th>
-                <th> Celular </th>
-                <th> Fecha de registro </th>
-                <th width="1%"> Estado </th>
-                <th width="1%" colspan="2"></th>
+                <th> Nombres </th>
+                <th> Placa </th>
+                <th> Kilometraje </th>
+                <th> Fecha Inicio </th>
+                <th> Semanas </th>
+                <th> Deuda Vencida </th>
+                <th width="1%">Opciones</th>
             </tr>
             </thead>
             <tbody id="pager_content"></tbody>
@@ -97,49 +97,49 @@
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Apellidos</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="surname" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Fecha de nacimiento</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="date_birth" type="date" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">DNI</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="dni" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">RUC</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="ruc" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Licencia de conducir</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="driver_licence" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Ciudad</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="city" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Distrito</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="district" placeholder="Escribir...">
                                             </div>
                                         </div>
 
@@ -150,56 +150,62 @@
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Teléfono</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="phone_cell" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Casa</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="phone_house" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Correo</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="email" type="email" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Estado civil</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <select class="form-control" name="civil_status">
+                                                    <option>Soltero</option>
+                                                    <option>Casado</option>
+                                                    <option>Conviviente</option>
+                                                    <option>Divorciado</option>
+                                                    <option>Viudo</option>
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Nombre conyugue</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="wife_name" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">DNI</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="wife_dni" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Banco</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="bank_name" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Número de cuenta</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="bank_account" placeholder="Escribir...">
                                             </div>
                                         </div>
 
@@ -216,56 +222,56 @@
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Nombre</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_name" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">DNI</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_dni" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Distrito</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_district" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Dirección</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_address" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Teléfono</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_phone" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Correo</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_email" type="email" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Lugar de trabajo</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_job_place" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Puesto</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_job_role" placeholder="Escribir...">
                                             </div>
                                         </div>
 
@@ -276,42 +282,42 @@
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Dirección trabajo</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_job_address" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Distrito trabajo</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_job_district" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Teléfono trabajo</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_job_phone" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Jefe directo</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_job_boss_name" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Puesto jefe directo</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_job_boss_role" placeholder="Escribir...">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Correo</label>
                                             <div class="col-md-7">
-                                                <input class="form-control" name="name" placeholder="Escribir...">
+                                                <input class="form-control" name="gt_job_boss_email" placeholder="Escribir...">
                                             </div>
                                         </div>
 
@@ -321,7 +327,77 @@
                             </div>
 
                             <div class="tab-pane" id="tab_15_3">
-                                ccc
+                                <div class="row">
+
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Marca</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="vh_brand" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Modelo</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="vh_model" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Placa</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="vh_plate" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Año de fabricación</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="vh_year" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Color</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="vh_color" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">N. Motor</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="vh_engine_number" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">N. Seria Chasis</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="vh_serial_chassis" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Combustible</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="vh_fuel" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">N. GPS</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="vh_gps_number" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -343,13 +419,13 @@
 <script>
     function $Ready(){
         MDriver.init();
-        MDriver.add();
+        //MDriver.add();
         //MCar.add(1);
     }
 </script>
 {/literal}
 
 {include file='_footer.tpl' js=[
-    'js/mdriver.js',
+    'js/m_driver.js',
     'js/pager.js'
 ]}

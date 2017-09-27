@@ -46,6 +46,7 @@
 .ctr,.ctr-td td{ text-align:center }
 .mdl,.mdl-td td{ vertical-align:middle!important; }
 .upc,.upc-td td{ text-transform: uppercase }
+.nowrap,.nowrap-td td{ white-space:nowrap!important; }
 
 .pdg_h_0 { padding-left:0!important; padding-right:0!important; }
 
