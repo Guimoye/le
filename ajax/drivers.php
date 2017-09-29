@@ -147,7 +147,7 @@ switch($action){
 						<td> '.$stg->coin.' -.-- </td>
 						<td class="nowrap">
 						    <a href="'.$link.'" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-eye"></i></a>
-						    <a href="feed_fental.php?id='.$o->id.'" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-bar-chart"></i></a>
+						    <a href="dues_rental.php?id='.$o->id.'" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-bar-chart"></i></a>
 						    
 							<span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MDriver.edit(Pager.items['.$o->id.']);">
 								<i class="fa fa-pencil"></i>

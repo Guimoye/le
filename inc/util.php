@@ -51,6 +51,11 @@ function _POST_INT($name, $default_value = 0){
     return is_numeric($val) ? $val : $default_value;
 }
 
+function _POST_ARR($name, $default_value = []){
+    $val = @$_POST[$name];
+    return is_array($val) ? $val : $default_value;
+}
+
 /**
  * Class Util
  */
@@ -331,6 +336,16 @@ class Util{
             }
         }
         return $temp_array;
+    }
+
+    /**
+     * Obtener el numero de semanas entre 2 fechas
+     */
+    function datediffInWeeks($date1, $date2){
+        if($date1 > $date2) return $this->datediffInWeeks($date2, $date1);
+        $first = DateTime::createFromFormat('Y-m-d', $date1);
+        $second = DateTime::createFromFormat('Y-m-d', $date2);
+        return floor($first->diff($second)->days/7);
     }
 
 }

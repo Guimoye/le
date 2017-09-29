@@ -1,9 +1,9 @@
 // Modal Driver
-var MDuesRental = {
+var MDuesSale = {
 
     callback: null,
 
-    title_add:  'Generar Cronograma de Alquiler',
+    title_add:  'Generar Cronograma de Venta',
     title_edit: 'Editar conductor',
 
     $modal: null,
@@ -15,7 +15,7 @@ var MDuesRental = {
     init: function(callback){
         this.callback = (typeof callback === 'function') ? callback : null;
 
-        this.$modal         = $('#modal_add_dues_rental');
+        this.$modal         = $('#modal_add_dues_sale');
         this.$modal.title   = $('.modal-title', this.$modal);
         this.$modal.remove  = $('.remove', this.$modal);
 
@@ -25,7 +25,7 @@ var MDuesRental = {
 
         // Asignar eventos
         this.$modal.remove.click(function(){
-            MDuesRental.remove(MDuesRental.$id.val());
+            MDuesSale.remove(MDuesSale.$id.val());
         });
         $('.save', this.$modal).click(this.save);
 
@@ -33,15 +33,15 @@ var MDuesRental = {
 
     // Guardar
     save: function(){
-        api('dues_rental.php', MDuesRental.$form.serializeObject(), function(rsp){
+        api('dues_sale.php', MDuesSale.$form.serializeObject(), function(rsp){
             if(rsp.ok == true){
                 toastr.success('Guardado correctamente');
-                MDuesRental.$modal.modal('hide');
+                MDuesSale.$modal.modal('hide');
 
-                if(MDuesRental.callback == null){
+                if(MDuesSale.callback == null){
                     location.reload();
                 } else {
-                    MDuesRental.callback(rsp.id, false);
+                    MDuesSale.callback(rsp.id, false);
                 }
 
             } else {
@@ -52,31 +52,31 @@ var MDuesRental = {
     
     // Abrir para nuevo NUEVO
     add: function(){
-        MDuesRental.$modal.title.text(MDuesRental.title_add);
-        MDuesRental.$modal.remove.hide();
+        MDuesSale.$modal.title.text(MDuesSale.title_add);
+        MDuesSale.$modal.remove.hide();
 
-        MDuesRental.$form.id.val('');
-        MDuesRental.$form.surname.val('');
+        MDuesSale.$form.id.val('');
+        MDuesSale.$form.surname.val('');
 
-        MDuesRental.$modal.modal('show');
+        MDuesSale.$modal.modal('show');
     },
     
     // Editar
     edit: function(o){
-        MDuesRental.$modal.title.text(MDuesRental.title_edit);
-        MDuesRental.$modal.remove.show();
+        MDuesSale.$modal.title.text(MDuesSale.title_edit);
+        MDuesSale.$modal.remove.show();
 
-        MDuesRental.$form.id.val(o.id);
-        MDuesRental.$form.surname.val(o.surname);
+        MDuesSale.$form.id.val(o.id);
+        MDuesSale.$form.surname.val(o.surname);
 
-        MDuesRental.$modal.modal('show');
+        MDuesSale.$modal.modal('show');
     },
 
     // Eliminar
     remove: function(id){
         bootbox.confirm('¿Realmente desea eliminar?', function(result){
             if(result){
-                api('dues_rental.php', {action:'remove', id:id}, function(rsp){
+                api('dues_sale.php', {action:'remove', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Eliminado correctamente');
                         location.reload();
@@ -95,7 +95,7 @@ var MDuesRental = {
             placeholder: 'Ingrese el monto a pagar',
             callback: function(result){
                 if(result == null) return;
-                api('dues_rental.php', {action:'set_due_paid', id:id, amount_total:amount_total, amount:result}, function(rsp){
+                api('dues_sale.php', {action:'set_due_paid', id:id, amount_total:amount_total, amount:result}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();
@@ -107,7 +107,7 @@ var MDuesRental = {
         });
         /*bootbox.confirm('¿Marcar como pagado?', function(result){
             if(result){
-                api('dues_rental.php', {action:'set_due_paid', id:id, amount:amount}, function(rsp){
+                api('dues_sale.php', {action:'set_due_paid', id:id, amount:amount}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();
@@ -123,7 +123,7 @@ var MDuesRental = {
     setDueUnpaid: function(id){
         bootbox.confirm('¿Marcar como no pagado?', function(result){
             if(result){
-                api('dues_rental.php', {action:'set_due_unpaid', id:id}, function(rsp){
+                api('dues_sale.php', {action:'set_due_unpaid', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();
@@ -202,7 +202,7 @@ var MVoucher = {
 };
 
 // Modal Dias
-var MDays = {
+var MEditDuesSale = {
 
     callback: null,
 
@@ -215,38 +215,36 @@ var MDays = {
     init: function(callback){
         this.callback = (typeof callback === 'function') ? callback : null;
 
-        this.$modal         = $('#modal_add_days');
+        this.$modal         = $('#modal_edit_dues_sale');
         this.$modal.title   = $('.modal-title', this.$modal);
         this.$modal.remove  = $('.remove', this.$modal);
 
-        this.$form          = $('form', this.$modal);
-        this.$form.id       = $('input[name="id"]', this.$form);
-        this.$form.days     = $('input[name="days[]"]', this.$form);
-        this.$form.day_0    = $('.day_0', this.$form);
-        this.$form.day_1    = $('.day_1', this.$form);
-        this.$form.day_2    = $('.day_2', this.$form);
-        this.$form.day_3    = $('.day_3', this.$form);
-        this.$form.day_4    = $('.day_4', this.$form);
-        this.$form.day_5    = $('.day_5', this.$form);
+        this.$form                  = $('form', this.$modal);
+        this.$form.id               = $('input[name="id"]', this.$form);
+        this.$form.amount_penalty   = $('input[name="amount_penalty"]', this.$form);
 
         // Asignar eventos
+        this.$form.submit(function(e){
+            e.preventDefault();
+            MEditDuesSale.save();
+        });
         this.$modal.remove.click(function(){
-            MDays.remove(MDays.$id.val());
+            MEditDuesSale.remove(MEditDuesSale.$id.val());
         });
         $('.save', this.$modal).click(this.save);
     },
 
     // Guardar
     save: function(){
-        api('dues_rental.php', MDays.$form.serializeObject(), function(rsp){
+        api('dues_sale.php', MEditDuesSale.$form.serializeObject(), function(rsp){
         if(rsp.ok == true){
             toastr.success('Guardado correctamente');
-            MDays.$modal.modal('hide');
+            MEditDuesSale.$modal.modal('hide');
 
-            if(MDays.callback == null){
+            if(MEditDuesSale.callback == null){
                 location.reload();
             } else {
-                MDays.callback(rsp.id, false);
+                MEditDuesSale.callback(rsp.id, false);
             }
 
         } else {
@@ -256,55 +254,12 @@ var MDays = {
     },
 
     // Abrir para nuevo NUEVO
-    open: function(id,free_days){
-        MDays.$modal.title.text('Días libres');
-        MDays.$modal.modal('show');
-        MDays.$form.id.val(id);
+    open: function(id,amount_menalty){
+        MEditDuesSale.$modal.title.text('Editar');
+        MEditDuesSale.$modal.modal('show');
+        MEditDuesSale.$form.id.val(id);
+        MEditDuesSale.$form.amount_penalty.val(amount_menalty);
 
-        var arr = free_days.split(',');
-
-
-        MDays.$form.days.prop('checked', false);
-        MDays.$form.days.attr('disabled', false);
-
-        if(arr.includes('0')){
-            MDays.$form.day_0.prop('checked', true);
-            MDays.$form.day_0.attr('disabled', true);
-        }
-
-        if(arr.includes('1')){
-            MDays.$form.day_1.prop('checked', true);
-            MDays.$form.day_1.attr('disabled', true);
-        }
-
-        if(arr.includes('2')){
-            MDays.$form.day_2.prop('checked', true);
-            MDays.$form.day_2.attr('disabled', true);
-        }
-
-        if(arr.includes('3')){
-            MDays.$form.day_3.prop('checked', true);
-            MDays.$form.day_3.attr('disabled', true);
-        }
-
-        if(arr.includes('4')){
-            MDays.$form.day_4.prop('checked', true);
-            MDays.$form.day_4.attr('disabled', true);
-        }
-
-        if(arr.includes('5')){
-            MDays.$form.day_5.prop('checked', true);
-            MDays.$form.day_5.attr('disabled', true);
-        }
-
-        /*MDays.$form.day_0.prop('checked', arr.includes('0'));
-        MDays.$form.day_1.prop('checked', arr.includes('1'));
-        MDays.$form.day_2.prop('checked', arr.includes('2'));
-        MDays.$form.day_3.prop('checked', arr.includes('3'));
-        MDays.$form.day_4.prop('checked', arr.includes('4'));
-        MDays.$form.day_5.prop('checked', arr.includes('5'));*/
-
-        $.uniform.update();
     }
 
 };

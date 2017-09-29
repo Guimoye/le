@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="58af63c1-db10-4688-b0e8-532dffe95989" name="BETA" url="http://localhost/leasecapital/">
-        <fileTransfer host="beta.focusit.pe" port="21" rootFolder="/var/www/html/leasecapital">
+        <fileTransfer host="beta.focusit.pe" port="21" rootFolder="/var/www/html/beta_focus_pe/leasecapital">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

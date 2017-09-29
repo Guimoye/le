@@ -41,9 +41,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-6 control-label">IP Principal</label>
+                            <label class="col-md-6 control-label">IGV</label>
                             <div class="col-md-6">
-                                <input class="form-control" name="ip_local_server" value="{$stg->ip_local_server}" {if !$can_settings}readonly{/if}>
+                                <input class="form-control" name="igv" value="{$stg->igv}" {if !$can_settings}readonly{/if}>
                             </div>
                         </div>
                         <div class="form-group">
@@ -76,7 +76,7 @@
 <script>
 
     function saveSetting(id_form){
-        api('ajax/settings.php', $('#'+id_form).serializeObject(), function(rsp){
+        api('settings.php', $('#'+id_form).serializeObject(), function(rsp){
             if(rsp.ok){
                 toastr.success('Guardado correctamente')
             } else {

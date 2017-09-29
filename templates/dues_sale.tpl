@@ -9,7 +9,7 @@
             <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
         </div>
         <div class="actions">
-            <!--span class="btn btn-circle blue" onclick="MDuesRental.add();"> <i class="fa fa-plus"></i> Registrar </span>-->
+            <!--span class="btn btn-circle blue" onclick="MDuesSale.add();"> <i class="fa fa-plus"></i> Registrar </span>-->
         </div>
     </div>
 
@@ -27,13 +27,14 @@
                 <tr>
                     <th width="1%"> # </th>
                     <th> Fecha </th>
-                    <th> Alquiler </th>
-                    <th> Multa/Dscto </th>
-                    <th> Anterior </th>
-                    <th> Monto Total </th>
-                    <th> Monto Pagado </th>
-                    <th> Fecha de pago </th>
-                    <th width="1%">Opciones</th>
+                    <th> Amortización </th>
+                    <th> Interés </th>
+                    <th> Seguros </th>
+                    <th> Saldo Anterior </th>
+                    <th> Moras / Dscto </th>
+                    <th> Pago Total </th>
+                    <th> Pago Total (IGV) </th>
+                    <th width="1%"></th>
                 </tr>
                 </thead>
                 <tbody id="pager_content">
@@ -41,35 +42,38 @@
                     <tr>
                         <td> {$o.id} </td>
                         <td> {$o.date_due} </td>
-                        <td> {$stg->coin}{$o.amount_due} </td>
-                        <td> {$stg->coin}{$o.amount_penalty} </td>
-                        <td> {$stg->coin}{$o.amount_previous} </td>
-                        <td> {$stg->coin}{$o.amount_total} </td>
-                        <td> {$stg->coin}{$o.amount_paid} </td>
+                        <td> {$stg->coin}{$o.amount_due|string_format:"%.2f"} </td>
+                        <td> {$stg->coin}{$o.amount_interest|string_format:"%.2f"} </td>
+                        <td> {$stg->coin}{$o.amount_insurance|string_format:"%.2f"} </td>
+                        <td> {$stg->coin}{$o.amount_previous|string_format:"%.2f"} </td>
+                        <td> {$stg->coin}{$o.amount_penalty|string_format:"%.2f"} </td>
+                        <td> {$stg->coin}{$o.amount_total|string_format:"%.2f"} </td>
                         <td>
-                            {$o.date_paid}
+                            {$stg->coin}{$o.amount_paid|string_format:"%.2f"}
                             {if $o.pay_state == 'paid'}
-                                <span {*onclick="MDuesRental.setDueUnpaid({$o.id});"*}
+                                <span {*onclick="MDuesSale.setDueUnpaid({$o.id});"*}
                                       class="btn btn-xs green-jungle">Pagado</span>
 
                             {elseif $o.pay_state == 'pending'}
-                                <span onclick="MDuesRental.setDuePaid({$o.id},{$o.amount_total});"
+                                <span onclick="MDuesSale.setDuePaid({$o.id},{$o.amount_total});"
                                       class="btn btn-xs yellow-crusta">Pendiente</span>
 
                             {elseif $o.pay_state == 'expired'}
-                                <span onclick="MDuesRental.setDuePaid({$o.id},{$o.amount_total});"
+                                <span onclick="MDuesSale.setDuePaid({$o.id},{$o.amount_total});"
                                       class="btn btn-xs red-mint">Vencido</span>
 
                             {/if}
                         </td>
                         <td class="nowrap">
 
-							<span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MVoucher.open({$o.id},'{$o.pic_voucher}');">
+							<span onclick="MVoucher.open({$o.id},'{$o.pic_voucher}');"
+                                  class="btn btn-outline btn-circle dark btn-sm font-md">
 								<i class="fa fa-paperclip"></i>
 							</span>
 
-							<span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MDays.open({$o.id}, '{$o.free_days}');">
-								<i class="fa fa-calendar-o"></i>
+							<span onclick="MEditDuesSale.open({$o.id},{$o.amount_penalty});"
+                                  class="btn btn-outline btn-circle dark btn-sm font-md">
+								<i class="fa fa-pencil"></i>
 							</span>
 
                         </td>
@@ -80,7 +84,7 @@
                 <tr style="background:#e7ecf1">
                     <td colspan="2"></td>
                     <th>{$stg->coin}{$total_amount_due}</th>
-                    <td colspan="6"></td>
+                    <td colspan="7"></td>
                 </tr>
 
                 </tbody>
@@ -92,7 +96,7 @@
 </div>
 
 <!-- MODAL -->
-<div id="modal_add_dues_rental" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
+<div id="modal_add_dues_sale" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -119,6 +123,26 @@
                             <div class="input-group input-group-lg">
                                 <span class="input-group-addon">{$stg->coin}</span>
                                 <input class="form-control" name="amount" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Interés</label>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">{$stg->coin}</span>
+                                <input class="form-control" name="interest" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Seguros</label>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">{$stg->coin}</span>
+                                <input class="form-control" name="insurance" placeholder="0.00">
                             </div>
                         </div>
                     </div>
@@ -153,7 +177,7 @@
             </div>
             <div class="modal-body">
 
-                <form class="form-horizontal" action="dues_rental.php" method="post">
+                <form class="form-horizontal" action="dues_sale.php" method="post">
                     <input type="hidden" name="action" value="upload_voucher">
                     <input type="hidden" name="id" value="">
 
@@ -182,7 +206,7 @@
 <!-- END MODAL VOUCHER -->
 
 <!-- MODAL VOUCHER -->
-<div id="modal_add_days" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
+<div id="modal_edit_dues_sale" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -192,49 +216,18 @@
             <div class="modal-body">
 
                 <form class="form-horizontal">
-                    <input type="hidden" name="action" value="set_free_days">
+                    <input type="hidden" name="action" value="edit">
                     <input type="hidden" name="id" value="">
 
-                    <table class="table table-bordered ctr-td mdl-td" style="margin-bottom:0">
-                        <tr>
-                            <td style="padding:0">
-                                <label style="display:block;padding:8px">
-                                    <div>LU</div>
-                                    <input type="checkbox" name="days[]" value="0" class="day_0">
-                                </label>
-                            </td>
-                            <td style="padding:0">
-                                <label style="display:block;padding:8px">
-                                    <div>MA</div>
-                                    <input type="checkbox" name="days[]" value="1" class="day_1">
-                                </label>
-                            </td>
-                            <td style="padding:0">
-                                <label style="display:block;padding:8px">
-                                    <div>MI</div>
-                                    <input type="checkbox" name="days[]" value="2" class="day_2">
-                                </label>
-                            </td>
-                            <td style="padding:0">
-                                <label style="display:block;padding:8px">
-                                    <div>JU</div>
-                                    <input type="checkbox" name="days[]" value="3" class="day_3">
-                                </label>
-                            </td>
-                            <td style="padding:0">
-                                <label style="display:block;padding:8px">
-                                    <div>VI</div>
-                                    <input type="checkbox" name="days[]" value="4" class="day_4">
-                                </label>
-                            </td>
-                            <td style="padding:0">
-                                <label style="display:block;padding:8px">
-                                    <div>SA</div>
-                                    <input type="checkbox" name="days[]" value="5" class="day_5">
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Multa/Dsct</label>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">{$stg->coin}</span>
+                                <input class="form-control" name="amount_penalty" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
 
                 </form>
 
@@ -252,16 +245,16 @@
 {literal}
 <script>
     function $Ready(){
-        MDuesRental.init();
+        MDuesSale.init();
         MVoucher.init();
-        MDays.init();
+        MEditDuesSale.init();
 
-        //MDays.open(1, '0,2,3');
+        //MEditDuesSale.open(1, 0);
         //MVoucher.open(1,'xxx');
 
         {/literal}
         {if empty($items)}
-            MDuesRental.add();
+            MDuesSale.add();
         {/if}
         {literal}
         //MCar.add(1);
@@ -272,5 +265,5 @@
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
     'assets/global/plugins/jquery.form.min.js',
-    'js/m_dues_rental.js'
+    'js/m_dues_sale.js'
 ]}
