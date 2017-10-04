@@ -1,7 +1,7 @@
 <?php
 include('_base.php');
 include('inc/data.php');
-global $db, $arr_months,$arr_days;
+global $db,$arr_months,$arr_days;
 
 $driver = $db->o('drivers', _GET_INT('id'));
 
@@ -119,6 +119,32 @@ while($o = $os->fetch_object()){
 }
 $expenses->percent = @($expenses->total_paid/$expenses->total_due*100) ?: 0;
 
+// Oblicaciones (proyeccion de gastos)
+$maintenances = new stdClass();
+$maintenances->next_kms         = 0; // Siguientes kms
+$maintenances->next_date_item   = '---'; // Siguiente fecha
+$maintenances->next_amount      = ''; // Siguiente monto
+
+$o = $db->o("SELECT * FROM maintenances WHERE id_driver = $driver->id AND state = 1 ORDER BY date_item DESC LIMIT 1");
+if($o){
+    $maintenances->next_kms         = $o->kms;
+    $maintenances->next_date_item   = $o->date_item;
+    $maintenances->next_amount      = $o->amount - $o->amount_stored;
+}
+
+// Oblicaciones (proyeccion de gastos)
+$obligations = new stdClass();
+$obligations->total_items = 0;
+$obligations->last_amount = ''; // Ultimo registro
+$obligations->last_date_pay = ''; // Ultima fecha pagada
+
+$os = $db->get("SELECT * FROM obligations WHERE id_driver = $driver->id AND state = 1");
+while($o = $os->fetch_object()){
+    $obligations->total_items += 1;
+    $obligations->last_amount = $o->amount;
+    $obligations->last_date_pay = $o->date_end;
+}
+
 //echo ':'.$sale->weeks_late;
 //exit;
 
@@ -128,6 +154,8 @@ $smarty->assign('driver', $driver);
 $smarty->assign('rental', $rental);
 $smarty->assign('sale', $sale);
 $smarty->assign('expenses', $expenses);
+$smarty->assign('maintenances', $maintenances);
+$smarty->assign('obligations', $obligations);
 $smarty->assign('rental_started', $rental_started);
 
 $smarty->display(PAGE.'.tpl');

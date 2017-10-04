@@ -19,12 +19,24 @@ $stg->page        = PAGE;
 $stg->page_file   = PAGE_FILE;
 $stg->url_cms     = URL_CMS;
 
+
+// Verificar si es usuario logeado
+if(PAGE != "login" && !$user->isLogged()){
+    header("Location: login.php?r=".base64_encode($_SERVER['REQUEST_URI']));
+    exit;
+}
+
 class t_base {
 
     protected $uu;
     protected $db;
     protected $user;
     protected $stg;
+
+    public $rsp = array(
+        'ok' => false,
+        'msg' => '---'
+    );
 
     public function __construct(){
         global $uu,$db,$user,$stg;
@@ -33,14 +45,18 @@ class t_base {
         $this->db 	= $db;
         $this->user	= $user;
         $this->stg 	= $stg;
+    }
 
+    public function setModule($module){
+        $this->stg->page = $module;
+        $this->stg->page_file = $module;
     }
 
     // Cargar para la UI
     public function ui(){
         require('inc/smarty/Smarty.class.php');
 
-        $this->user->loadPerms(true, PAGE_FILE);
+        $this->user->loadPerms(true, $this->stg->page_file);
 
         $smarty = new Smarty;
         $smarty->setCompileDir('inc/smarty/templates_c');
@@ -63,6 +79,22 @@ class t_base {
 
         return $smarty;
 
+    }
+
+    // Revisar permisos de edicion
+    public function checkEditPerms($action_code){
+        $this->user->loadPerms();
+        if(!$this->user->can($action_code)){
+            $this->rsp['msg'] = 'No hay permisos para esto';
+            exit(json_encode($this->rsp));
+        }
+    }
+
+    // Rev...
+    public function rsp(){
+        header('Content-Type: application/json');
+        echo json_encode($this->rsp);
+        exit;
     }
 
 }

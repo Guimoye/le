@@ -1,5 +1,5 @@
 // Modal Expense
-var MExpense = {
+var MObligation = {
 
     callback: null,
 
@@ -12,7 +12,7 @@ var MExpense = {
     init: function(callback){
         this.callback = (typeof callback === 'function') ? callback : null;
 
-        this.$modal         = $('#modal_add_expense');
+        this.$modal         = $('#modal_add_obligation');
         this.$modal.title   = $('.modal-title', this.$modal);
         this.$modal.remove  = $('.remove', this.$modal);
 
@@ -20,11 +20,11 @@ var MExpense = {
         this.$form.id           = $('input[name="id"]', this.$form);
         this.$form.description  = $('input[name="description"]', this.$form);
         this.$form.amount       = $('input[name="amount"]', this.$form);
-        this.$form.date_pay     = $('input[name="date_pay"]', this.$form);
+        this.$form.date_end     = $('input[name="date_end"]', this.$form);
 
         // Asignar eventos
         this.$modal.remove.click(function(){
-            MExpense.remove(MExpense.$form.id.val());
+            MObligation.remove(MObligation.$form.id.val());
         });
         $('.save', this.$modal).click(this.save);
 
@@ -32,15 +32,15 @@ var MExpense = {
 
     // Guardar
     save: function(){
-        api('expenses/add', MExpense.$form.serializeObject(), function(rsp){
+        api('obligations/add', MObligation.$form.serializeObject(), function(rsp){
             if(rsp.ok == true){
                 toastr.success('Guardado correctamente');
-                MExpense.$modal.modal('hide');
+                MObligation.$modal.modal('hide');
 
-                if(MExpense.callback == null){
+                if(MObligation.callback == null){
                     location.reload();
                 } else {
-                    MExpense.callback(rsp.id, false);
+                    MObligation.callback(rsp.id, false);
                 }
 
             } else {
@@ -51,35 +51,35 @@ var MExpense = {
     
     // Abrir para nuevo NUEVO
     add: function(){
-        MExpense.$modal.title.text("Agregar gasto");
-        MExpense.$modal.remove.hide();
+        MObligation.$modal.title.text("Agregar Oblicación");
+        MObligation.$modal.remove.hide();
 
-        MExpense.$form.id.val('');
-        MExpense.$form.description.val('');
-        MExpense.$form.amount.val('');
-        MExpense.$form.date_pay.val('');
+        MObligation.$form.id.val('');
+        MObligation.$form.description.val('');
+        MObligation.$form.amount.val('');
+        MObligation.$form.date_end.val('');
 
-        MExpense.$modal.modal('show');
+        MObligation.$modal.modal('show');
     },
     
     // Editar
     edit: function(o){
-        MExpense.$modal.title.text("Editar gasto");
-        MExpense.$modal.remove.show();
+        MObligation.$modal.title.text("Editar Oblicación");
+        MObligation.$modal.remove.show();
 
-        MExpense.$form.id.val(o.id);
-        MExpense.$form.description.val(o.description);
-        MExpense.$form.amount.val(o.amount);
-        MExpense.$form.date_pay.val(o.date_pay);
+        MObligation.$form.id.val(o.id);
+        MObligation.$form.description.val(o.description);
+        MObligation.$form.amount.val(o.amount);
+        MObligation.$form.date_end.val(o.date_end);
 
-        MExpense.$modal.modal('show');
+        MObligation.$modal.modal('show');
     },
 
     // Eliminar
     remove: function(id){
         bootbox.confirm('¿Realmente desea eliminar?', function(result){
             if(result){
-                api('expenses/remove', {action:'remove', id:id}, function(rsp){
+                api('obligations/remove', {action:'remove', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Eliminado correctamente');
                         location.reload();
@@ -95,7 +95,7 @@ var MExpense = {
     setPaid: function(id){
         bootbox.confirm('¿Marcar como pagado?', function(result){
             if(result){
-                api('expenses/set_paid', {action:'set_paid', id:id}, function(rsp){
+                api('obligations/set_paid', {action:'set_paid', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();

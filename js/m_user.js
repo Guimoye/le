@@ -132,7 +132,7 @@ var MUser = {
 
     // Guardar
     save: function(){
-        api('ajax/users.php', MUser.$form.serializeObject(), function(rsp){
+        api('users/add', MUser.$form.serializeObject(), function(rsp){
             if(rsp.ok == true){
                 toastr.success('Guardado correctamente');
                 MUser.$modal.modal('hide');
@@ -187,7 +187,7 @@ var MUser = {
     remove: function(id){
         bootbox.confirm('¿Realmente desea eliminar?', function(result){
             if(result){
-                api('ajax/users.php', {action:'remove', id:id}, function(rsp){
+                api('users/remove', {action:'remove', id:id}, function(rsp){
                     if(rsp.ok){
                         toastr.success('Eliminado correctamente');
                         location.reload();

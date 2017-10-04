@@ -112,7 +112,7 @@ function api(api,data,callback,loading,cache){
 		data = {};
 	}
 
-	var isCustomUrl = api.indexOf('.') !== -1; // Saber si es url personalizada
+	var isCustomUrl = (api.indexOf('.') !== -1 || api.indexOf('/') !== -1); // Saber si es url personalizada
 
 	if(!isCustomUrl){
 		data.api = api;
@@ -170,7 +170,6 @@ $(document).ready(function(){
     } else {
         $body.head_fullscreen.show();
     }
-    //CGBranch.open(0);
 
     FOffline.changedConnection();
 });
@@ -239,79 +238,6 @@ function pad(num, size) {
     while (s.length < size) s = "0" + s;
     return s;
 }
-
-// Cambiar sucursal
-var CGBranch = {
-
-    $modal: null,
-    $form: null,
-
-    initViews: function(){
-        if(this.$modal != null) return;
-        $body.append(
-            '<div id="modal_cgbranch" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">'+
-            ' <div class="modal-dialog" style="max-width:400px">'+
-            '  <div class="modal-content">'+
-            '   <div class="modal-header">'+
-            '    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>'+
-            '    <h4 class="modal-title">Cambio de sucursal</h4>'+
-            '   </div>'+
-            '   <div class="modal-body">'+
-            '    <form class="form-horizontal">'+
-            '     <input type="hidden" name="action" value="add">'+
-            '     <table class="table table-bordered" style="margin:0"></table>'+
-            '    </form>'+
-            '   </div>'+
-            '   <div class="modal-footer">'+
-            '    <button type="button" data-dismiss="modal" class="btn cancel">Cancelar</button>'+
-            '    <button type="button" class="btn blue save">Guardar</button>'+
-            '   </div>'+
-            '  </div>'+
-            ' </div>'+
-            '</div>'
-        );
-
-        this.$modal = $('#modal_cgbranch');
-        this.$form = $('form', this.$modal);
-        this.$form.list = $('table', this.$form);
-
-        // Eventos
-        $('.save', this.$modal).click(this.save);
-
-    },
-
-    open: function(id_branch){
-        CGBranch.initViews();
-        api('get_branches', function(rsp){
-            var html = '';
-            rsp.branches.forEach(function(o){
-                html += '<tr>';
-                html += ' <td width="1%">';
-                html += '  <input type="radio" class="icheck" name="id_branch" value="'+o.id+'" '+(o.id==id_branch?'checked':'')+'>';
-                html += ' </td>';
-                html += ' <td> '+o.name+' </td>';
-                html += '</tr>';
-            });
-            CGBranch.$form.list.html(html);
-            CGBranch.$modal.modal('show');
-
-        }, 'Obteniendo sucursales...', true);
-    },
-
-    save: function(){
-        var id_branch = $('input[name=id_branch]:checked', CGBranch.$form).val() || 0;
-        api('set_local_branch', {id_branch:id_branch}, function(rsp){
-            if(rsp.ok){
-                toastr.success('Guardado correctamente');
-                CGBranch.$modal.modal('hide');
-                location.reload();
-            } else {
-                bootbox.alert(rsp.msg);
-            }
-        }, 'Guardando...');
-    }
-
-};
 
 // Mostrar Overlay negro cada que se abren multiples modals
 $(document).on('show.bs.modal', '.modal', function (event){

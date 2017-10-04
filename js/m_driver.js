@@ -40,6 +40,7 @@ var MDriver = {
 
         this.$form.gt_name 			    = $('input[name="gt_name"]', this.$form);
         this.$form.gt_dni 			    = $('input[name="gt_dni"]', this.$form);
+        this.$form.gt_city 		        = $('input[name="gt_city"]', this.$form);
         this.$form.gt_district 		    = $('input[name="gt_district"]', this.$form);
         this.$form.gt_address 		    = $('input[name="gt_address"]', this.$form);
         this.$form.gt_phone 			= $('input[name="gt_phone"]', this.$form);
@@ -47,14 +48,15 @@ var MDriver = {
         this.$form.gt_job_place 		= $('input[name="gt_job_place"]', this.$form);
         this.$form.gt_job_role 		    = $('input[name="gt_job_role"]', this.$form);
         this.$form.gt_job_address 	    = $('input[name="gt_job_address"]', this.$form);
+        this.$form.gt_job_city 	        = $('input[name="gt_job_city"]', this.$form);
         this.$form.gt_job_district 	    = $('input[name="gt_job_district"]', this.$form);
         this.$form.gt_job_phone 		= $('input[name="gt_job_phone"]', this.$form);
         this.$form.gt_job_boss_name 	= $('input[name="gt_job_boss_name"]', this.$form);
         this.$form.gt_job_boss_role 	= $('input[name="gt_job_boss_role"]', this.$form);
         this.$form.gt_job_boss_email    = $('input[name="gt_job_boss_email"]', this.$form);
 
-        this.$form.vh_brand 			= $('input[name="vh_brand"]', this.$form);
-        this.$form.vh_model 			= $('input[name="vh_model"]', this.$form);
+        this.$form.id_brand 			= $('select[name="id_brand"]', this.$form);
+        this.$form.id_model 			= $('select[name="id_model"]', this.$form);
         this.$form.vh_plate 			= $('input[name="vh_plate"]', this.$form);
         this.$form.vh_year 			    = $('input[name="vh_year"]', this.$form);
         this.$form.vh_color 			= $('input[name="vh_color"]', this.$form);
@@ -69,11 +71,35 @@ var MDriver = {
         });
         $('.save', this.$modal).click(this.save);
 
+        this.$form.id_brand.change(function(){
+            MDriver.getModelsBrand(0);
+        });
+
+    },
+
+    getModelsBrand: function(id_model_selected){
+        var id_brand = MDriver.$form.id_brand.val();
+        if(id_brand == ''){
+            MDriver.$form.id_model.html('<option value="">---</option>');
+            MDriver.$form.id_model.attr('disabled', true);
+
+        } else {
+            MDriver.$form.id_model.html('<option value="">Cargando...</option>');
+            MDriver.$form.id_model.attr('disabled', true);
+            api('drivers/get_models_brand/'+id_brand, function(rsp){
+                var html = '<option value="">Elegir...</option>';
+                rsp.models.forEach(function(o){
+                    html += '<option value="'+o.id+'" '+(o.id==id_model_selected?'selected':'')+'>'+o.name+'</option>';
+                });
+                MDriver.$form.id_model.html(html);
+                MDriver.$form.id_model.attr('disabled', false);
+            }, false, true);
+        }
     },
 
     // Guardar
     save: function(){
-        api('ajax/drivers.php', MDriver.$form.serializeObject(), function(rsp){
+        api('drivers/add', MDriver.$form.serializeObject(), function(rsp){
             if(rsp.ok == true){
                 toastr.success('Guardado correctamente');
                 MDriver.$modal.modal('hide');
@@ -115,6 +141,7 @@ var MDriver = {
 
         MDriver.$form.gt_name.val('');
         MDriver.$form.gt_dni.val('');
+        MDriver.$form.gt_city.val('');
         MDriver.$form.gt_district.val('');
         MDriver.$form.gt_address.val('');
         MDriver.$form.gt_phone.val('');
@@ -122,14 +149,16 @@ var MDriver = {
         MDriver.$form.gt_job_place.val('');
         MDriver.$form.gt_job_role.val('');
         MDriver.$form.gt_job_address.val('');
+        MDriver.$form.gt_job_city.val('');
         MDriver.$form.gt_job_district.val('');
         MDriver.$form.gt_job_phone.val('');
         MDriver.$form.gt_job_boss_name.val('');
         MDriver.$form.gt_job_boss_role.val('');
         MDriver.$form.gt_job_boss_email .val('');
 
-        MDriver.$form.vh_brand.val('');
-        MDriver.$form.vh_model.val('');
+        MDriver.$form.id_brand.val('');
+        MDriver.$form.id_model.html('');
+        MDriver.$form.id_model.attr('disabled',true);
         MDriver.$form.vh_plate.val('');
         MDriver.$form.vh_year.val('');
         MDriver.$form.vh_color.val('');
@@ -166,6 +195,7 @@ var MDriver = {
 
         MDriver.$form.gt_name.val(o.gt_name);
         MDriver.$form.gt_dni.val(o.gt_dni);
+        MDriver.$form.gt_city.val(o.gt_city);
         MDriver.$form.gt_district.val(o.gt_district);
         MDriver.$form.gt_address.val(o.gt_address);
         MDriver.$form.gt_phone.val(o.gt_phone);
@@ -173,14 +203,15 @@ var MDriver = {
         MDriver.$form.gt_job_place.val(o.gt_job_place);
         MDriver.$form.gt_job_role.val(o.gt_job_role);
         MDriver.$form.gt_job_address.val(o.gt_job_address);
+        MDriver.$form.gt_job_city.val(o.gt_job_city);
         MDriver.$form.gt_job_district.val(o.gt_job_district);
         MDriver.$form.gt_job_phone.val(o.gt_job_phone);
         MDriver.$form.gt_job_boss_name.val(o.gt_job_boss_name);
         MDriver.$form.gt_job_boss_role.val(o.gt_job_boss_role);
         MDriver.$form.gt_job_boss_email .val(o.gt_job_boss_email);
 
-        MDriver.$form.vh_brand.val(o.vh_brand);
-        MDriver.$form.vh_model.val(o.vh_model);
+        MDriver.$form.id_brand.val(o.id_brand);
+        MDriver.$form.id_model.val(o.id_model);
         MDriver.$form.vh_plate.val(o.vh_plate);
         MDriver.$form.vh_year.val(o.vh_year);
         MDriver.$form.vh_color.val(o.vh_color);
@@ -189,6 +220,8 @@ var MDriver = {
         MDriver.$form.vh_fuel.val(o.vh_fuel);
         MDriver.$form.vh_gps_number.val(o.vh_gps_number);
 
+        MDriver.getModelsBrand(o.id_model);
+
         MDriver.$modal.modal('show');
     },
 
@@ -196,7 +229,7 @@ var MDriver = {
     remove: function(id){
         bootbox.confirm('¿Realmente desea eliminar?', function(result){
             if(result){
-                api('ajax/drivers.php', {action:'remove', id:id}, function(rsp){
+                api('drivers/remove', {action:'remove', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Eliminado correctamente');
                         location.reload();

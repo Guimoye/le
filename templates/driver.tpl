@@ -153,7 +153,43 @@
                                 </td>
                                 <td> {$expenses->last_date_pay} </td>
                                 <td>
-                                    <a href="expenses.php?id={$driver->id}" class="btn btn-circle green-jungle">
+                                    <a href="expenses/{$driver->id}" class="btn btn-circle green-jungle">
+                                        <i class="fa fa-paper-plane"></i> Ver detalle
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Mantenimientos
+                                    <div class="font-grey-salsa font-sm">
+                                        Próximo mantenimiento {$maintenances->next_kms|number_format} Km
+                                    </div>
+                                </td>
+                                <td>
+                                    <b>{$stg->coin}{$maintenances->next_amount|string_format:"%.2f"}</b>
+                                </td>
+                                <td> {$maintenances->next_date_item} </td>
+                                <td>
+                                    <a href="maintenances/{$driver->id}" class="btn btn-circle green-jungle">
+                                        <i class="fa fa-paper-plane"></i> Ver detalle
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Proyección de gastos
+                                    <div class="font-grey-salsa font-sm">
+                                        Actualmente {$obligations->total_items} registros
+                                    </div>
+                                </td>
+                                <td>
+                                    <b>{$stg->coin}{$obligations->last_amount|string_format:"%.2f"}</b>
+                                </td>
+                                <td> {$obligations->last_date_pay} </td>
+                                <td>
+                                    <a href="obligations/{$driver->id}" class="btn btn-circle green-jungle">
                                         <i class="fa fa-paper-plane"></i> Ver detalle
                                     </a>
                                 </td>

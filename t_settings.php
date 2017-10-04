@@ -1,0 +1,43 @@
+<?php
+class t_settings extends t_base{
+
+    public function __construct(){
+        parent::__construct();
+        // El contructor
+
+        $this->setModule('settings');
+    }
+
+    public function index(){
+        $ui = $this->ui();
+        $ui->assign('page_title', 'Opciones de sistema');
+        $ui->assign('can_settings', $this->user->can('settings'));
+        $ui->display('settings.tpl');
+    }
+
+    public function edit_general(){
+        $this->checkEditPerms('settings');
+        $data = [];
+        $data['brand']              = @$_POST['brand'] ?: '';
+        $data['coin']               = @$_POST['coin'] ?: '';
+        $data['tc']                 = @$_POST['tc'] ?: '';
+        $data['igv']                = @$_POST['igv'] ?: '';
+        $data['comp_name']          = @$_POST['comp_name'] ?: '';
+        $data['comp_ruc']           = @$_POST['comp_ruc'] ?: '';
+        if($this->update($data)){
+            $this->rsp['ok'] = true;
+        } else $this->rsp['msg'] = 'Erroe interno::DB';
+        $this->rsp();
+    }
+
+    private function update($data){
+        $ok = true;
+        foreach($data as $key => $val){
+            if(!$this->db->query("UPDATE settings SET value = '$val' WHERE name = '$key'")){
+                $ok = false;
+            }
+        }
+        return $ok;
+    }
+
+}

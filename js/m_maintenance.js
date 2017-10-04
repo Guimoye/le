@@ -1,5 +1,5 @@
 // Modal Expense
-var MExpense = {
+var MMaintenance = {
 
     callback: null,
 
@@ -12,19 +12,20 @@ var MExpense = {
     init: function(callback){
         this.callback = (typeof callback === 'function') ? callback : null;
 
-        this.$modal         = $('#modal_add_expense');
+        this.$modal         = $('#modal_add_maintenance');
         this.$modal.title   = $('.modal-title', this.$modal);
         this.$modal.remove  = $('.remove', this.$modal);
 
-        this.$form              = $('form', this.$modal);
-        this.$form.id           = $('input[name="id"]', this.$form);
-        this.$form.description  = $('input[name="description"]', this.$form);
-        this.$form.amount       = $('input[name="amount"]', this.$form);
-        this.$form.date_pay     = $('input[name="date_pay"]', this.$form);
+        this.$form                  = $('form', this.$modal);
+        this.$form.id               = $('input[name="id"]', this.$form);
+        this.$form.kms        = $('input[name="kms"]', this.$form);
+        this.$form.amount           = $('input[name="amount"]', this.$form);
+        this.$form.amount_stored    = $('input[name="amount_stored"]', this.$form);
+        this.$form.date_item        = $('input[name="date_item"]', this.$form);
 
         // Asignar eventos
         this.$modal.remove.click(function(){
-            MExpense.remove(MExpense.$form.id.val());
+            MMaintenance.remove(MMaintenance.$form.id.val());
         });
         $('.save', this.$modal).click(this.save);
 
@@ -32,15 +33,15 @@ var MExpense = {
 
     // Guardar
     save: function(){
-        api('expenses/add', MExpense.$form.serializeObject(), function(rsp){
+        api('maintenances/add', MMaintenance.$form.serializeObject(), function(rsp){
             if(rsp.ok == true){
                 toastr.success('Guardado correctamente');
-                MExpense.$modal.modal('hide');
+                MMaintenance.$modal.modal('hide');
 
-                if(MExpense.callback == null){
+                if(MMaintenance.callback == null){
                     location.reload();
                 } else {
-                    MExpense.callback(rsp.id, false);
+                    MMaintenance.callback(rsp.id, false);
                 }
 
             } else {
@@ -51,35 +52,37 @@ var MExpense = {
     
     // Abrir para nuevo NUEVO
     add: function(){
-        MExpense.$modal.title.text("Agregar gasto");
-        MExpense.$modal.remove.hide();
+        MMaintenance.$modal.title.text("Agregar Mantenimiento");
+        MMaintenance.$modal.remove.hide();
 
-        MExpense.$form.id.val('');
-        MExpense.$form.description.val('');
-        MExpense.$form.amount.val('');
-        MExpense.$form.date_pay.val('');
+        MMaintenance.$form.id.val('');
+        MMaintenance.$form.kms.val('');
+        MMaintenance.$form.amount.val('');
+        MMaintenance.$form.amount_stored.val('');
+        MMaintenance.$form.date_item.val('');
 
-        MExpense.$modal.modal('show');
+        MMaintenance.$modal.modal('show');
     },
     
     // Editar
     edit: function(o){
-        MExpense.$modal.title.text("Editar gasto");
-        MExpense.$modal.remove.show();
+        MMaintenance.$modal.title.text("Editar Mantenimiento");
+        MMaintenance.$modal.remove.show();
 
-        MExpense.$form.id.val(o.id);
-        MExpense.$form.description.val(o.description);
-        MExpense.$form.amount.val(o.amount);
-        MExpense.$form.date_pay.val(o.date_pay);
+        MMaintenance.$form.id.val(o.id);
+        MMaintenance.$form.kms.val(o.kms);
+        MMaintenance.$form.amount.val(o.amount);
+        MMaintenance.$form.amount_stored.val(o.amount_stored);
+        MMaintenance.$form.date_item.val(o.date_item);
 
-        MExpense.$modal.modal('show');
+        MMaintenance.$modal.modal('show');
     },
 
     // Eliminar
     remove: function(id){
         bootbox.confirm('¿Realmente desea eliminar?', function(result){
             if(result){
-                api('expenses/remove', {action:'remove', id:id}, function(rsp){
+                api('maintenances/remove', {action:'remove', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Eliminado correctamente');
                         location.reload();
@@ -95,7 +98,7 @@ var MExpense = {
     setPaid: function(id){
         bootbox.confirm('¿Marcar como pagado?', function(result){
             if(result){
-                api('expenses/set_paid', {action:'set_paid', id:id}, function(rsp){
+                api('maintenances/set_paid', {action:'set_paid', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();

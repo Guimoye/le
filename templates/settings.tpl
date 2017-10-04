@@ -76,7 +76,7 @@
 <script>
 
     function saveSetting(id_form){
-        api('settings.php', $('#'+id_form).serializeObject(), function(rsp){
+        api('settings/edit_general', $('#'+id_form).serializeObject(), function(rsp){
             if(rsp.ok){
                 toastr.success('Guardado correctamente')
             } else {
@@ -91,6 +91,7 @@
             forcestepdivisibility:'none'
         });
     }
+
 </script>
 
 {/literal}

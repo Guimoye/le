@@ -30,6 +30,7 @@ switch($action){
 
 		$data['gt_name'] 			= _POST('gt_name');
 		$data['gt_dni'] 			= _POST('gt_dni');
+		$data['gt_city'] 		    = _POST('gt_city');
 		$data['gt_district'] 		= _POST('gt_district');
 		$data['gt_address'] 		= _POST('gt_address');
 		$data['gt_phone'] 			= _POST('gt_phone');
@@ -37,14 +38,15 @@ switch($action){
 		$data['gt_job_place'] 		= _POST('gt_job_place');
 		$data['gt_job_role'] 		= _POST('gt_job_role');
 		$data['gt_job_address'] 	= _POST('gt_job_address');
+		$data['gt_job_city'] 	    = _POST('gt_job_city');
 		$data['gt_job_district'] 	= _POST('gt_job_district');
 		$data['gt_job_phone'] 		= _POST('gt_job_phone');
 		$data['gt_job_boss_name'] 	= _POST('gt_job_boss_name');
 		$data['gt_job_boss_role'] 	= _POST('gt_job_boss_role');
 		$data['gt_job_boss_email'] 	= _POST('gt_job_boss_email');
 
-		$data['vh_brand'] 			= _POST('vh_brand');
-		$data['vh_model'] 			= _POST('vh_model');
+		$data['id_brand'] 			= _POST('id_brand');
+		$data['id_model'] 			= _POST('id_model');
 		$data['vh_plate'] 			= _POST('vh_plate');
 		$data['vh_year'] 			= _POST('vh_year');
 		$data['vh_color'] 			= _POST('vh_color');
@@ -59,6 +61,12 @@ switch($action){
 
 		} else if(empty($data['surname'])){
 			$rsp['msg'] = '<b>Apellido</b> incorrecto';
+
+		} else if(strlen($data['dni']) != 8){
+			$rsp['msg'] = '<b>DNI</b> incorrecto';
+
+		} else if(strlen($data['driver_licence']) < 8){
+			$rsp['msg'] = 'Número de <b>Licencia de conducir</b> incorrecta';
 
 		} else {
 			if($isEdit){

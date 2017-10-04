@@ -16,7 +16,7 @@
     <div class="portlet-body">
 
         <!-- FILTERS -->
-        <form class="form-inline" id="filters" action="ajax/users.php">
+        <form class="form-inline" id="filters" action="users/pager">
             <div class="form-group">
                 <label>Rango de fechas</label><br>
                 <div class="input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd" data-date-end-date="+0d">
