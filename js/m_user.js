@@ -121,7 +121,7 @@ var MUser = {
 
     getLevels: function(id_level){
         MUser.$form.level.html('<option>Cargando...</option>');
-        api('get_levels', function(rsp){
+        api('levels/get_levels', function(rsp){
             var html = '<option value="">Elegir...</option>';
             rsp.levels.forEach(function(o){
                 html += '<option value="'+o.id+'" '+(o.id==id_level?'selected':'')+'>'+o.name+'</option>';

@@ -56,7 +56,7 @@ var MMenu = {
     },
 
     save: function(){
-        api('ajax/menu.php', MMenu.$form.serializeObject(), function(rsp){
+        api('menu/add_menu', MMenu.$form.serializeObject(), function(rsp){
             if(rsp.ok){
                 toastr.success('Guardado correctamente');
                 location.reload();
@@ -69,7 +69,7 @@ var MMenu = {
     remove: function(){
         bootbox.confirm('¿Eliminar item?', function(result){
             if(!result) return;
-            api('ajax/menu.php', {action:'remove_menu', id:MMenu.$form.id.val()}, function(rsp){
+            api('menu/remove_menu', {action:'remove_menu', id:MMenu.$form.id.val()}, function(rsp){
                 if(rsp.ok){
                     toastr.success('Eliminado correctamente...');
                     MMenu.$modal.modal('hide');
@@ -85,7 +85,7 @@ var MMenu = {
         var list = MMenu.$list.nestable('serialize');
         console.log(list);
 
-        api('ajax/menu.php', {action:'re_sort', list:list}, function(rsp){
+        api('menu/re_sort', {action:'re_sort', list:list}, function(rsp){
             if(rsp.ok){
                 toastr.success('Guardado correctamente');
                 location.reload();

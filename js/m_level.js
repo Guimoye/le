@@ -77,7 +77,7 @@ var MLevel = {
     save: function(){
         var data = MLevel.$form.serializeObject();
         console.log(data);
-        api('ajax/menu.php', data, function(rsp){
+        api('menu/add_level', data, function(rsp){
             if(rsp.ok){
                 toastr.success('Guardado correctamente');
                 MLevel.$modal.modal('hide');

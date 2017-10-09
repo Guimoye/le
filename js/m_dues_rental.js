@@ -33,7 +33,7 @@ var MDuesRental = {
 
     // Guardar
     save: function(){
-        api('dues_rental.php', MDuesRental.$form.serializeObject(), function(rsp){
+        api('dues_rental/add', MDuesRental.$form.serializeObject(), function(rsp){
             if(rsp.ok == true){
                 toastr.success('Guardado correctamente');
                 MDuesRental.$modal.modal('hide');
@@ -76,7 +76,7 @@ var MDuesRental = {
     remove: function(id){
         bootbox.confirm('¿Realmente desea eliminar?', function(result){
             if(result){
-                api('dues_rental.php', {action:'remove', id:id}, function(rsp){
+                api('dues_rental/remove', {action:'remove', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Eliminado correctamente');
                         location.reload();
@@ -95,7 +95,7 @@ var MDuesRental = {
             placeholder: 'Ingrese el monto a pagar',
             callback: function(result){
                 if(result == null) return;
-                api('dues_rental.php', {action:'set_due_paid', id:id, amount_total:amount_total, amount:result}, function(rsp){
+                api('dues_rental/set_due_paid', {action:'set_due_paid', id:id, amount_total:amount_total, amount:result}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();
@@ -107,7 +107,7 @@ var MDuesRental = {
         });
         /*bootbox.confirm('¿Marcar como pagado?', function(result){
             if(result){
-                api('dues_rental.php', {action:'set_due_paid', id:id, amount:amount}, function(rsp){
+                api('dues_rental/set_due_paid', {action:'set_due_paid', id:id, amount:amount}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();
@@ -123,7 +123,7 @@ var MDuesRental = {
     setDueUnpaid: function(id){
         bootbox.confirm('¿Marcar como no pagado?', function(result){
             if(result){
-                api('dues_rental.php', {action:'set_due_unpaid', id:id}, function(rsp){
+                api('dues_rental/set_due_unpaid', {action:'set_due_unpaid', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();
@@ -238,7 +238,7 @@ var MDays = {
 
     // Guardar
     save: function(){
-        api('dues_rental.php', MDays.$form.serializeObject(), function(rsp){
+        api('dues_rental/set_free_days', MDays.$form.serializeObject(), function(rsp){
         if(rsp.ok == true){
             toastr.success('Guardado correctamente');
             MDays.$modal.modal('hide');

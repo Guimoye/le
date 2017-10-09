@@ -25,8 +25,10 @@
  * /foo/bar/50      -> $foo->bar(50);
  * /foo/bar/50/60   -> $foo->bar(50,60);
  */
-
 class Route{
+
+    // Public params
+    public $folder = 'controllers/';
 
     // Lista de URI para coincidir con
     private $routes = array();
@@ -99,7 +101,13 @@ class Route{
 
         }
 
-        $this->show404();
+        if(empty($uri)){
+            $object = new _base();
+            $object->goHome();
+
+        } else {
+            $this->show404('Ruta desconocida');
+        }
 
     }
 
@@ -112,11 +120,9 @@ class Route{
 
     private function validate($controller, $method, $args = array()){
 
-        $controller = 't_'.$controller;
-
-        if(file_exists($controller.'.php'))
+        if(file_exists($this->folder.$controller.'.php'))
         {
-            include($controller.'.php');
+            include($this->folder.$controller.'.php');
             if(class_exists($controller))
             {
                 $object = new $controller();
@@ -135,14 +141,12 @@ class Route{
                     } else $this->show404('Este metodo es privado: '.$method);
                 } else $this->show404('Metodo no existe: '.$method);
             } else $this->show404('Controlador no existe: '.$controller);
-        } else $this->show404('Archivo controlador no existe: '.$controller);
+        } else $this->show404('Archivo controlador no existe: '.$this->folder.$controller.'.php');
     }
 
     private function show404($text = ''){
-        echo $text;
-        /*$object = new t_base();
-        $ui = $object->ui();
-        $ui->display('e404.tpl');*/
+        $object = new _base();
+        $object->exitUI($text);
     }
 
 }

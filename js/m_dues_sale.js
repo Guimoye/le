@@ -33,7 +33,7 @@ var MDuesSale = {
 
     // Guardar
     save: function(){
-        api('dues_sale.php', MDuesSale.$form.serializeObject(), function(rsp){
+        api('dues_sale/add', MDuesSale.$form.serializeObject(), function(rsp){
             if(rsp.ok == true){
                 toastr.success('Guardado correctamente');
                 MDuesSale.$modal.modal('hide');
@@ -76,7 +76,7 @@ var MDuesSale = {
     remove: function(id){
         bootbox.confirm('¿Realmente desea eliminar?', function(result){
             if(result){
-                api('dues_sale.php', {action:'remove', id:id}, function(rsp){
+                api('dues_sale/remove', {action:'remove', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Eliminado correctamente');
                         location.reload();
@@ -95,7 +95,7 @@ var MDuesSale = {
             placeholder: 'Ingrese el monto a pagar',
             callback: function(result){
                 if(result == null) return;
-                api('dues_sale.php', {action:'set_due_paid', id:id, amount_total:amount_total, amount:result}, function(rsp){
+                api('dues_sale/set_due_paid', {action:'set_due_paid', id:id, amount_total:amount_total, amount:result}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();
@@ -107,7 +107,7 @@ var MDuesSale = {
         });
         /*bootbox.confirm('¿Marcar como pagado?', function(result){
             if(result){
-                api('dues_sale.php', {action:'set_due_paid', id:id, amount:amount}, function(rsp){
+                api('dues_sale/set_due_paid', {action:'set_due_paid', id:id, amount:amount}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();
@@ -123,7 +123,7 @@ var MDuesSale = {
     setDueUnpaid: function(id){
         bootbox.confirm('¿Marcar como no pagado?', function(result){
             if(result){
-                api('dues_sale.php', {action:'set_due_unpaid', id:id}, function(rsp){
+                api('dues_sale/set_due_unpaid', {action:'set_due_unpaid', id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Guardado correctamente');
                         location.reload();
@@ -236,7 +236,7 @@ var MEditDuesSale = {
 
     // Guardar
     save: function(){
-        api('dues_sale.php', MEditDuesSale.$form.serializeObject(), function(rsp){
+        api('dues_sale/edit', MEditDuesSale.$form.serializeObject(), function(rsp){
         if(rsp.ok == true){
             toastr.success('Guardado correctamente');
             MEditDuesSale.$modal.modal('hide');
