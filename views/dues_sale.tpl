@@ -55,26 +55,36 @@
                                       class="btn btn-xs green-jungle">Pagado</span>
 
                             {elseif $o.pay_state == 'pending'}
-                                <span onclick="MDuesSale.setDuePaid({$o.id},{$o.amount_total});"
+                                <span
+                                        {if $can_edit}
+                                            onclick="MDuesSale.setDuePaid({$o.id},{$o.amount_total});"
+                                        {/if}
+
                                       class="btn btn-xs yellow-crusta">Pendiente</span>
 
                             {elseif $o.pay_state == 'expired'}
-                                <span onclick="MDuesSale.setDuePaid({$o.id},{$o.amount_total});"
+                                <span
+                                        {if $can_edit}
+                                            onclick="MDuesSale.setDuePaid({$o.id},{$o.amount_total});"
+                                        {/if}
+
                                       class="btn btn-xs red-mint">Vencido</span>
 
                             {/if}
                         </td>
                         <td class="nowrap">
 
-							<span onclick="MVoucher.open({$o.id},'{$o.pic_voucher}');"
-                                  class="btn btn-outline btn-circle dark btn-sm font-md">
-								<i class="fa fa-paperclip"></i>
-							</span>
+                            {if $can_edit}
+                                <span onclick="MVoucher.open({$o.id},'{$o.pic_voucher}');"
+                                      class="btn btn-outline btn-circle dark btn-sm font-md">
+                                    <i class="fa fa-paperclip"></i>
+                                </span>
 
-							<span onclick="MEditDuesSale.open({$o.id},{$o.amount_penalty});"
-                                  class="btn btn-outline btn-circle dark btn-sm font-md">
-								<i class="fa fa-pencil"></i>
-							</span>
+                                <span onclick="MEditDuesSale.open({$o.id},{$o.amount_penalty});"
+                                      class="btn btn-outline btn-circle dark btn-sm font-md">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                            {/if}
 
                         </td>
                     </tr>
@@ -253,7 +263,7 @@
         //MVoucher.open(1,'xxx');
 
         {/literal}
-        {if empty($items)}
+        {if $can_edit && empty($items)}
             MDuesSale.add();
         {/if}
         {literal}
@@ -265,5 +275,5 @@
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
     'assets/global/plugins/jquery.form.min.js',
-    'js/m_dues_sale.js'
+    'views/js/m_dues_sale.js'
 ]}

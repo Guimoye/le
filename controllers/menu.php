@@ -8,17 +8,16 @@
     }
 
     public function index(){
-
         $menu = $this->uu->ordMenu($this->db->arr("SELECT * FROM menu WHERE state = 1 ORDER BY sort"));
 
         $ui = $this->ui();
         $ui->assign('page_title', 'Modulos');
         $ui->assign('menu_all', $menu);
-        $ui->display($this->module.'.tpl');
+        $ui->display('menu.tpl');
     }
 
     public function add_menu(){
-        $this->checkEditPerms('modules');
+        $this->checkEditPerms();
 
         $id     = _POST_INT('id');
         $isEdit = is_numeric($id) && $id > 0;
@@ -46,7 +45,7 @@
     }
 
     public function re_sort(){
-        $this->checkEditPerms('modules');
+        $this->checkEditPerms();
 
         $this->saveList($_POST['list']);
         $this->rsp['ok'] = true;
@@ -55,7 +54,7 @@
     }
 
     public function remove_menu(){
-        $this->checkEditPerms('modules');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 
@@ -74,7 +73,7 @@
     }
 
     public function add_level(){
-        $this->checkEditPerms('modules');
+        $this->checkEditPerms();
 
         $id             = _POST_INT('id');
         $id_menu_home   = _POST('home');

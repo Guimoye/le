@@ -7,7 +7,7 @@
             <span class="caption-subject bold uppercase">{$page_title}</span>
         </div>
         <div class="actions">
-            {if $can_users}
+            {if $can_edit}
                 <span class="btn btn-circle green btn-outline" onclick="MUser.add();"> <i class="fa fa-plus"></i> Nuevo </span>
             {/if}
         </div>
@@ -96,6 +96,6 @@
 {/literal}
 
 {include file='_footer.tpl' js=[
-    'js/m_user.js',
-    'js/pager.js'
+    'views/js/m_user.js',
+    'views/js/pager.js'
 ]}

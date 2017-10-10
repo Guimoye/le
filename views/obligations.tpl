@@ -9,7 +9,9 @@
             <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
         </div>
         <div class="actions">
-            <span class="btn btn-circle blue" onclick="MObligation.add();"> <i class="fa fa-plus"></i> Registrar </span>
+            {if $can_edit}
+                <span class="btn btn-circle blue" onclick="MObligation.add();"> <i class="fa fa-plus"></i> Registrar </span>
+            {/if}
         </div>
     </div>
 
@@ -41,15 +43,17 @@
                         <td> {$stg->coin}{$o.amount} </td>
                         <td class="nowrap">
 
-							<span onclick="MObligation.edit(items[{$i}]);"
-                                  class="btn btn-outline btn-circle dark btn-sm font-md">
-								<i class="fa fa-pencil"></i>
-							</span>
+                            {if $can_edit}
+                                <span onclick="MObligation.edit(items[{$i}]);"
+                                      class="btn btn-outline btn-circle dark btn-sm font-md">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
 
-							<span onclick="MObligation.remove({$o.id});"
-                                  class="btn btn-outline btn-circle dark btn-sm font-md">
-								<i class="fa fa-trash"></i>
-							</span>
+                                <span onclick="MObligation.remove({$o.id});"
+                                      class="btn btn-outline btn-circle dark btn-sm font-md">
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                            {/if}
 
                         </td>
                     </tr>
@@ -137,5 +141,5 @@
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
     'assets/global/plugins/jquery.form.min.js',
-    'js/m_obligation.js'
+    'views/js/m_obligation.js'
 ]}

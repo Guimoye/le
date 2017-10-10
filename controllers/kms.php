@@ -2,9 +2,6 @@
 
     public function __construct(){
         parent::__construct();
-        // El contructor
-
-        $this->setModule('kms');
     }
 
     public function index(){
@@ -17,7 +14,7 @@
     }
 
     public function add(){
-        $this->checkEditPerms('kms');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 
@@ -54,7 +51,7 @@
     }
 
     public function remove(){
-        $this->checkEditPerms('kms');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 

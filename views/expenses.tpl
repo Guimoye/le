@@ -9,7 +9,9 @@
             <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
         </div>
         <div class="actions">
-            <span class="btn btn-circle blue" onclick="MExpense.add();"> <i class="fa fa-plus"></i> Registrar </span>
+            {if $can_edit}
+                <span class="btn btn-circle blue" onclick="MExpense.add();"> <i class="fa fa-plus"></i> Registrar </span>
+            {/if}
         </div>
     </div>
 
@@ -47,26 +49,37 @@
                                       class="btn btn-xs green-jungle">Pagado</span>
 
                             {elseif $o.pay_state == 'pending'}
-                                <span onclick="MExpense.setPaid({$o.id});"
+                                <span
+                                        {if $can_edit}
+                                            onclick="MExpense.setPaid({$o.id});"
+                                        {/if}
+
                                       class="btn btn-xs yellow-crusta">Pendiente</span>
 
                             {elseif $o.pay_state == 'expired'}
-                                <span onclick="MExpense.setPaid({$o.id});"
+                                <span
+                                        {if $can_edit}
+                                            onclick="MExpense.setPaid({$o.id});"
+                                        {/if}
+
                                       class="btn btn-xs red-mint">Vencido</span>
 
                             {/if}
                         </td>
                         <td class="nowrap">
 
-							<span onclick="MExpense.edit(items[{$i}]);"
-                                  class="btn btn-outline btn-circle dark btn-sm font-md">
-								<i class="fa fa-pencil"></i>
-							</span>
+                            {if $can_edit}
+                                <span onclick="MExpense.edit(items[{$i}]);"
+                                      class="btn btn-outline btn-circle dark btn-sm font-md">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
 
-							<span onclick="MExpense.remove({$o.id});"
-                                  class="btn btn-outline btn-circle dark btn-sm font-md">
-								<i class="fa fa-trash"></i>
-							</span>
+                                <span onclick="MExpense.remove({$o.id});"
+                                      class="btn btn-outline btn-circle dark btn-sm font-md">
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                            {/if}
+
 
                         </td>
                     </tr>
@@ -154,5 +167,5 @@
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
     'assets/global/plugins/jquery.form.min.js',
-    'js/m_expense.js'
+    'views/js/m_expense.js'
 ]}

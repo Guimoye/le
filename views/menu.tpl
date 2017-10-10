@@ -12,8 +12,10 @@
                     <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
                 </div>
                 <div class="actions">
-                    <a class="btn btn-circle red btn-outline" onclick="MMenu.add();"> <i class="fa fa-plus"></i> </a>
-                    <a class="btn btn-circle green btn-outline" onclick="MMenu.reOrder();"> <i class="fa fa-check"></i> Guardar </a>
+                    {if $can_edit}
+                        <a class="btn btn-circle red btn-outline" onclick="MMenu.add();"> <i class="fa fa-plus"></i> </a>
+                        <a class="btn btn-circle green btn-outline" onclick="MMenu.reOrder();"> <i class="fa fa-check"></i> Guardar </a>
+                    {/if}
                 </div>
             </div>
 
@@ -25,12 +27,16 @@
                         <ol class="dd-list">
                             {foreach $data as $m}
                                 <li class="dd-item dd3-item" data-id="{$m.id}">
-                                    <div class="dd-handle dd3-handle"></div>
+                                    {if $can_edit}
+                                        <div class="dd-handle dd3-handle"></div>
+                                    {/if}
                                     <div class="dd3-content">
                                         {$m.name}
-                                        <a class="btn red btn-xs pull-right" onclick="MMenu.edit({$m.id},'{$m.name}','{$m.url}','{$m.icon}',{$m.root});">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
+                                        {if $can_edit}
+                                            <a class="btn red btn-xs pull-right" onclick="MMenu.edit({$m.id},'{$m.name}','{$m.url}','{$m.icon}',{$m.root});">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        {/if}
                                     </div>
                                     {if !empty($m.sub)}
                                         {mkMenu2 data=$m.sub level=$level+1}
@@ -107,5 +113,5 @@
 
 {include file='_footer.tpl' js=[
     'assets/global/plugins/jquery-nestable/jquery.nestable.js',
-    'js/m_menu.js'
+    'views/js/m_menu.js'
 ]}

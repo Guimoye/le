@@ -2,15 +2,11 @@
 
     public function __construct(){
         parent::__construct();
-        // El contructor
-
-        $this->setModule('settings');
     }
 
     public function index(){
         $ui = $this->ui();
         $ui->assign('page_title', 'Opciones de sistema');
-        $ui->assign('can_settings', $this->user->can('settings'));
         $ui->display($this->module.'.tpl');
     }
 

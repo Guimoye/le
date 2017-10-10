@@ -10,7 +10,9 @@
                     <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
                 </div>
                 <div class="actions">
-                    <a class="btn btn-circle red btn-outline" onclick="MLevel.add();"> <i class="fa fa-plus"></i> </a>
+                    {if $can_edit}
+                        <a class="btn btn-circle red btn-outline" onclick="MLevel.add();"> <i class="fa fa-plus"></i> </a>
+                    {/if}
                 </div>
             </div>
 
@@ -32,10 +34,10 @@
                                 <td>{$m->name}</td>
                                 <td>{$m->date_added|date_format:"%d-%m-%Y %I:%M %p"}</td>
                                 <td width="1%">
+                                    {if $can_edit}
                                         <span class="btn btn-outline btn-circle dark btn-sm" onclick="MLevel.edit(levels[{$m->id}]);">
                                             <i class="fa fa-pencil"></i>
                                         </span>
-                                    {if $m->id != 1}
                                     {/if}
                                 </td>
                             </tr>
@@ -153,5 +155,5 @@
 </script>
 
 {include file='_footer.tpl' js=[
-    'js/m_level.js'
+    'views/js/m_level.js'
 ]}

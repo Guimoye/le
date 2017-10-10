@@ -52,11 +52,19 @@
                                       class="btn btn-xs green-jungle">Pagado</span>
 
                             {elseif $o.pay_state == 'pending'}
-                                <span onclick="MMaintenance.setPaid({$o.id});"
+                                <span
+                                        {if $can_edit}
+                                            onclick="MMaintenance.setPaid({$o.id});"
+                                        {/if}
+
                                       class="btn btn-xs yellow-crusta">Pendiente</span>
 
                             {elseif $o.pay_state == 'expired'}
-                                <span onclick="MMaintenance.setPaid({$o.id});"
+                                <span
+                                        {if $can_edit}
+                                            onclick="MMaintenance.setPaid({$o.id});"
+                                        {/if}
+
                                       class="btn btn-xs red-mint">Vencido</span>
 
                             {/if}
@@ -156,7 +164,7 @@
         MMaintenance.init();
 
         {/literal}
-        {if empty($items)}
+        {if $can_edit && empty($items)}
             MMaintenance.add();
         {/if}
         {literal}
@@ -168,5 +176,5 @@
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
     'assets/global/plugins/jquery.form.min.js',
-    'js/m_maintenance.js'
+    'views/js/m_maintenance.js'
 ]}

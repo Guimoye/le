@@ -3,21 +3,16 @@ class users extends _base{
 
     public function __construct(){
         parent::__construct();
-        // El contructor
-
-        $this->setModule('users');
     }
 
     public function index(){
         $ui = $this->ui();
         $ui->assign('page_title', 'Opciones de sistema');
-        $ui->assign('can_users', $this->user->can('users'));
         $ui->display($this->module.'.tpl');
     }
 
     public function pager(){
-        include('inc/arrays.php');
-        global $st_user;
+        $this->load(arrays::class);
 
         $max 		= isset($_POST['max']) 		&& is_numeric($_POST['max'])	? $_POST['max'] 	: 10;
         $page 		= isset($_POST['page'])		&& is_numeric($_POST['page'])	? $_POST['page']	: 1;
@@ -56,12 +51,11 @@ class users extends _base{
         $table = '';
         $items = [];
 
-        $canEdit = $this->user->can('users');
+        $canEdit = $this->canEdit();
 
         if($os){
             $this->rsp['total_items'] = $os->num_rows;
             while($o = $os->fetch_object()){
-                $link = 'driver.php?id='.$o->id;
 
                 $items[''.$o->id] = $o;
 
@@ -79,7 +73,7 @@ class users extends _base{
                 $table .= '	<td> '.$o->phone.' </td>';
                 $table .= '	<td> '.$o->le_name.' </td>';
                 $table .= '	<td> '.$o->date_added.' </td>';
-                $table .= '	<td> <span class="label label-sm label-'.$estado.'"> '.$st_user[$o->state].' </span> </td>';
+                $table .= '	<td> <span class="label label-sm label-'.$estado.'"> '.$this->arrays->st_user[$o->state].' </span> </td>';
                 $table .= '	<td>';
                 if($canEdit){
                     $table .= '<span class="btn btn-outline btn-circle dark btn-sm" onclick="MUser.edit(Pager.items['.$o->id.']);">';
@@ -97,7 +91,7 @@ class users extends _base{
     }
 
     public function add(){
-        $this->checkEditPerms('users');
+        $this->checkEditPerms();
 
         $id = (isset($_POST['id']) ? $_POST['id'] : 0 );
 
@@ -161,7 +155,7 @@ class users extends _base{
     }
 
     public function remove(){
-        $this->checkEditPerms('users');
+        $this->checkEditPerms();
 
         $id = (isset($_POST['id']) ? $_POST['id'] : 0 );
 

@@ -33,7 +33,7 @@
     <link href="assets/global/css/components.min.css" rel="stylesheet" id="style_components"/>
     <link href="assets/global/css/plugins.min.css" rel="stylesheet"/>
 
-    <link href="css/core.css?v={$v}" rel="stylesheet" type="text/css"/>
+    <link href="views/css/core.css?v={$v}" rel="stylesheet" type="text/css"/>
 
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />

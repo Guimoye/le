@@ -7,7 +7,9 @@
             <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
         </div>
         <div class="actions">
-            <span class="btn btn-circle blue" onclick="MDriver.add();"> <i class="fa fa-plus"></i> Registrar </span>
+            {if $can_edit}
+                <span class="btn btn-circle blue" onclick="MDriver.add();"> <i class="fa fa-plus"></i> Registrar </span>
+            {/if}
         </div>
     </div>
 
@@ -165,6 +167,13 @@
                                             <label class="col-md-5 control-label">Correo</label>
                                             <div class="col-md-7">
                                                 <input class="form-control" name="email" type="email" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Contraseña</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="password" type="password" placeholder="Escribe una contraseña...">
                                             </div>
                                         </div>
 
@@ -451,6 +460,6 @@
 {/literal}
 
 {include file='_footer.tpl' js=[
-    'js/m_driver.js',
-    'js/pager.js'
+    'views/js/m_driver.js',
+    'views/js/pager.js'
 ]}

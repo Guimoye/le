@@ -22,7 +22,19 @@ class User{
 	private function init(){
 		if(isset($_SESSION['id_user']) && is_numeric($_SESSION['id_user']) && $_SESSION['id_user'] > 0)
 		{
-			$user = $this->db->o("SELECT * FROM users WHERE id = ".$_SESSION['id_user']);
+		    if(isset($_SESSION['is_driver']) && $_SESSION['is_driver'] == true)
+		    {
+                $user = $this->db->o("SELECT * FROM drivers WHERE id = ".$_SESSION['id_user']);
+                if($user)
+                {
+                    $user->id_level = 3;
+                    $user->username = $user->email;
+                    $this->home = 'drivers/'.$user->id;
+                    $this->changeHome = false;
+                }
+            } else {
+                $user = $this->db->o("SELECT * FROM users WHERE id = ".$_SESSION['id_user']);
+            }
 
 			if($user)
 			{
@@ -37,9 +49,14 @@ class User{
 		}
 	}
 
+	public function isDriver(){
+	    return $this->id_level == 3;
+    }
+
     private $menu = [];
     private $shortcuts = [];
     private $home = 'home?def=1';
+    private $changeHome = true;
     private $actions = [];
     public function loadPerms($loadMenu = false, $url = ''){
 
@@ -60,7 +77,7 @@ class User{
 
                     if($o['see']        == 1) $this->menu[$o['url']?:$o['id']] = $o;
                     if($o['shortcut']   == 1) $this->shortcuts[] = $o;
-                    if($o['home']       == 1) $this->home = $o['url'];
+                    if($this->changeHome && $o['home'] == 1) $this->home = $o['url'];
                 }
 
                 if($o['edit'] == 1) $this->actions[$o['code']] = 1;

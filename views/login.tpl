@@ -42,7 +42,6 @@
             <h3 class="form-title font-green">Iniciar sesión</h3>
 
             <div class="alert alert-danger" id="error-alert" style="display:none">
-                <button class="close" data-close="alert"></button>
                 <span>Datos incorrectos.</span>
             </div>
 
@@ -55,7 +54,7 @@
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn green uppercase">Ingresar</button>
+                <button class="btn green uppercase">Ingresar</button>
             </div>
 
         </form>
@@ -80,7 +79,7 @@
                             location.href = rsp.url;
 
                         } else {
-                            $error_alert.text(rsp.msg);
+                            $error_alert.html(rsp.msg);
                             $error_alert.fadeIn();
                         }
 
@@ -101,7 +100,7 @@
     <script src="assets/global/scripts/app.min.js"></script>
     <!--<script src="assets/pages/scripts/login.min.js"></script>-->
 
-    <script src="js/core.js?v={$v}"></script>
+    <script src="views/js/core.js?v={$v}"></script>
 
 </body>
 </html>

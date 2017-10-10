@@ -49,11 +49,11 @@
         $ui->assign('items', $items);
         $ui->assign('total_amount_due', $total_amount);
 
-        $ui->display($this->module.'.tpl');
+        $ui->display('expenses.tpl');
     }
 
     public function add(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = isset($_POST['id']) ? $_POST['id'] : 0;
 
@@ -103,7 +103,7 @@
     }
 
     public function set_paid(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 
@@ -126,7 +126,7 @@
     }
 
     public function set_unpaid(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 
@@ -140,7 +140,7 @@
     }
 
     public function remove(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 

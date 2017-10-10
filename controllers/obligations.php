@@ -46,11 +46,11 @@
         $ui->assign('items', $items);
         $ui->assign('total_amount_due', $total_amount);
 
-        $ui->display($this->module.'.tpl');
+        $ui->display('obligations.tpl');
     }
 
     public function add(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = isset($_POST['id']) ? $_POST['id'] : 0;
 
@@ -100,7 +100,7 @@
     }
 
     public function remove(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 

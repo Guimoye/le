@@ -5,6 +5,12 @@
     }
 
     public function index(){
+
+        // Evitar que un conductor peuda acceder a lista
+        if($this->user->isDriver()){
+            $this->redirect($this->user->getHome());
+        }
+
         $ui = $this->ui();
         $ui->assign('page_title', 'Conductores');
         $ui->assign('brands', $this->db->arr("SELECT * FROM vh_brands WHERE state = 1"));
@@ -195,6 +201,8 @@
             $WHERE .= " AND state = $state";
         }
 
+        $canEdit = $this->canEdit();
+
         $SQL = "SELECT * FROM drivers WHERE $WHERE ORDER BY id DESC LIMIT $offset,$max";
         $os = $this->db->get($SQL);
 
@@ -208,27 +216,28 @@
 
                 $items[''.$o->id] = $o;
 
-                $table .= '
-					<tr>
-						<td>
-						    <a href="'.$link.'">'.$o->name.' '.$o->surname.'</a>
-						    <div style="font-size:12px;color:red">Mant. 20,000km</div>
-						</td>
-						<td> '.$o->vh_plate.' </td>
-						<td> --- </td>
-						<td> '.$o->date_added.' </td>
-						<td> --- </td>
-						<td> '.$this->stg->coin.' -.-- </td>
-						<td class="nowrap">
-						    <a href="'.$link.'" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-eye"></i></a>
-						    <a href="dues_rental.php?id='.$o->id.'" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-bar-chart"></i></a>
-						    
-							<span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MDriver.edit(Pager.items['.$o->id.']);">
-								<i class="fa fa-pencil"></i>
-							</span>
-						</td>
-					</tr>
-				';
+                $table .= '<tr>';
+                $table .= ' <td>';
+                $table .= '  <a href="' . $link . '">' . $o->name . ' ' . $o->surname . ' </a>';
+                $table .= '  <div style="font-size:12px;color:red">Mant. 20,000km</div>';
+                $table .= ' </td>';
+                $table .= ' <td> ' . $o->vh_plate . ' </td>';
+                $table .= ' <td> --- </td>';
+                $table .= ' <td> ' . $o->date_added . ' </td>';
+                $table .= ' <td> --- </td>';
+                $table .= ' <td> ' . $this->stg->coin . ' -.-- </td>';
+                $table .= ' <td class="nowrap">';
+                $table .= '  <a href="' . $link . '" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-eye"></i></a>';
+                $table .= '  <a href="dues_rental/' . $o->id . '" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-bar-chart"></i></a>';
+
+                if($canEdit){
+                    $table .= '  <span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MDriver.edit(Pager.items[' . $o->id . ']);">';
+                    $table .= '   <i class="fa fa-pencil"></i>';
+                    $table .= '  </span>';
+                }
+
+                $table .= ' </td>';
+                $table .= '</tr>';
             }
         }
 
@@ -238,7 +247,7 @@
     }
 
     public function add(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 
@@ -303,6 +312,11 @@
             $this->rsp['msg'] = 'Número de <b>Licencia de conducir</b> incorrecta';
 
         } else {
+            $password = _POST('password');
+            if(!empty($password)){
+                $data['password'] = md5($password);
+            }
+
             if($isEdit){
                 if($this->db->update('drivers', $data, $id)){
                     $this->rsp['ok'] = true;

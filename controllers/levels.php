@@ -2,9 +2,6 @@
 
     public function __construct(){
         parent::__construct();
-        // El contructor
-
-        $this->setModule('levels');
     }
 
     public function index(){

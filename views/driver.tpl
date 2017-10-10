@@ -62,7 +62,9 @@
 
                 <!-- SIDEBAR BUTTONS -->
                 <div class="profile-userbuttons">
+                {if $can_edit}
                     <button type="button" class="btn btn-circle red btn-sm">Finalizar conductor</button>
+                {/if}
                 </div>
                 <!-- END SIDEBAR BUTTONS -->
 
@@ -129,7 +131,7 @@
                                 </td>
                                 <td> {$sale->last_date_paid} </td>
                                 <td>
-                                    <a href="dues_sale.php?id={$driver->id}" class="btn btn-circle green-jungle">
+                                    <a href="dues_sale/{$driver->id}" class="btn btn-circle green-jungle">
                                         <i class="fa fa-paper-plane"></i> Ver detalle
                                     </a>
                                 </td>

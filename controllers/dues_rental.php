@@ -51,11 +51,11 @@
         $ui->assign('items', $items);
         $ui->assign('total_amount_due', $total_amount_due);
 
-        $ui->display($this->module.'.tpl');
+        $ui->display('dues_rental.tpl');
     }
 
     public function add(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id_driver  = _POST_INT('id_driver');
         $dues       = _POST_INT('dues');
@@ -117,7 +117,7 @@
     }
 
     public function set_due_paid(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 
@@ -160,7 +160,7 @@
     }
 
     public function set_due_unpaid(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 
@@ -177,7 +177,7 @@
     }
 
     public function set_free_days(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
         $days = _POST_ARR('days');
@@ -298,7 +298,7 @@
     }
 
     public function upload_voucher(){
-        $this->checkEditPerms('drivers');
+        $this->checkEditPerms();
 
         $id = _POST_INT('id');
 

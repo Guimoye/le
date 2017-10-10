@@ -28,7 +28,7 @@
     <script src="assets/global/scripts/app.min.js"></script>
     <script src="assets/layouts/layout/scripts/layout.min.js"></script>
 
-    <script src="js/core.js?v={$v}"></script>
+    <script src="views/js/core.js?v={$v}"></script>
 
     {if isset($js)}
         {foreach item=s from=$js}

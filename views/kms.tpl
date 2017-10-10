@@ -12,7 +12,9 @@
                     <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
                 </div>
                 <div class="actions">
-                    <span class="btn btn-circle blue" onclick="MKm.add();"> <i class="fa fa-plus"></i> Registrar </span>
+                    {if $can_edit}
+                        <span class="btn btn-circle blue" onclick="MKm.add();"> <i class="fa fa-plus"></i> Registrar </span>
+                    {/if}
                 </div>
             </div>
 
@@ -29,7 +31,7 @@
                         <thead>
                         <tr>
                             <th> Kilómetros </th>
-                            <th width="1%"> Opciones </th>
+                            <th width="1%"> </th>
                         </tr>
                         </thead>
                         <tbody id="pager_content">
@@ -38,15 +40,17 @@
                                 <td> <div style="font-size:24px"> {$o.km|number_format} km </div> </td>
                                 <td class="nowrap">
 
-							<span onclick="MKm.edit(items[{$i}]);"
-                                  class="btn btn-outline btn-circle dark btn-sm font-md">
-								<i class="fa fa-pencil"></i>
-							</span>
+                                    {if $can_edit}
+                                        <span onclick="MKm.edit(items[{$i}]);"
+                                              class="btn btn-outline btn-circle dark btn-sm font-md">
+                                            <i class="fa fa-pencil"></i>
+                                        </span>
 
-                                    <span onclick="MKm.remove({$o.id});"
-                                          class="btn btn-outline btn-circle dark btn-sm font-md">
-								<i class="fa fa-trash"></i>
-							</span>
+                                        <span onclick="MKm.remove({$o.id});"
+                                              class="btn btn-outline btn-circle dark btn-sm font-md">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                    {/if}
 
                                 </td>
                             </tr>
@@ -112,5 +116,5 @@
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
     'assets/global/plugins/jquery.form.min.js',
-    'js/m_km.js'
+    'views/js/m_km.js'
 ]}

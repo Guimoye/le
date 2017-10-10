@@ -30,16 +30,37 @@
             $username = addslashes($username);
             $password = md5(addslashes($password));
 
-            $o = $this->db->o("SELECT * FROM users WHERE username = '$username' AND password = '$password' LIMIT 1");
-            if($o){
-                $this->db->update('users', ['date_login'=>'NOW()'], $o->id);
-                $_SESSION['id_user'] = $o->id;
+            if($this->uu->isEmail($username)) {
 
-                $this->rsp['ok'] = true;
-                $this->rsp['url'] = $this->return;
+                // Es email, se logea un conductor
+                $o = $this->db->o("SELECT * FROM drivers WHERE email = '$username' AND password = '$password' LIMIT 1");
+                if($o){
+                    $this->db->update('users', ['date_login'=>'NOW()'], $o->id);
+                    $_SESSION['id_user'] = $o->id;
+                    $_SESSION['is_driver'] = true;
+
+                    $this->rsp['ok'] = true;
+                    $this->rsp['url'] = $this->return;
+
+                } else {
+                    $this->rsp['msg'] = 'Datos de <b>conductor</b> incorrectos';
+                }
 
             } else {
-                $this->rsp['msg'] = 'Datos incorrectos';
+
+                $o = $this->db->o("SELECT * FROM users WHERE username = '$username' AND password = '$password' LIMIT 1");
+                if($o){
+                    $this->db->update('users', ['date_login'=>'NOW()'], $o->id);
+                    $_SESSION['id_user'] = $o->id;
+                    $_SESSION['is_driver'] = false;
+
+                    $this->rsp['ok'] = true;
+                    $this->rsp['url'] = $this->return;
+
+                } else {
+                    $this->rsp['msg'] = 'Datos incorrectos';
+                }
+
             }
         }
 
