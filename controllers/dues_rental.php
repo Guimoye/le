@@ -179,28 +179,30 @@
     public function set_free_days(){
         $this->checkEditPerms();
 
+        /*$_POST['id']    = 1;
+        $_POST['days']  = ['0','1','2','3','4','5'];*/
+
         $id = _POST_INT('id');
         $days = _POST_ARR('days');
 
         $SQL = "SELECT du.*,
-                           dr.rental_amount,
-                           dr.rental_dues
-                    FROM dues_rental du
-                    INNER JOIN drivers dr ON dr.id = du.id_driver
-                    WHERE du.id = $id";
+                       dr.rental_amount,
+                       dr.rental_dues
+                FROM dues_rental du
+                  INNER JOIN drivers dr ON dr.id = du.id_driver
+                WHERE du.id = $id";
 
         $due = $this->db->o($SQL);
 
         if(!$due){
             $this->rsp['msg'] = 'No se reconoce el registro';
 
-        } else if(count($days) > 6){
-            $this->rsp['msg'] = 'Solo se puede elegir 6 dias';
+        } else if(count($days) > 7){
+            $this->rsp['msg'] = 'Solo se puede elegir 7 dias';
 
         } else {
 
             // Solo aplicar a dias no asignados
-            $duplicate = false;
             $free_days = array_filter(explode(',', $due->free_days), 'strlen');
             foreach($free_days as $d){
                 if(in_array($d,$days)){ // Si este dia ya fue descontado, no se descuenta nuevamente
@@ -210,22 +212,23 @@
 
             $free_days  = array_merge($free_days, $days);
 
-            $amount     = (int) $due->rental_amount;
-            //$amount     = (int) $due->amount_due;
-            $daily      = ($amount / 6);
+            $amount     = (float) $due->rental_amount;
+            $amount_due = (float) $due->amount_due;
+
+            $daily      = ($amount / 7);
             $num_days   = count($days);
-            //$num_days   = count($days);
-            $discount   = ($daily * $num_days);
-            $new_amount = ($due->amount_due - $discount);
+            $discount   = round(($daily * $num_days),2);
+            $new_amount = $amount_due - $discount;
 
-            $this->rsp['$duplicate']  = $duplicate;
-            $this->rsp['$free_days']  = $free_days;
-            $this->rsp['$days']       = $days;
+            $this->rsp['$free_days']    = $free_days;
+            $this->rsp['$days']         = $days;
 
-            $this->rsp['num_days']    = $num_days;
-            $this->rsp['diario']      = $daily;
-            $this->rsp['discount']    = $discount;
-            $this->rsp['new_amount']  = $new_amount;
+            $this->rsp['amount']        = $amount;
+            $this->rsp['num_days']      = $num_days;
+            $this->rsp['daily']         = $daily;
+            $this->rsp['amount_due']    = $amount_due;
+            $this->rsp['discount']      = $discount;
+            $this->rsp['new_amount']    = $new_amount;
 
             if($discount > 0){
                 $data = [];
@@ -242,15 +245,15 @@
                 // Obtener la ultima cuota
                 // En caso que la cuota sea menor, aplicamos, caso contrario creamos nueva
                 $SQL = "SELECT * FROM dues_rental
-                            WHERE id_driver = $due->id_driver
-                            ORDER BY date_due DESC LIMIT 1";
+                        WHERE id_driver = $due->id_driver
+                        ORDER BY date_due DESC LIMIT 1";
                 $ld = $this->db->o($SQL);
 
                 if(($ld->id != $due->id) && $ld->amount_due < $due->rental_amount){
 
                     $amount_due = $ld->amount_due + $discount;
                     $amount_due_dif = $amount_due - $due->rental_amount;
-                    $amount_due_dif = $amount_due_dif>0?$amount_due_dif:0;
+                    $amount_due_dif = $amount_due_dif > 0 ? $amount_due_dif : 0;
 
                     $data = [];
                     $data['amount_due'] = $amount_due - $amount_due_dif;
@@ -267,7 +270,6 @@
                         $data['amount_due'] = $amount_due_dif;
                         $data['date_due'] = $date_due;
                         $this->db->insert('dues_rental', $data);
-
                     }
 
                 } else {

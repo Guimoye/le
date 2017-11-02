@@ -1,4 +1,4 @@
-<?php class expenses extends _base{
+<?php class loans extends _base{
 
     public function __construct(){
         parent::__construct();
@@ -21,14 +21,10 @@
             exit;
         }
 
-        if($this->user->isDriver()){
-            $this->exitUI('Acceso no permitido');
-        }
-
         $items = [];
         $total_amount = 0;
 
-        $os = $this->db->get("SELECT * FROM expenses WHERE id_driver = $driver->id AND state = 1");
+        $os = $this->db->get("SELECT * FROM loans WHERE id_driver = $driver->id AND state = 1");
         if($os){
             while($o = $os->fetch_assoc()){
                 $total_amount += $o['amount'];
@@ -36,7 +32,7 @@
                 if($o['date_paid']){
                     $o['pay_state'] = 'paid';
 
-                } else if(strtotime($o['date_pay']) > time()) {
+                } else if(strtotime($o['date_pay']) > time()){
                     $o['pay_state'] = 'pending';
 
                 } else {
@@ -48,12 +44,12 @@
             }
         }
 
-        $ui->assign('page_title', 'Gastos');
+        $ui->assign('page_title', 'Préstamos');
         $ui->assign('driver', $driver);
         $ui->assign('items', $items);
         $ui->assign('total_amount_due', $total_amount);
 
-        $ui->display('expenses.tpl');
+        $ui->display('loans.tpl');
     }
 
     public function add(){
@@ -85,7 +81,7 @@
         } else {
 
             if($isEdit){
-                if($this->db->update('expenses', $data, $id)){
+                if($this->db->update('loans', $data, $id)){
                     $this->rsp['ok'] = true;
 
                 } else {
@@ -93,7 +89,7 @@
                 }
 
             } else {
-                if($this->db->insert('expenses', $data)){
+                if($this->db->insert('loans', $data)){
                     $this->rsp['ok'] = true;
 
                 } else {
@@ -111,7 +107,7 @@
 
         $id = _POST_INT('id');
 
-        $due = $this->db->o('expenses', $id);
+        $due = $this->db->o('loans', $id);
 
         if(!$due){
             $this->rsp['msg'] = 'No se reconoce el registro';
@@ -120,7 +116,7 @@
 
             $data = [];
             $data['date_paid'] = 'NOW()';
-            if($this->db->update('expenses', $data, $id)){
+            if($this->db->update('loans', $data, $id)){
                 $this->rsp['ok'] = true;
             } else {
                 $this->rsp['msg'] = 'Error interno :: DB';
@@ -134,7 +130,7 @@
 
         $id = _POST_INT('id');
 
-        if($this->db->query("UPDATE expenses SET date_paid = NULL WHERE id = $id")){
+        if($this->db->query("UPDATE loans SET date_paid = NULL WHERE id = $id")){
             $this->rsp['ok'] = true;
         } else {
             $this->rsp['msg'] = 'Error interno :: DB';
@@ -149,7 +145,7 @@
         $id = _POST_INT('id');
 
         if(is_numeric($id) && $id > 0){
-            if($this->db->query("UPDATE expenses SET state = 0 WHERE id = $id")){
+            if($this->db->query("UPDATE loans SET state = 0 WHERE id = $id")){
                 $this->rsp['ok'] = true;
             } else $this->rsp['msg'] = 'Error DB :: No se pudo eliminar';
         } else $this->rsp['msg'] = 'No se puede reconocer';

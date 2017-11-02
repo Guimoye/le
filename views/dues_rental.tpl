@@ -26,8 +26,8 @@
                 <thead>
                 <tr>
                     <th width="1%"> # </th>
-                    <th> Fecha </th>
-                    <th> Alquiler </th>
+                    <th width="1%"> Fecha </th>
+                    <th> Alquiler <span class="font-xs">c. IGV</span> </th>
                     <th> Multa/Dscto </th>
                     <th> Anterior </th>
                     <th> Monto Total </th>
@@ -40,7 +40,7 @@
                 {foreach key=i item=o from=$items}
                     <tr>
                         <td> {$o.id} </td>
-                        <td> {$o.date_due} </td>
+                        <td class="nowrap"> {$o.date_due|date_format:"%d-%m-%Y"} </td>
                         <td> {$stg->coin}{$o.amount_due} </td>
                         <td> {$stg->coin}{$o.amount_penalty} </td>
                         <td> {$stg->coin}{$o.amount_previous} </td>
@@ -241,6 +241,12 @@
                                 <label style="display:block;padding:8px">
                                     <div>SA</div>
                                     <input type="checkbox" name="days[]" value="5" class="day_5">
+                                </label>
+                            </td>
+                            <td style="padding:0">
+                                <label style="display:block;padding:8px">
+                                    <div>DO</div>
+                                    <input type="checkbox" name="days[]" value="6" class="day_6">
                                 </label>
                             </td>
                         </tr>

@@ -8,7 +8,7 @@
 
     public function index(){
         if($this->user->isLogged()){
-            header('Location: '.$this->return);
+            $this->redirect($this->return);
         }
 
         $ui = $this->ui();

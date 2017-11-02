@@ -13,7 +13,7 @@
                 </div>
                 <div class="actions">
                     {if $can_edit}
-                        <span class="btn btn-circle blue" onclick="MKm.add();"> <i class="fa fa-plus"></i> Registrar </span>
+                        <span class="btn btn-circle blue" onclick="MKm.add(1);"> <i class="fa fa-plus"></i> Registrar </span>
                     {/if}
                 </div>
             </div>
@@ -22,7 +22,7 @@
 
                 <!--<div class="date-picker" data-date-format="mm/dd/yyyy"></div>-->
 
-                {if empty($items)}
+                {if empty($items_1)}
                     <div class="alert alert-warning">
                         No hay datos disponibles.
                     </div>
@@ -35,13 +35,76 @@
                         </tr>
                         </thead>
                         <tbody id="pager_content">
-                        {foreach key=i item=o from=$items}
+                        {foreach key=i item=o from=$items_1}
                             <tr>
                                 <td> <div style="font-size:24px"> {$o.km|number_format} km </div> </td>
                                 <td class="nowrap">
 
                                     {if $can_edit}
-                                        <span onclick="MKm.edit(items[{$i}]);"
+                                        <span onclick="MKm.edit(items_1[{$i}]);"
+                                              class="btn btn-outline btn-circle dark btn-sm font-md">
+                                            <i class="fa fa-pencil"></i>
+                                        </span>
+
+                                        <span onclick="MKm.remove({$o.id});"
+                                              class="btn btn-outline btn-circle dark btn-sm font-md">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                    {/if}
+
+                                </td>
+                            </tr>
+                        {/foreach}
+
+                        </tbody>
+                    </table>
+                {/if}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="portlet light">
+
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-dark bold uppercase">Mantenimiento de GAS</span>
+                </div>
+                <div class="actions">
+                    {if $can_edit}
+                        <span class="btn btn-circle blue" onclick="MKm.add(2);"> <i class="fa fa-plus"></i> Registrar </span>
+                    {/if}
+                </div>
+            </div>
+
+            <div class="portlet-body">
+
+                <!--<div class="date-picker" data-date-format="mm/dd/yyyy"></div>-->
+
+                {if empty($items_2)}
+                    <div class="alert alert-warning">
+                        No hay datos disponibles.
+                    </div>
+                {else}
+                    <table class="table table-striped table-bordered table-hover dt-responsive mdl-td" style="margin-top:10px">
+                        <thead>
+                        <tr>
+                            <th> Kilómetros </th>
+                            <th width="1%"> </th>
+                        </tr>
+                        </thead>
+                        <tbody id="pager_content">
+                        {foreach key=i item=o from=$items_2}
+                            <tr>
+                                <td> <div style="font-size:24px"> {$o.km|number_format} km </div> </td>
+                                <td class="nowrap">
+
+                                    {if $can_edit}
+                                        <span onclick="MKm.edit(items_2[{$i}]);"
                                               class="btn btn-outline btn-circle dark btn-sm font-md">
                                             <i class="fa fa-pencil"></i>
                                         </span>
@@ -80,6 +143,7 @@
 
                 <form class="form-horizontal">
                     <input type="hidden" name="id" value="">
+                    <input type="hidden" name="type" value="{$type}">
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Kilómetros</label>
@@ -103,7 +167,8 @@
 
 <script>
 
-    var items = {$items|@json_encode};
+    var items_1 = {$items_1|@json_encode};
+    var items_2 = {$items_2|@json_encode};
 
     {literal}
     function $Ready(){

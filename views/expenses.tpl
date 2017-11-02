@@ -28,7 +28,7 @@
                 <thead>
                 <tr>
                     <th width="1%"> # </th>
-                    <th> Fecha </th>
+                    <th width="1%"> Fecha </th>
                     <th> Tipo de Gasto </th>
                     <th> Monto </th>
                     <th> Fecha de Pago </th>
@@ -39,11 +39,12 @@
                 {foreach key=i item=o from=$items}
                     <tr>
                         <td> {$o.id} </td>
-                        <td> {$o.date_pay} </td>
+                        <td class="nowrap"> {$o.date_pay|date_format:"%d-%m-%Y"} </td>
                         <td> {$o.description} </td>
                         <td> {$stg->coin}{$o.amount} </td>
                         <td>
-                            {$o.date_paid}
+                            {$o.date_paid|date_format:"%d-%m-%Y"}
+
                             {if $o.pay_state == 'paid'}
                                 <span {*onclick="MExpense.setUnpaid({$o.id});"*}
                                       class="btn btn-xs green-jungle">Pagado</span>

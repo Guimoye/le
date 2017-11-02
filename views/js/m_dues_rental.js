@@ -228,6 +228,7 @@ var MDays = {
         this.$form.day_3    = $('.day_3', this.$form);
         this.$form.day_4    = $('.day_4', this.$form);
         this.$form.day_5    = $('.day_5', this.$form);
+        this.$form.day_6    = $('.day_6', this.$form);
 
         // Asignar eventos
         this.$modal.remove.click(function(){
@@ -295,6 +296,11 @@ var MDays = {
         if(arr.includes('5')){
             MDays.$form.day_5.prop('checked', true);
             MDays.$form.day_5.attr('disabled', true);
+        }
+
+        if(arr.includes('6')){
+            MDays.$form.day_6.prop('checked', true);
+            MDays.$form.day_6.attr('disabled', true);
         }
 
         /*MDays.$form.day_0.prop('checked', arr.includes('0'));

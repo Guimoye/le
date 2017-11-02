@@ -18,6 +18,15 @@
         <!-- FILTERS -->
         <form class="form-inline" id="filters" action="drivers/pager">
             <div class="form-group">
+                <label>Flota</label><br>
+                <select name="id_fleet" class="form-control">
+                    <option value="">Todo...</option>
+                    {foreach key=i item=o from=$fleets}
+                        <option value="{$o.id}">{$o.name}</option>
+                    {/foreach}
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Consulta</label><br>
                 <input class="form-control" name="word" placeholder="Nombre de conductor"/>
             </div>
@@ -90,6 +99,18 @@
                                     <div class="col-md-6">
 
                                         <div class="form-group">
+                                            <label class="col-md-5 control-label">Flota</label>
+                                            <div class="col-md-7">
+                                                <select class="form-control" name="id_fleet">
+                                                    <option value="0">Elegir...</option>
+                                                    {foreach key=i item=o from=$fleets}
+                                                        <option value="{$o.id}">{$o.name}</option>
+                                                    {/foreach}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label class="col-md-5 control-label">Nombres *</label>
                                             <div class="col-md-7">
                                                 <input class="form-control" name="name" placeholder="Escribir...">
@@ -142,6 +163,13 @@
                                             <label class="col-md-5 control-label">Distrito</label>
                                             <div class="col-md-7">
                                                 <input class="form-control" name="district" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Dirección</label>
+                                            <div class="col-md-7">
+                                                <input class="form-control" name="address" placeholder="Escribir...">
                                             </div>
                                         </div>
 

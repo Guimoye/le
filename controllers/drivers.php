@@ -6,7 +6,7 @@
 
     public function index(){
 
-        // Evitar que un conductor peuda acceder a lista
+        // Evitar que un conductor pueda acceder a lista
         if($this->user->isDriver()){
             $this->redirect($this->user->getHome());
         }
@@ -14,12 +14,15 @@
         $ui = $this->ui();
         $ui->assign('page_title', 'Conductores');
         $ui->assign('brands', $this->db->arr("SELECT * FROM vh_brands WHERE state = 1"));
+        $ui->assign('fleets', $this->db->arr("SELECT * FROM fleets WHERE state = 1 ORDER BY name"));
         $ui->display($this->module.'.tpl');
     }
 
     public function item($id){
         $this->inc('data');
         global $arr_months,$arr_days;
+
+        $this->stg->isDriver = $this->user->isDriver();
 
         $driver = $this->db->o('drivers', $id);
 
@@ -51,6 +54,8 @@
         $rental = new stdClass();
         $rental->total_due = 0;
         $rental->total_paid = 0;
+        $rental->total_items_paid = 0; // total de cuotas pagadas
+        $rental->total_items = 0; // Total de cuotas
         $rental->date_next_pay = null; // Fecha de siguiente pago, para detectar si ha vencido
         $rental->weeks_late = 0; // Semanas de retraso
         $rental->last_date_paid = ''; // Ultima fecha pagada
@@ -70,7 +75,11 @@
 
             if($o->amount_paid > 0){
                 $rental->last_date_paid = $o->date_paid;
+
+                $rental->total_items_paid += 1;
             }
+
+            $rental->total_items += 1;
         }
         $rental->percent = @($rental->total_paid/$rental->total_due*100) ?: 0;
 
@@ -78,6 +87,8 @@
         $sale = new stdClass();
         $sale->total_due = 0;
         $sale->total_paid = 0;
+        $sale->total_items_paid = 0; // total de cuotas pagadas
+        $sale->total_items = 0; // Total de cuotas
         $sale->date_next_pay = null; // Fecha de siguiente pago, para detectar si ha vencido
         $sale->weeks_late = 0; // Semanas de retraso
         $sale->last_date_paid = ''; // Ultima fecha pagada
@@ -101,7 +112,11 @@
 
             if($o->amount_paid > 0){
                 $sale->last_date_paid = $o->date_paid;
+
+                $sale->total_items_paid += 1;
             }
+
+            $sale->total_items += 1;
         }
         $sale->percent = @($sale->total_paid/$sale->total_due*100) ?: 0;
 
@@ -138,17 +153,66 @@
         }
         $expenses->percent = @($expenses->total_paid/$expenses->total_due*100) ?: 0;
 
-        // Mantenimientos
+        // Prestamos
+        $loans = new stdClass();
+        $loans->total_items = 0;
+        $loans->total_amount = 0;
+        $loans->total_amount_paid = 0;
+        $loans->date_next_pay = null; // Fecha de siguiente pago, para detectar si ha vencido
+        $loans->weeks_late = 0; // Semanas de retraso
+        $loans->last_amount = ''; // Ultimo registro
+        $loans->last_date_pay = ''; // Ultima fecha pagada
+
+        $os = $this->db->get("SELECT * FROM loans WHERE id_driver = $driver->id AND state = 1 ORDER BY date_pay");
+        while($o = $os->fetch_object()){
+            $loans->total_items += 1;
+            $loans->total_amount += $o->amount;
+
+            if($o->date_paid){
+                $loans->total_amount_paid += $o->amount;
+                $loans->last_date_pay = $o->date_paid;
+            }
+
+            if(!$loans->date_next_pay && $o->date_paid){
+                $loans->date_next_pay = $o->date_pay;
+            }
+
+            if(!$o->date_paid && strtotime($o->date_pay) < time()){
+                $loans->weeks_late += 1;
+            }
+
+            //Siguiente cuota
+            if(!$loans->last_amount && !$o->date_paid){
+                $loans->last_amount = $o->amount;
+            }
+
+        }
+        $loans->percent = @($loans->total_paid/$loans->total_due*100) ?: 0;
+
+        // Mantenimientos Normal
         $maintenances = new stdClass();
         $maintenances->next_kms         = 0; // Siguientes kms
         $maintenances->next_date_item   = '---'; // Siguiente fecha
         $maintenances->next_amount      = ''; // Siguiente monto
 
-        $o = $this->db->o("SELECT * FROM maintenances WHERE id_driver = $driver->id AND state = 1 ORDER BY date_item DESC LIMIT 1");
+        $o = $this->db->o("SELECT * FROM maintenances WHERE id_driver = $driver->id AND type = 1 AND state = 1 ORDER BY date_item DESC LIMIT 1");
         if($o){
             $maintenances->next_kms         = $o->kms;
             $maintenances->next_date_item   = $o->date_item;
             $maintenances->next_amount      = $o->amount - $o->amount_stored;
+        }
+
+        // Mantenimientos Normal
+        $maintenances_gas = new stdClass();
+        $maintenances_gas->next_kms         = 0; // Siguientes kms
+        $maintenances_gas->next_date_item   = '---'; // Siguiente fecha
+        $maintenances_gas->next_amount      = ''; // Siguiente monto
+
+        $o = $this->db->o("SELECT * FROM maintenances WHERE id_driver = $driver->id AND type = 2 AND state = 1 ORDER BY date_item DESC LIMIT 1");
+        if($o){
+            $maintenances_gas->next_kms         = $o->kms;
+            $maintenances_gas->next_date_item   = $o->date_item;
+            $maintenances_gas->next_amount      = $o->amount - $o->amount_stored;
         }
 
         // Oblicaciones (proyeccion de gastos)
@@ -169,7 +233,9 @@
         $ui->assign('rental', $rental);
         $ui->assign('sale', $sale);
         $ui->assign('expenses', $expenses);
+        $ui->assign('loans', $loans);
         $ui->assign('maintenances', $maintenances);
+        $ui->assign('maintenances_gas', $maintenances_gas);
         $ui->assign('obligations', $obligations);
         $ui->assign('rental_started', $rental_started);
 
@@ -181,6 +247,7 @@
         $page 		= isset($_POST['page'])		&& is_numeric($_POST['page'])	? $_POST['page']	: 1;
         $date_from	= isset($_POST['date_from'])	? trim($_POST['date_from'])	: '';
         $date_to 	= isset($_POST['date_to']) 		? trim($_POST['date_to'])	: '';
+        $id_fleet   = _POST_INT('id_fleet');
         $word		= isset($_POST['word'])			? trim($_POST['word'])		: '';
         $state		= isset($_POST['state'])		? trim($_POST['state'])		: '';
 
@@ -190,6 +257,9 @@
 
         $WHERE = "state > 0";
 
+        if($id_fleet > 0){
+            $WHERE .= " AND id_fleet = $id_fleet";
+        }
         if(!empty($date_from) && !empty($date_to)){
             $WHERE .= " AND DATE(date_added) between '$date_from' and '$date_to'";
         }
@@ -223,7 +293,7 @@
                 $table .= ' </td>';
                 $table .= ' <td> ' . $o->vh_plate . ' </td>';
                 $table .= ' <td> --- </td>';
-                $table .= ' <td> ' . $o->date_added . ' </td>';
+                $table .= ' <td> ' . date('d/m/Y',strtotime($o->date_added)) . ' </td>';
                 $table .= ' <td> --- </td>';
                 $table .= ' <td> ' . $this->stg->coin . ' -.-- </td>';
                 $table .= ' <td class="nowrap">';
@@ -254,6 +324,7 @@
         $isEdit = (is_numeric($id) && $id > 0);
 
         $data = array();
+        $data['id_fleet'] 		    = _POST_INT('id_fleet');
         $data['name'] 			    = _POST('name');
         $data['surname'] 			= _POST('surname');
         $data['date_birth'] 		= _POST('date_birth');
@@ -262,6 +333,7 @@
         $data['driver_licence'] 	= _POST('driver_licence');
         $data['city'] 			    = _POST('city');
         $data['district'] 			= _POST('district');
+        $data['address'] 			= _POST('address');
         $data['phone_cell'] 		= _POST('phone_cell');
         $data['phone_house'] 		= _POST('phone_house');
         $data['email'] 			    = _POST('email');
@@ -299,7 +371,10 @@
         $data['vh_gps_number'] 		= _POST('vh_gps_number');
         $data['state']			    = _POST('state', 1);
 
-        if(empty($data['name'])){
+        if($data['id_fleet'] <= 0){
+            $this->rsp['msg'] = 'Elige la <b>Flota</b>';
+
+        } else if(empty($data['name'])){
             $this->rsp['msg'] = '<b>Nombre</b> incorrecto';
 
         } else if(empty($data['surname'])){

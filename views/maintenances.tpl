@@ -41,7 +41,7 @@
                     <tr>
                         <td> {$o.id} </td>
                         <td> {$o.kms|number_format} km </td>
-                        <td> {$o.date_item} </td>
+                        <td> {$o.date_item|date_format:"%d-%m-%Y"} </td>
                         <td> {$o.kms_daily|string_format:"%.1f"} km diarios </td>
                         <td> {$stg->coin}{$o.amount} </td>
                         <td> {$stg->coin}{$o.amount_stored} </td>
@@ -107,6 +107,7 @@
                     <input type="hidden" name="action" value="add">
                     <input type="hidden" name="id" value="">
                     <input type="hidden" name="id_driver" value="{$driver->id}">
+                    <input type="hidden" name="type" value="{$type}">
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Kilómetros</label>

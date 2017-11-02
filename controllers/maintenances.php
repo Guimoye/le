@@ -12,6 +12,14 @@
     }
 
     public function item($id_driver){
+        $this->uiByType($id_driver, 1);
+    }
+
+    public function gas($id_driver){
+        $this->uiByType($id_driver, 2);
+    }
+
+    private function uiByType($id_driver,$type){
         $driver = $this->db->o('drivers', $id_driver);
 
         $ui = $this->ui();
@@ -24,7 +32,7 @@
         $items = [];
         $total_amount = 0;
 
-        $os = $this->db->get("SELECT * FROM maintenances WHERE id_driver = $driver->id AND state != 0");
+        $os = $this->db->get("SELECT * FROM maintenances WHERE id_driver = $driver->id AND type = $type AND state != 0");
         if($os){
             while($o = $os->fetch_assoc()){
                 $o['amount_total'] = $o['amount'] - $o['amount_stored'];
@@ -49,6 +57,7 @@
         $ui->assign('driver', $driver);
         $ui->assign('items', $items);
         $ui->assign('total_amount_due', $total_amount);
+        $ui->assign('type', $type);
 
         $ui->display('maintenances.tpl');
     }
@@ -62,6 +71,7 @@
 
         $data = [];
         $data['id_driver']      = _POST_INT('id_driver');
+        $data['type']           = _POST_INT('type');
         $data['kms']            = _POST_INT('kms');
         $data['amount']         = _POST_INT('amount');
         $data['amount_stored']  = _POST_INT('amount_stored');
@@ -72,6 +82,9 @@
 
         if(!$driver){
             $this->rsp['msg'] = 'No se reconoce el conductor';
+
+        } else if($data['type'] <= 0){
+            $this->rsp['msg'] = 'Tipo de mantenimiento no especificado';
 
         } else if($data['kms'] <= 0){
             $this->rsp['msg'] = 'Indica el kilometraje';
@@ -139,7 +152,7 @@
              *
              */
 
-            $next_kms = $this->getNextKms($o->kms);
+            $next_kms = $this->getNextKms($o->kms,$o->type);
 
             if($next_kms > 0){
                 $next_days = round($next_kms / $o->kms_daily);
@@ -148,6 +161,7 @@
 
                 $nextData = [];
                 $nextData['id_driver'] = $o->id_driver;
+                $nextData['type'] = $o->type;
                 $nextData['kms'] = $next_kms;
                 $nextData['kms_daily'] = $o->kms_daily;
                 $nextData['amount'] = $o->amount;
@@ -183,8 +197,8 @@
      * Obtener siguiente kms de mantenimiento, mediante el ultimo
      * Si retorna "0" es porque ya no hay siguientes
      */
-    private function getNextKms($last_kms){
-        $os = $this->db->get("SELECT * FROM kms ORDER BY km");
+    private function getNextKms($last_kms,$type){
+        $os = $this->db->get("SELECT * FROM kms WHERE type = $type ORDER BY km");
         while($o = $os->fetch_object()){
             if($o->km > $last_kms) return $o->km;
         }

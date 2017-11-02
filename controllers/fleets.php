@@ -1,15 +1,15 @@
-<?php class kms extends _base{
+<?php class fleets extends _base{
 
     public function __construct(){
         parent::__construct();
     }
 
     public function index(){
+        $items = $this->db->arr("SELECT * FROM fleets WHERE state = 1 ORDER BY name");
+
         $ui = $this->ui();
-        $ui->assign('page_title', 'Kilómetros de mantenimiento');
-        $ui->assign('items_1', $this->db->arr("SELECT * FROM kms WHERE type = 1 ORDER BY km"));
-        $ui->assign('items_2', $this->db->arr("SELECT * FROM kms WHERE type = 2 ORDER BY km"));
-        $ui->assign('type', 1);
+        $ui->assign('page_title', 'Flotas');
+        $ui->assign('items', $items);
         $ui->display($this->module.'.tpl');
     }
 
@@ -21,19 +21,16 @@
         $isEdit = ($id > 0);
 
         $data = [];
-        $data['type']   = _POST_INT('type');
-        $data['km']     = _POST_INT('km');
+        $data['name'] = _POST('name');
+        $data['state'] = 1;
 
-        if($data['type'] <= 0){
-            $this->rsp['msg'] = 'Tipo de KM no especificado';
-
-        } else if($data['km'] <= 0){
-            $this->rsp['msg'] = 'Ingresa el Km';
+        if(empty($data['name'])){
+            $this->rsp['msg'] = 'Ingresa el Nombre';
 
         } else {
 
             if($isEdit){
-                if($this->db->update('kms', $data, $id)){
+                if($this->db->update('fleets', $data, $id)){
                     $this->rsp['ok'] = true;
 
                 } else {
@@ -41,7 +38,7 @@
                 }
 
             } else {
-                if($this->db->insert('kms', $data)){
+                if($this->db->insert('fleets', $data)){
                     $this->rsp['ok'] = true;
 
                 } else {
@@ -60,7 +57,7 @@
         $id = _POST_INT('id');
 
         if(is_numeric($id) && $id > 0){
-            if($this->db->query("DELETE FROM kms WHERE id = $id")){
+            if($this->db->query("UPDATE fleets SET state = 0 WHERE id = $id")){
                 $this->rsp['ok'] = true;
             } else $this->rsp['msg'] = 'Error DB :: No se pudo eliminar';
         } else $this->rsp['msg'] = 'No se puede reconocer';

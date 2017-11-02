@@ -10,14 +10,12 @@
         </div>
         <div class="actions">
             {if $can_edit}
-                <span class="btn btn-circle blue" onclick="MObligation.add();"> <i class="fa fa-plus"></i> Registrar </span>
+                <span class="btn btn-circle blue" onclick="MLoan.add();"> <i class="fa fa-plus"></i> Registrar </span>
             {/if}
         </div>
     </div>
 
     <div class="portlet-body">
-
-        <!--<div class="date-picker" data-date-format="mm/dd/yyyy"></div>-->
 
         {if empty($items)}
             <div class="alert alert-warning">
@@ -28,9 +26,10 @@
                 <thead>
                 <tr>
                     <th width="1%"> # </th>
-                    <th> Descripción </th>
                     <th> Fecha </th>
+                    <th> Tipo de Gasto </th>
                     <th> Monto </th>
+                    <th> Fecha de Pago </th>
                     <th width="1%">Opciones</th>
                 </tr>
                 </thead>
@@ -38,22 +37,47 @@
                 {foreach key=i item=o from=$items}
                     <tr>
                         <td> {$o.id} </td>
+                        <td> {$o.date_pay|date_format:"%d-%m-%Y"} </td>
                         <td> {$o.description} </td>
-                        <td> {$o.date_end|date_format:"%d-%m-%Y"} </td>
                         <td> {$stg->coin}{$o.amount} </td>
+                        <td>
+                            {$o.date_paid|date_format:"%d-%m-%Y"}
+                            {if $o.pay_state == 'paid'}
+                                <span {*onclick="MLoan.setUnpaid({$o.id});"*}
+                                      class="btn btn-xs green-jungle">Pagado</span>
+
+                            {elseif $o.pay_state == 'pending'}
+                                <span
+                                        {if $can_edit}
+                                            onclick="MLoan.setPaid({$o.id});"
+                                        {/if}
+
+                                      class="btn btn-xs yellow-crusta">Pendiente</span>
+
+                            {elseif $o.pay_state == 'expired'}
+                                <span
+                                        {if $can_edit}
+                                            onclick="MLoan.setPaid({$o.id});"
+                                        {/if}
+
+                                      class="btn btn-xs red-mint">Vencido</span>
+
+                            {/if}
+                        </td>
                         <td class="nowrap">
 
                             {if $can_edit}
-                                <span onclick="MObligation.edit(items[{$i}]);"
+                                <span onclick="MLoan.edit(items[{$i}]);"
                                       class="btn btn-outline btn-circle dark btn-sm font-md">
                                     <i class="fa fa-pencil"></i>
                                 </span>
 
-                                <span onclick="MObligation.remove({$o.id});"
+                                <span onclick="MLoan.remove({$o.id});"
                                       class="btn btn-outline btn-circle dark btn-sm font-md">
                                     <i class="fa fa-trash"></i>
                                 </span>
                             {/if}
+
 
                         </td>
                     </tr>
@@ -75,7 +99,7 @@
 </div>
 
 <!-- MODAL -->
-<div id="modal_add_obligation" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
+<div id="modal_add_loan" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -90,9 +114,9 @@
                     <input type="hidden" name="id_driver" value="{$driver->id}">
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Descripción</label>
+                        <label class="col-md-3 control-label">Tipo de gasto</label>
                         <div class="col-md-8">
-                            <input class="form-control" name="description" placeholder="Descripción...">
+                            <input class="form-control" name="description" placeholder="Describir gasto...">
                         </div>
                     </div>
 
@@ -109,7 +133,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Fecha</label>
                         <div class="col-md-8">
-                            <input class="form-control" name="date_end" type="date">
+                            <input class="form-control" name="date_pay" type="date">
                         </div>
                     </div>
 
@@ -132,8 +156,8 @@
 
     {literal}
     function $Ready(){
-        MObligation.init();
-        //MObligation.add();
+        MLoan.init();
+        //MLoan.add();
     }
     {/literal}
 </script>
@@ -141,5 +165,5 @@
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
     'assets/global/plugins/jquery.form.min.js',
-    'views/js/m_obligation.js'
+    'views/js/m_loan.js'
 ]}

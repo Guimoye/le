@@ -97,7 +97,11 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <b>{$stg->coin}{$rental->total_paid|string_format:"%.2f"}</b> / {$stg->coin}{$rental->total_due|string_format:"%.2f"}
+                                    {if $stg->isDriver}
+                                        (<b>{$rental->total_items_paid}</b> / {$rental->total_items})
+                                    {else}
+                                        <b>{$stg->coin}{$rental->total_paid|string_format:"%.2f"}</b> / {$stg->coin}{$rental->total_due|string_format:"%.2f"}
+                                    {/if}
                                     <br>
                                     {if $rental->weeks_late > 0}
                                         <span class="badge badge-danger">Retraso de {$rental->weeks_late} semanas</span>
@@ -105,7 +109,7 @@
                                         <span class="font-sm font-green-jungle">Pagos al día</span>
                                     {/if}
                                 </td>
-                                <td> {$rental->last_date_paid} </td>
+                                <td> {$rental->last_date_paid|date_format:"%d-%m-%Y"} </td>
                                 <td>
                                     <a href="dues_rental/{$driver->id}" class="btn btn-circle green-jungle">
                                         <i class="fa fa-paper-plane"></i> Ver detalle
@@ -121,7 +125,11 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <b>{$stg->coin}{$sale->total_paid|string_format:"%.2f"}</b> / {$stg->coin}{$sale->total_due|string_format:"%.2f"}
+                                    {if $stg->isDriver}
+                                        (<b>{$sale->total_items_paid}</b> / {$sale->total_items})
+                                    {else}
+                                        <b>{$stg->coin}{$sale->total_paid|string_format:"%.2f"}</b> / {$stg->coin}{$sale->total_due|string_format:"%.2f"}
+                                    {/if}
                                     <br>
                                     {if $sale->weeks_late > 0}
                                         <span class="badge badge-danger">Retraso de {$sale->weeks_late} semanas</span>
@@ -129,7 +137,7 @@
                                         <span class="font-sm font-green-jungle">Pagos al día</span>
                                     {/if}
                                 </td>
-                                <td> {$sale->last_date_paid} </td>
+                                <td> {$sale->last_date_paid|date_format:"%d-%m-%Y"} </td>
                                 <td>
                                     <a href="dues_sale/{$driver->id}" class="btn btn-circle green-jungle">
                                         <i class="fa fa-paper-plane"></i> Ver detalle
@@ -137,25 +145,51 @@
                                 </td>
                             </tr>
 
+                            {if !$stg->isDriver}
+                                <tr>
+                                    <td>
+                                        Gastos
+                                        <div class="font-grey-salsa font-sm">
+                                            Actualmente {$expenses->total_items} registros
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <b>{$stg->coin}{$expenses->last_amount|string_format:"%.2f"}</b>
+                                        <br>
+                                        {if $expenses->weeks_late > 0}
+                                            <span class="badge badge-danger">Retraso de {$expenses->weeks_late} semanas</span>
+                                        {else}
+                                            <span class="font-sm font-green-jungle">Pagos al día</span>
+                                        {/if}
+                                    </td>
+                                    <td> {$expenses->last_date_pay|date_format:"%d-%m-%Y"} </td>
+                                    <td>
+                                        <a href="expenses/{$driver->id}" class="btn btn-circle green-jungle">
+                                            <i class="fa fa-paper-plane"></i> Ver detalle
+                                        </a>
+                                    </td>
+                                </tr>
+                            {/if}
+
                             <tr>
                                 <td>
-                                    Gastos
+                                    Deudas y Préstamos
                                     <div class="font-grey-salsa font-sm">
-                                        Actualmente {$expenses->total_items} registros
+                                        Actualmente {$loans->total_items} registros
                                     </div>
                                 </td>
                                 <td>
-                                    <b>{$stg->coin}{$expenses->last_amount|string_format:"%.2f"}</b>
+                                    <b>{$stg->coin}{$loans->last_amount|string_format:"%.2f"}</b>
                                     <br>
-                                    {if $expenses->weeks_late > 0}
-                                        <span class="badge badge-danger">Retraso de {$expenses->weeks_late} semanas</span>
+                                    {if $loans->weeks_late > 0}
+                                        <span class="badge badge-danger">Retraso de {$loans->weeks_late} semanas</span>
                                     {else}
                                         <span class="font-sm font-green-jungle">Pagos al día</span>
                                     {/if}
                                 </td>
-                                <td> {$expenses->last_date_pay} </td>
+                                <td> {$loans->last_date_pay|date_format:"%d-%m-%Y"} </td>
                                 <td>
-                                    <a href="expenses/{$driver->id}" class="btn btn-circle green-jungle">
+                                    <a href="loans/{$driver->id}" class="btn btn-circle green-jungle">
                                         <i class="fa fa-paper-plane"></i> Ver detalle
                                     </a>
                                 </td>
@@ -171,9 +205,27 @@
                                 <td>
                                     <b>{$stg->coin}{$maintenances->next_amount|string_format:"%.2f"}</b>
                                 </td>
-                                <td> {$maintenances->next_date_item} </td>
+                                <td> {$maintenances->next_date_item|date_format:"%d-%m-%Y"} </td>
                                 <td>
                                     <a href="maintenances/{$driver->id}" class="btn btn-circle green-jungle">
+                                        <i class="fa fa-paper-plane"></i> Ver detalle
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Mantenimiento de GAS
+                                    <div class="font-grey-salsa font-sm">
+                                        Próximo mantenimiento {$maintenances_gas->next_kms|number_format} Km
+                                    </div>
+                                </td>
+                                <td>
+                                    <b>{$stg->coin}{$maintenances_gas->next_amount|string_format:"%.2f"}</b>
+                                </td>
+                                <td> {$maintenances_gas->next_date_item|date_format:"%d-%m-%Y"} </td>
+                                <td>
+                                    <a href="maintenances/{$driver->id}/gas" class="btn btn-circle green-jungle">
                                         <i class="fa fa-paper-plane"></i> Ver detalle
                                     </a>
                                 </td>
@@ -189,7 +241,7 @@
                                 <td>
                                     <b>{$stg->coin}{$obligations->last_amount|string_format:"%.2f"}</b>
                                 </td>
-                                <td> {$obligations->last_date_pay} </td>
+                                <td> {$obligations->last_date_pay|date_format:"%d-%m-%Y"} </td>
                                 <td>
                                     <a href="obligations/{$driver->id}" class="btn btn-circle green-jungle">
                                         <i class="fa fa-paper-plane"></i> Ver detalle

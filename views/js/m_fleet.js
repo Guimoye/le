@@ -1,5 +1,5 @@
 // Modal Expense
-var MKm = {
+var MFleet = {
 
     callback: null,
 
@@ -12,22 +12,21 @@ var MKm = {
     init: function(callback){
         this.callback = (typeof callback === 'function') ? callback : null;
 
-        this.$modal         = $('#modal_add_km');
+        this.$modal         = $('#modal_add_fleet');
         this.$modal.title   = $('.modal-title', this.$modal);
         this.$modal.remove  = $('.remove', this.$modal);
 
         this.$form          = $('form', this.$modal);
         this.$form.id       = $('input[name="id"]', this.$form);
-        this.$form.type     = $('input[name="type"]', this.$form);
-        this.$form.km       = $('input[name="km"]', this.$form);
+        this.$form.name     = $('input[name="name"]', this.$form);
 
         // Asignar eventos
         this.$modal.remove.click(function(){
-            MKm.remove(MKm.$form.id.val());
+            MFleet.remove(MFleet.$form.id.val());
         });
         this.$form.submit(function(e){
             e.preventDefault();
-            MKm.save();
+            MFleet.save();
         });
         $('.save', this.$modal).click(this.save);
 
@@ -35,15 +34,15 @@ var MKm = {
 
     // Guardar
     save: function(){
-        api('kms/add', MKm.$form.serializeObject(), function(rsp){
+        api('fleets/add', MFleet.$form.serializeObject(), function(rsp){
             if(rsp.ok == true){
                 toastr.success('Guardado correctamente');
-                MKm.$modal.modal('hide');
+                MFleet.$modal.modal('hide');
 
-                if(MKm.callback == null){
+                if(MFleet.callback == null){
                     location.reload();
                 } else {
-                    MKm.callback(rsp.id, false);
+                    MFleet.callback(rsp.id, false);
                 }
 
             } else {
@@ -53,36 +52,32 @@ var MKm = {
     },
     
     // Abrir para nuevo NUEVO
-    add: function(km_type){
-        var type = (typeof km_type === 'number') ? km_type : 1;
+    add: function(){
+        MFleet.$modal.title.text("Agregar Flota");
+        MFleet.$modal.remove.hide();
 
-        MKm.$modal.title.text("Agregar Km");
-        MKm.$modal.remove.hide();
+        MFleet.$form.id.val('');
+        MFleet.$form.name.val('');
 
-        MKm.$form.id.val('');
-        MKm.$form.type.val(type);
-        MKm.$form.km.val('');
-
-        MKm.$modal.modal('show');
+        MFleet.$modal.modal('show');
     },
     
     // Editar
     edit: function(o){
-        MKm.$modal.title.text("Editar Km");
-        MKm.$modal.remove.show();
+        MFleet.$modal.title.text("Editar Flota");
+        MFleet.$modal.remove.show();
 
-        MKm.$form.id.val(o.id);
-        MKm.$form.type.val(o.type);
-        MKm.$form.km.val(o.km);
+        MFleet.$form.id.val(o.id);
+        MFleet.$form.name.val(o.name);
 
-        MKm.$modal.modal('show');
+        MFleet.$modal.modal('show');
     },
 
     // Eliminar
     remove: function(id){
         bootbox.confirm('¿Realmente desea eliminar?', function(result){
             if(result){
-                api('kms/remove', {id:id}, function(rsp){
+                api('fleets/remove', {id:id}, function(rsp){
                     if(rsp.ok == true){
                         toastr.success('Eliminado correctamente');
                         location.reload();

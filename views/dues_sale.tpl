@@ -26,7 +26,7 @@
                 <thead>
                 <tr>
                     <th width="1%"> # </th>
-                    <th> Fecha </th>
+                    <th width="1%"> Fecha </th>
                     <th> Amortización </th>
                     <th> Interés </th>
                     <th> Seguros </th>
@@ -41,7 +41,7 @@
                 {foreach key=i item=o from=$items}
                     <tr>
                         <td> {$o.id} </td>
-                        <td> {$o.date_due} </td>
+                        <td class="nowrap"> {$o.date_due|date_format:"%d-%m-%Y"} </td>
                         <td> {$stg->coin}{$o.amount_due|string_format:"%.2f"} </td>
                         <td> {$stg->coin}{$o.amount_interest|string_format:"%.2f"} </td>
                         <td> {$stg->coin}{$o.amount_insurance|string_format:"%.2f"} </td>

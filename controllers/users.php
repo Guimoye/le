@@ -7,7 +7,7 @@ class users extends _base{
 
     public function index(){
         $ui = $this->ui();
-        $ui->assign('page_title', 'Opciones de sistema');
+        $ui->assign('page_title', 'Usuarios');
         $ui->display($this->module.'.tpl');
     }
 

@@ -39,7 +39,7 @@
                     <tr>
                         <td> {$o.id} </td>
                         <td> {$o.description} </td>
-                        <td> {$o.date_end|date_format:"%d-%m-%Y"} </td>
+                        <td> {$o.date_end} </td>
                         <td> {$stg->coin}{$o.amount} </td>
                         <td class="nowrap">
 

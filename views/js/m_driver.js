@@ -21,6 +21,7 @@ var MDriver = {
 
         this.$form                      = $('form', this.$modal);
         this.$form.id                   = $('input[name="id"]', this.$form);
+        this.$form.id_fleet             = $('select[name="id_fleet"]', this.$form);
         this.$form.name 			    = $('input[name="name"]', this.$form);
         this.$form.surname 			    = $('input[name="surname"]', this.$form);
         this.$form.date_birth 		    = $('input[name="date_birth"]', this.$form);
@@ -29,6 +30,7 @@ var MDriver = {
         this.$form.driver_licence 	    = $('input[name="driver_licence"]', this.$form);
         this.$form.city 			    = $('input[name="city"]', this.$form);
         this.$form.district 			= $('input[name="district"]', this.$form);
+        this.$form.address 			    = $('input[name="address"]', this.$form);
         this.$form.phone_cell 		    = $('input[name="phone_cell"]', this.$form);
         this.$form.phone_house 		    = $('input[name="phone_house"]', this.$form);
         this.$form.email 			    = $('input[name="email"]', this.$form);
@@ -122,6 +124,7 @@ var MDriver = {
         MDriver.$modal.remove.hide();
 
         MDriver.$form.id.val('');
+        MDriver.$form.id_fleet.val('');
         MDriver.$form.name.val('');
         MDriver.$form.surname.val('');
         MDriver.$form.date_birth.val('');
@@ -130,6 +133,7 @@ var MDriver = {
         MDriver.$form.driver_licence.val('');
         MDriver.$form.city.val('');
         MDriver.$form.district.val('');
+        MDriver.$form.address.val('');
         MDriver.$form.phone_cell.val('');
         MDriver.$form.phone_house.val('');
         MDriver.$form.email.val('');
@@ -176,6 +180,7 @@ var MDriver = {
         MDriver.$modal.remove.show();
 
         MDriver.$form.id.val(o.id);
+        MDriver.$form.id_fleet.val(o.id_fleet);
         MDriver.$form.name.val(o.name);
         MDriver.$form.surname.val(o.surname);
         MDriver.$form.date_birth.val(o.date_birth);
@@ -184,6 +189,7 @@ var MDriver = {
         MDriver.$form.driver_licence.val(o.driver_licence);
         MDriver.$form.city.val(o.city);
         MDriver.$form.district.val(o.district);
+        MDriver.$form.address.val(o.address);
         MDriver.$form.phone_cell.val(o.phone_cell);
         MDriver.$form.phone_house.val(o.phone_house);
         MDriver.$form.email.val(o.email);
