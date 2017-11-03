@@ -40,7 +40,7 @@
                 <tbody id="pager_content">
                 {foreach key=i item=o from=$items}
                     <tr>
-                        <td> {$o.id} </td>
+                        <td> {$i+1} </td>
                         <td class="nowrap"> {$o.date_due|date_format:"%d-%m-%Y"} </td>
                         <td> {$stg->coin}{$o.amount_due|string_format:"%.2f"} </td>
                         <td> {$stg->coin}{$o.amount_interest|string_format:"%.2f"} </td>

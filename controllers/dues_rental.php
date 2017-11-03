@@ -22,17 +22,39 @@
         $items = [];
         $total_amount_due = 0;
 
-        $os = $this->db->get("SELECT * FROM dues_rental WHERE id_driver = $driver->id");
+        $SQL = "SELECT dr.*,
+                       COALESCE(SUM(dl.amount_due),0) amount_loans
+                FROM dues_rental dr
+                  LEFT JOIN loans lo ON lo.id_driver = dr.id_driver
+                    LEFT JOIN dues_loans dl ON dl.id_loan = lo.id AND dl.date_due = dr.date_due
+                WHERE dr.id_driver = $driver->id
+                GROUP BY dr.id";
+
+        $os = $this->db->get($SQL);
         if($os){
             while($o = $os->fetch_assoc()){
+
+                //$o['amount_loans'] = 0;
+
                 $o['amount_total'] = $o['amount_due']+
                     $o['amount_penalty'] +
-                    $o['amount_previous'];
+                    $o['amount_previous']
+
+                    + $o['amount_loans'];
 
                 $total_amount_due += $o['amount_due'];
 
+                if(empty($o['free_days'])){
+                    $o['worked_days_text'] = '(7/7)';
+                } else {
+                    $arr = explode(',',$o['free_days']);
+                    $o['worked_days_text'] = '('.count($arr).'/7)';
+                }
+
                 if($o['amount_paid'] > 0){
                     $o['pay_state'] = 'paid';
+
+                    $o['all_paid'] = $o['amount_paid'] >= $o['amount_total'];
 
                 } else if(strtotime($o['date_due']) > time()) {
                     $o['pay_state'] = 'pending';
@@ -96,6 +118,7 @@
                 ];
 
                 $this->db->insert('dues_rental', [
+                    'num_due' => $i,
                     'id_driver' => $id_driver,
                     'amount_due' => $amount,
                     'date_due' => $date_due
@@ -182,8 +205,9 @@
         /*$_POST['id']    = 1;
         $_POST['days']  = ['0','1','2','3','4','5'];*/
 
-        $id = _POST_INT('id');
-        $days = _POST_ARR('days');
+        $id     = _POST_INT('id');
+        $notes  = _POST('notes');
+        $days   = _POST_ARR('days');
 
         $SQL = "SELECT du.*,
                        dr.rental_amount,
@@ -234,6 +258,7 @@
                 $data = [];
                 $data['amount_due'] = $new_amount;
                 $data['free_days']  = implode(',', $free_days);
+                $data['fd_notes']  = $notes;
 
                 if($this->db->update('dues_rental', $data, $id)){
                     $this->rsp['ok'] = true;

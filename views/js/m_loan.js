@@ -18,8 +18,10 @@ var MLoan = {
         this.$form              = $('form', this.$modal);
         this.$form.id           = $('input[name="id"]', this.$form);
         this.$form.description  = $('input[name="description"]', this.$form);
+        this.$form.num_dues     = $('input[name="num_dues"]', this.$form);
+        this.$form.tea          = $('input[name="tea"]', this.$form);
         this.$form.amount       = $('input[name="amount"]', this.$form);
-        this.$form.date_pay     = $('input[name="date_pay"]', this.$form);
+        this.$form.date_pay     = $('select[name="date_pay"]', this.$form);
 
         // Asignar eventos
         this.$modal.remove.click(function(){
@@ -55,6 +57,8 @@ var MLoan = {
 
         MLoan.$form.id.val('');
         MLoan.$form.description.val('');
+        MLoan.$form.num_dues.val('');
+        MLoan.$form.tea.val('');
         MLoan.$form.amount.val('');
         MLoan.$form.date_pay.val('');
 
@@ -68,6 +72,8 @@ var MLoan = {
 
         MLoan.$form.id.val(o.id);
         MLoan.$form.description.val(o.description);
+        MLoan.$form.num_dues.val(o.num_dues);
+        MLoan.$form.tea.val(o.tea);
         MLoan.$form.amount.val(o.amount);
         MLoan.$form.date_pay.val(o.date_pay);
 
@@ -104,6 +110,46 @@ var MLoan = {
                 });
             }
         });
+    }
+
+};
+
+// Modal prestamos
+var MLoanDues = {
+
+    $modal: null,
+
+    init: function(){
+        if(this.$modal != null) return;
+
+        this.$modal = $('#modal_loan_dues');
+        this.$modal.list = $('tbody', this.$modal);
+    },
+
+    show: function(){
+        MLoanDues.init();
+        MLoanDues.$modal.modal('show');
+    },
+
+    open: function(id_loan){
+        api('loans/get_dues', {id_loan:id_loan}, function(rsp){
+            if(rsp.ok){
+                MLoanDues.show();
+                var html = '';
+
+                $.each(rsp.dues, function(i,o){
+                    html += '<tr>';
+                    html += ' <td>'+(i+1)+'</td>';
+                    html += ' <td>'+o.date_due+'</td>';
+                    html += ' <td class="nowrap">'+stg.coin+num(o.amount_due,2)+'</td>';
+                    html += '</tr>';
+                });
+
+                MLoanDues.$modal.list.html(html);
+            } else {
+                bootbox.alert(rsp.msg);
+            }
+        }, 'Obteniendo cuotas...');
     }
 
 };

@@ -43,6 +43,8 @@
             <tr>
                 <th> Nombres </th>
                 <th> Placa </th>
+                <th> Gastos </th>
+                <th> Préstamos </th>
                 <th> Kilometraje </th>
                 <th> Fecha Inicio </th>
                 <th> Semanas </th>

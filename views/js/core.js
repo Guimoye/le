@@ -118,32 +118,44 @@ function api(api,data,callback,loading,cache){
 		data.api = api;
 	}
 
-	cache = !(typeof cache == 'undefined') && cache;
+    cache = !(typeof cache == 'undefined') && cache;
 
-	var url = (isCustomUrl ? api : 'ajax/index.php') + '?' + $.param(data);
+    var url = isCustomUrl ? api : 'ajax/index.php';
+
+    // Solo si guarda cache agrega parametros get en url, para evitar url larga
+    if(cache) url += '?' + $.param(data);
 
 
-	if(cache && Cache.exist(url)){
-		console.warn("API:cache: ", url);
-		if(loading) Loading.hide();
-		if(callback) callback(Cache.get(url));
-	} else {
+    if(cache && Cache.exist(url)){
+        console.warn("API:cache: ", url);
+        if(loading) Loading.hide();
+        if(callback) callback(Cache.get(url));
+    } else {
         console.log('API:url: ',url);
-		if(typeof loading == 'undefined'){
-			loading = true;
-			Loading.show();
-		} else if(loading){
-			Loading.show(loading);
-		}
-		$.post(url, data, function(rsp){
-			Cache.set(url,rsp);
+        if(typeof loading == 'undefined'){
+            loading = true;
+            Loading.show();
+        } else if(loading){
+            Loading.show(loading);
+        }
+        $.post(url, data, function(rsp){
+            if(cache) Cache.set(url,rsp);
 
-			if(loading) Loading.hide();
-			if(callback) callback(rsp);
+            if(loading) Loading.hide();
+            if(callback) callback(rsp);
 
-			//console.log(this);
-		}, 'JSON');
-	}
+            //console.log(this);
+        }, 'JSON')
+            .fail(function() {
+                if(loading) Loading.hide();
+                if(callback){
+                    callback({
+                        ok: false,
+                        msg: 'Se produjo un error, por favor vuelve a intentarlo.'
+                    });
+                }
+            });
+    }
 }
 
 // Cargar JS dinamicamente

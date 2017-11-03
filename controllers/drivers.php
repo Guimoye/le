@@ -255,25 +255,31 @@
 
         $this->rsp['total'] = 0;
 
-        $WHERE = "state > 0";
+        $WHERE = "dr.state > 0";
 
         if($id_fleet > 0){
-            $WHERE .= " AND id_fleet = $id_fleet";
+            $WHERE .= " AND dr.id_fleet = $id_fleet";
         }
         if(!empty($date_from) && !empty($date_to)){
-            $WHERE .= " AND DATE(date_added) between '$date_from' and '$date_to'";
+            $WHERE .= " AND DATE(dr.date_added) between '$date_from' and '$date_to'";
         }
         if(!empty($word)){
             $word = '%'.str_replace(' ', '%', $word).'%';
-            $WHERE .= " AND (CONCAT(name,surname) LIKE '$word')";
+            $WHERE .= " AND (CONCAT(dr.name,dr.surname) LIKE '$word')";
         }
         if(is_numeric($state)){
-            $WHERE .= " AND state = $state";
+            $WHERE .= " AND dr.state = $state";
         }
 
         $canEdit = $this->canEdit();
 
-        $SQL = "SELECT * FROM drivers WHERE $WHERE ORDER BY id DESC LIMIT $offset,$max";
+        $SQL = "SELECT dr.*
+                FROM drivers dr
+                WHERE $WHERE
+                GROUP BY dr.id
+                ORDER BY dr.id DESC
+                LIMIT $offset,$max";
+
         $os = $this->db->get($SQL);
 
         $table = '';
@@ -281,7 +287,24 @@
 
         if($os){
             $this->rsp['total_items'] = $os->num_rows;
+
+            $total_loans = 0;
+            $total_expenses = 0;
+
             while($o = $os->fetch_object()){
+                $o->total_loans = 0;
+                $o->total_expenses = 0;
+
+                $ol = $this->db->o("SELECT SUM(amount) amount_total FROM loans WHERE id_driver = $o->id AND state != 0 GROUP BY id_driver");
+                if($ol) $o->total_loans = $ol->amount_total;
+
+                $oe = $this->db->o("SELECT SUM(amount) amount_total FROM expenses WHERE id_driver = $o->id AND state != 0 GROUP BY id_driver");
+                if($oe) $o->total_expenses = $oe->amount_total;
+
+
+                $total_loans    += $o->total_loans;
+                $total_expenses += $o->total_expenses;
+
                 $link = 'drivers/'.$o->id;
 
                 $items[''.$o->id] = $o;
@@ -292,10 +315,16 @@
                 $table .= '  <div style="font-size:12px;color:red">Mant. 20,000km</div>';
                 $table .= ' </td>';
                 $table .= ' <td> ' . $o->vh_plate . ' </td>';
+
+
+                $table .= ' <td> '.$this->stg->coin.number_format($o->total_expenses,2,'.','').' </td>';
+                $table .= ' <td> '.$this->stg->coin.number_format($o->total_loans,2,'.','').' </td>';
+
+
                 $table .= ' <td> --- </td>';
                 $table .= ' <td> ' . date('d/m/Y',strtotime($o->date_added)) . ' </td>';
                 $table .= ' <td> --- </td>';
-                $table .= ' <td> ' . $this->stg->coin . ' -.-- </td>';
+                $table .= ' <td> '.$this->stg->coin.' -.-- </td>';
                 $table .= ' <td class="nowrap">';
                 $table .= '  <a href="' . $link . '" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-eye"></i></a>';
                 $table .= '  <a href="dues_rental/' . $o->id . '" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-bar-chart"></i></a>';
@@ -309,6 +338,13 @@
                 $table .= ' </td>';
                 $table .= '</tr>';
             }
+
+            $table .= '<tr>';
+            $table .= ' <th colspan="2"></th>';
+            $table .= ' <th>'.$this->stg->coin.number_format($total_expenses,2,'.','').'</th>';
+            $table .= ' <th>'.$this->stg->coin.number_format($total_loans,2,'.','').'</th>';
+            $table .= ' <th colspan="100%"></th>';
+            $table .= '</tr>';
         }
 
         $this->rsp['data'] = $table;

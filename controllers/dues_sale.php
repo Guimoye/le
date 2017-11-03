@@ -107,6 +107,7 @@
 
                 $this->db->insert('dues_sale', [
                     'id_driver' => $id_driver,
+                    'num_due' => $i,
                     'amount_due' => $amount,
                     'amount_interest' => $interest,
                     'amount_insurance' => $insurance,

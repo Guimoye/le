@@ -29,28 +29,36 @@
                     <th width="1%"> Fecha </th>
                     <th> Alquiler <span class="font-xs">c. IGV</span> </th>
                     <th> Multa/Dscto </th>
+                    <th> Préstamos </th>
                     <th> Anterior </th>
                     <th> Monto Total </th>
                     <th> Monto Pagado </th>
-                    <th> Fecha de pago </th>
+                    <th width="1%" class="nowrap"> Fecha de pago </th>
                     <th width="1%">Opciones</th>
                 </tr>
                 </thead>
                 <tbody id="pager_content">
                 {foreach key=i item=o from=$items}
                     <tr>
-                        <td> {$o.id} </td>
+                        <td> {$i+1} </td>
                         <td class="nowrap"> {$o.date_due|date_format:"%d-%m-%Y"} </td>
                         <td> {$stg->coin}{$o.amount_due} </td>
                         <td> {$stg->coin}{$o.amount_penalty} </td>
+                        <td> {$stg->coin}{$o.amount_loans} </td>
                         <td> {$stg->coin}{$o.amount_previous} </td>
                         <td> {$stg->coin}{$o.amount_total} </td>
                         <td> {$stg->coin}{$o.amount_paid} </td>
-                        <td>
+                        <td class="nowrap">
                             {$o.date_paid}
                             {if $o.pay_state == 'paid'}
-                                <span {*onclick="MDuesRental.setDueUnpaid({$o.id});"*}
-                                      class="btn btn-xs green-jungle">Pagado</span>
+
+                                {if $o.all_paid}
+                                    <span class="btn btn-xs green-jungle">Pagado</span>
+                                {else}
+                                    <span class="btn btn-xs green">Pago parcial</span>
+                                {/if}
+
+                                <span onclick="MDays.open(items[{$i}],true);" class="btn btn-xs grey-salsa">{$o.worked_days_text}</span>
 
                             {elseif $o.pay_state == 'pending'}
                                 <span
@@ -77,7 +85,7 @@
                                     <i class="fa fa-paperclip"></i>
                                 </span>
 
-                                <span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MDays.open({$o.id}, '{$o.free_days}');">
+                                <span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MDays.open(items[{$i}]);">
                                     <i class="fa fa-calendar-o"></i>
                                 </span>
                             {/if}
@@ -201,7 +209,7 @@
             </div>
             <div class="modal-body">
 
-                <form class="form-horizontal">
+                <form class="form">
                     <input type="hidden" name="action" value="set_free_days">
                     <input type="hidden" name="id" value="">
 
@@ -252,6 +260,16 @@
                         </tr>
                     </table>
 
+                    <div class="form-group" style="margin:10px 0 0 0">
+                        <label>Comentarios</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-comment"></i>
+                            </span>
+                            <input name="notes" class="form-control" placeholder="">
+                        </div>
+                    </div>
+
                 </form>
 
             </div>
@@ -265,8 +283,9 @@
 <!-- END MODAL VOUCHER -->
 
 
-{literal}
 <script>
+var items = {$items|@json_encode};
+{literal}
     function $Ready(){
         MDuesRental.init();
         MVoucher.init();
@@ -285,8 +304,8 @@
         {literal}
         //MCar.add(1);
     }
-</script>
 {/literal}
+</script>
 
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',

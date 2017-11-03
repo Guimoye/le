@@ -218,10 +218,12 @@ var MDays = {
         this.$modal         = $('#modal_add_days');
         this.$modal.title   = $('.modal-title', this.$modal);
         this.$modal.remove  = $('.remove', this.$modal);
+        this.$modal.save    = $('.save', this.$modal);
 
         this.$form          = $('form', this.$modal);
         this.$form.id       = $('input[name="id"]', this.$form);
         this.$form.days     = $('input[name="days[]"]', this.$form);
+        this.$form.notes    = $('input[name="notes"]', this.$form);
         this.$form.day_0    = $('.day_0', this.$form);
         this.$form.day_1    = $('.day_1', this.$form);
         this.$form.day_2    = $('.day_2', this.$form);
@@ -233,6 +235,10 @@ var MDays = {
         // Asignar eventos
         this.$modal.remove.click(function(){
             MDays.remove(MDays.$id.val());
+        });
+        this.$form.submit(function(e){
+            e.preventDefault();
+            MDays.save();
         });
         $('.save', this.$modal).click(this.save);
     },
@@ -257,12 +263,15 @@ var MDays = {
     },
 
     // Abrir para nuevo NUEVO
-    open: function(id,free_days){
+    open: function(o, read_only){
+        var readOnly = (typeof read_only == 'boolean' && read_only);
+
         MDays.$modal.title.text('Días libres');
         MDays.$modal.modal('show');
-        MDays.$form.id.val(id);
+        MDays.$form.id.val(o.id);
+        MDays.$form.notes.val(o.fd_notes);
 
-        var arr = free_days.split(',');
+        var arr = o.free_days.split(',');
 
 
         MDays.$form.days.prop('checked', false);
@@ -301,6 +310,15 @@ var MDays = {
         if(arr.includes('6')){
             MDays.$form.day_6.prop('checked', true);
             MDays.$form.day_6.attr('disabled', true);
+        }
+
+        if(readOnly){
+            MDays.$form.days.attr('disabled', true);
+            MDays.$form.notes.attr('disabled', true);
+            MDays.$modal.save.hide();
+        } else {
+            MDays.$form.notes.attr('disabled', false);
+            MDays.$modal.save.show();
         }
 
         /*MDays.$form.day_0.prop('checked', arr.includes('0'));

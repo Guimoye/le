@@ -4,6 +4,19 @@
         parent::__construct();
         // El contructor
 
+        /*$amount = 60;
+        $tea = 14;
+
+        $tes = (1+$tea) ^ (1/52) - 1;
+
+        $amount_total = $amount + (($amount*$tes)/100);
+
+        echo '$amount_total: '.$amount_total;
+        echo '<br>';
+        echo '$tes: '.$tes;
+
+        exit;*/
+
         $this->setModule('drivers');
     }
 
@@ -47,6 +60,7 @@
         $ui->assign('page_title', 'Préstamos');
         $ui->assign('driver', $driver);
         $ui->assign('items', $items);
+        $ui->assign('dates', $this->db->arr("SELECT * FROM dues_rental WHERE DATE(date_due) >= CURDATE()"));
         $ui->assign('total_amount_due', $total_amount);
 
         $ui->display('loans.tpl');
@@ -62,15 +76,23 @@
         $data = [];
         $data['id_driver']      = _POST_INT('id_driver');
         $data['description']    = _POST('description');
+        $data['num_dues']       = _POST_INT('num_dues');
+        $data['tea']            = _POST_INT('tea');
         $data['amount']         = _POST_INT('amount');
-        $data['date_pay']       = _POST('date_pay');
+        $data['date_pay']       = _POST('date_pay'); // fecha de inicio de pago de primera cuota
         $data['state']          = 1;
 
         if($data['id_driver'] <= 0){
             $this->rsp['msg'] = 'No se reconoce el conductor';
 
-        } else if(empty($data['description'])){
+        }/* else if(empty($data['description'])){
             $this->rsp['msg'] = 'Indica el tipo de gasto';
+
+        }*/ else if($data['num_dues'] <= 0){
+            $this->rsp['msg'] = 'Indica el número de cuotas';
+
+        } else if($data['tea'] <= 0){
+            $this->rsp['msg'] = 'Indica la tasa efectiva anual';
 
         } else if($data['amount'] <= 0){
             $this->rsp['msg'] = 'Indica el monto';
@@ -80,22 +102,48 @@
 
         } else {
 
-            if($isEdit){
-                if($this->db->update('loans', $data, $id)){
-                    $this->rsp['ok'] = true;
+            // Monto de la cuota
+            $amount = $data['amount'] / $data['num_dues'];
 
-                } else {
-                    $this->rsp['msg'] = 'Error interno :: DB :: ';
+            $TES = ((1+$data['tea']) ^ (1/52)) - 1;
+
+            $amount_total = $amount + (($amount*$TES)/100);
+
+            if($this->db->insert('loans', $data)){
+                $this->rsp['ok'] = true;
+
+                $id = $this->db->lastID();
+
+                // Generar cuotas
+                $lastTime = strtotime($data['date_pay']);
+                for($i = 1; $i <= $data['num_dues']; $i++){
+
+                    $date_due = date("Y-m-d", $lastTime);
+                    $day_num = date("w", $lastTime);
+                    $day_nam = date("l", $lastTime);
+
+                    $data_dues_loans = [
+                        'id_loan' => $id,
+                        'num_due' => $i,
+                        'amount_due' => $amount_total,
+                        'date_due' => $date_due
+                    ];
+
+                    $this->rsp['dayy'] = date("w", $lastTime);
+
+                    $this->rsp['dues'][] = $data_dues_loans;
+
+                    if($this->db->insert('dues_loans', $data_dues_loans)){
+
+                    } else {
+                        $this->rsp['ok'] = false;
+                    }
+
+                    $lastTime = strtotime('next '.$day_nam, $lastTime);
                 }
 
             } else {
-                if($this->db->insert('loans', $data)){
-                    $this->rsp['ok'] = true;
-
-                } else {
-                    $this->rsp['msg'] = 'Error interno :: DB :: ';
-                }
-
+                $this->rsp['msg'] = 'Error interno :: DB :: ';
             }
 
         }
@@ -149,6 +197,21 @@
                 $this->rsp['ok'] = true;
             } else $this->rsp['msg'] = 'Error DB :: No se pudo eliminar';
         } else $this->rsp['msg'] = 'No se puede reconocer';
+
+        $this->rsp();
+    }
+
+    // Obtener cuotas
+    public function get_dues(){
+        $id_loan = _POST_INT('id_loan');
+
+        if($id_loan <= 0){
+            $this->rsp['msg'] = 'ID Inválido';
+
+        } else {
+            $this->rsp['ok'] = true;
+            $this->rsp['dues'] = $this->db->arr("SELECT * FROM dues_loans WHERE id_loan = $id_loan");
+        }
 
         $this->rsp();
     }
