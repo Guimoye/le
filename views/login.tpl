@@ -20,7 +20,7 @@
     <link href="assets/plugins/animate/animate.css" rel="stylesheet"/>
 
     <link href="assets/pages/css/login.min.css" rel="stylesheet"/>
-    <link href="views/css/core.css" rel="stylesheet"/>
+    <link href="views/css/core.css?v={$v}" rel="stylesheet"/>
 
     <link rel="shortcut icon" href="favicon.ico" />
 </head>
