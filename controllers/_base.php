@@ -78,6 +78,7 @@ class _base {
 
     // Saber si puede editar
     public function canEdit($module = ''){
+        $this->user->loadPerms();
         return $this->user->can(empty($module) ? $this->module : $module);
     }
 
