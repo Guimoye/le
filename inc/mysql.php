@@ -101,7 +101,7 @@ class MySQL{
 	/**
 	 * Retorna el total de resultados en una consulta
 	 * @param $sql :: sentencia SQL
-	 * @return número
+	 * @return integer número
 	 */
 	public function total($sql){
 		$query = $this->get($sql);

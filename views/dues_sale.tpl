@@ -7,6 +7,7 @@
     <div class="portlet-title">
         <div class="caption">
             <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
+            <br><a class="caption-helper" href="drivers/{$driver->id}">{$driver->name} {$driver->surname}</a>
         </div>
         <div class="actions">
             <!--span class="btn btn-circle blue" onclick="MDuesSale.add();"> <i class="fa fa-plus"></i> Registrar </span>-->
@@ -94,7 +95,14 @@
                 <tr style="background:#e7ecf1">
                     <td colspan="2"></td>
                     <th>{$stg->coin}{$total_amount_due}</th>
-                    <td colspan="7"></td>
+                    <td colspan="6"></td>
+                    <th>
+                        <span class="btn btn-outline btn-circle red btn-xs font-md tooltips"
+                              title="Eliminar cronograma de venta"
+                              onclick="MDuesSale.removeAll({$driver->id});">
+                            <i class="fa fa-trash"></i> Eliminar
+                        </span>
+                    </th>
                 </tr>
 
                 </tbody>
@@ -201,7 +209,10 @@
                         <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
                     </div>
 
-                    <img class="image" src="" style="max-width:100%; margin-top:10px">
+                    <div style="max-width:100%; margin-top:10px">
+                        <img class="image" src="">
+                        <a href="#" class="btn btn-default btn-sm link" target="_blank">Mostrar archivo</a>
+                    </div>
 
                 </form>
 

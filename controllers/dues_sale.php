@@ -22,7 +22,7 @@
         $items = [];
         $total_amount_due = 0;
 
-        $os = $this->db->get("SELECT * FROM dues_sale WHERE id_driver = $driver->id");
+        $os = $this->db->get("SELECT * FROM dues_sale WHERE id_driver = $driver->id AND state != 0");
         if($os){
             while($o = $os->fetch_assoc()){
                 $o['amount_total'] = $o['amount_due']+
@@ -75,7 +75,7 @@
         if($id_driver <= 0){
             $this->rsp['msg'] = 'No se reconoce el conductor';
 
-        } else if($this->db->has('dues_sale', 'id_driver', $id_driver)){
+        } else if($this->db->has("SELECT * FROM dues_sale WHERE id_driver = $id_driver AND state != 0")){
             $this->rsp['msg'] = 'El programa de alquiler para este conductor se generó previamente.';
 
         } else if($dues <= 0){
@@ -111,7 +111,8 @@
                     'amount_due' => $amount,
                     'amount_interest' => $interest,
                     'amount_insurance' => $insurance,
-                    'date_due' => $date_due
+                    'date_due' => $date_due,
+                    'state' => 1
                 ]);
 
                 $lastTime = strtotime('next '.$day_nam, $lastTime);
@@ -124,6 +125,25 @@
                 $this->rsp['msg'] = 'Error interno :: DB';
             }
 
+        }
+
+        $this->rsp();
+    }
+
+    // Eliminar cronograma mediante id_driver
+    public function remove_all(){
+        $id_driver = _POST_INT('id_driver');
+
+        if($id_driver <= 0){
+            $this->rsp['msg'] = 'No se reconoce el conductor';
+
+        } else {
+            if($this->db->query("UPDATE dues_sale SET state = 0 WHERE id_driver = $id_driver")){
+                $this->rsp['ok'] = true;
+
+            } else {
+                $this->rsp['msg'] = 'Error interno :: DB';
+            }
         }
 
         $this->rsp();
@@ -229,9 +249,23 @@
 
         } else {
             require('inc/plugins/ImageResize.php');
-            $pic_voucher = md5(uniqid($id));
+            $ext = pathinfo($photo['name'], PATHINFO_EXTENSION);
+            $pic_voucher = md5(uniqid($id)).'.'.$ext;
 
-            $image = new ImageResize($photo['tmp_name']);
+
+            if (move_uploaded_file($photo['tmp_name'], 'uploads/'.$pic_voucher)) {
+                if($this->db->update('dues_sale', ['pic_voucher'=>$pic_voucher], $id)){
+                    $this->rsp['pic_voucher'] = $pic_voucher;
+                    $this->rsp['ok'] = true;
+
+                } else {
+                    $this->rsp['msg'] = 'Error interno :: DB';
+                }
+            } else {
+                $this->rsp['msg'] = 'Error al guardar la imágen';
+            }
+
+            /*$image = new ImageResize($photo['tmp_name']);
             $image->width(600);
             $image->height(600);
             $image->resize();
@@ -245,7 +279,7 @@
                 }
             } else {
                 $this->rsp['msg'] = 'Error al guardar la imágen';
-            }
+            }*/
 
         }
 

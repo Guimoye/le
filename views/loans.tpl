@@ -7,6 +7,7 @@
     <div class="portlet-title">
         <div class="caption">
             <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
+            <br><a class="caption-helper" href="drivers/{$driver->id}">{$driver->name} {$driver->surname}</a>
         </div>
         <div class="actions">
             {if $can_edit}
@@ -26,10 +27,13 @@
                 <thead>
                 <tr>
                     <th width="1%"> # </th>
-                    <th width="1%"> Fecha </th>
+                    <th width="1%"> Fecha de creación </th>
                     <th> Descripción </th>
                     <th width="1%"> Monto </th>
-                    <th width="1%"> Fecha de Pago </th>
+                    <th width="1%"> TEA </th>
+                    <th width="1%"> Monto Total </th>
+                    <th width="1%"> Balance </th>
+                    <th width="1%"> Estado </th>
                     <th width="1%">Opciones</th>
                 </tr>
                 </thead>
@@ -37,40 +41,31 @@
                 {foreach key=i item=o from=$items}
                     <tr>
                         <td> {$o.id} </td>
-                        <td class="nowrap"> {$o.date_pay|date_format:"%d-%m-%Y"} </td>
+                        <td class="nowrap"> {$o.date_added|date_format:"%d-%m-%Y"} </td>
                         <td> {$o.description} </td>
-                        <td class="nowrap"> {$stg->coin}{$o.amount} </td>
+                        <td class="nowrap"> {$stg->coin}{$o.amount|string_format:"%.2f"} </td>
+                        <td class="nowrap"> {$o.tea}% </td>
+                        <td class="nowrap"> {$stg->coin}{$o.amount_total|string_format:"%.2f"} </td>
+                        <td class="nowrap"> {$stg->coin}{$o.amount_balance|string_format:"%.2f"} </td>
                         <td class="nowrap">
-                            {$o.date_paid|date_format:"%d-%m-%Y"}
-                            {if $o.pay_state == 'paid'}
-                                <span {*onclick="MLoan.setUnpaid({$o.id});"*}
-                                      class="btn btn-xs green-jungle">Pagado</span>
+                            {if $o.pay_state == 'payer'}
+                                <span class="btn btn-xs green-jungle">Pagado ({$o.num_dues_state} cuotas)</span>
 
                             {elseif $o.pay_state == 'pending'}
-                                <span
-                                        {if $can_edit}
-                                            onclick="MLoan.setPaid({$o.id});"
-                                        {/if}
-
-                                      class="btn btn-xs yellow-crusta">Pendiente</span>
+                                <span class="btn btn-xs yellow-crusta">Pendiente ({$o.num_dues_state} cuotas)</span>
 
                             {elseif $o.pay_state == 'expired'}
-                                <span
-                                        {if $can_edit}
-                                            onclick="MLoan.setPaid({$o.id});"
-                                        {/if}
-
-                                      class="btn btn-xs red-mint">Vencido</span>
+                                <span class="btn btn-xs red-mint">Vencido ({$o.num_dues_state} cuotas)</span>
 
                             {/if}
                         </td>
                         <td class="nowrap">
 
+                            <a class="btn btn-outline btn-circle dark btn-sm font-md" href="dues_loans/{$o.id}">
+                                <i class="fa fa-bars"></i>
+                            </a>
+
                             {if $can_edit}
-                                <span onclick="MLoanDues.open({$o.id});"
-                                      class="btn btn-outline btn-circle dark btn-sm font-md">
-                                    <i class="fa fa-bars"></i>
-                                </span>
                                 <!--<span onclick="MLoan.edit(items[{$i}]);"
                                       class="btn btn-outline btn-circle dark btn-sm font-md">
                                     <i class="fa fa-pencil"></i>
@@ -190,6 +185,7 @@
                         <th width="1%">#</th>
                         <th>Fecha</th>
                         <th width="1%">Monto</th>
+                        <th width="1%">Estado</th>
                     </tr>
                     </thead>
                     <tbody></tbody>

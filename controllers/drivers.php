@@ -34,6 +34,8 @@
 
         $rental_started = false;
 
+        $driver->debt = 0; // Deuda del conductor hasta la fecha
+
         if($driver->rental_date){
             $rental_started = true;
 
@@ -50,6 +52,22 @@
 
         }
 
+        $today_date = date('Y-m-d');
+        $today_time = strtotime($today_date);
+
+        $finish_time = ($driver->state == 2 ? strtotime($driver->date_finish) : 0);
+
+        // Si es conductor finalizado, sumar deuda de cuotas prestamos
+        if($driver->state == 2){
+            $os = $this->db->get("SELECT dl.*
+                                  FROM dues_loans dl
+                                    LEFT JOIN loans lo ON lo.id = dl.id_loan
+                                  WHERE lo.id_driver = $id AND dl.state = 1");
+            while($o = $os->fetch_object()){
+                $driver->debt += ($o->amount_due+$o->amount_previous);
+            }
+        }
+
         // Alquiler
         $rental = new stdClass();
         $rental->total_due = 0;
@@ -60,7 +78,7 @@
         $rental->weeks_late = 0; // Semanas de retraso
         $rental->last_date_paid = ''; // Ultima fecha pagada
 
-        $os = $this->db->get("SELECT * FROM dues_rental WHERE id_driver = $driver->id ORDER BY date_due");
+        $os = $this->db->get("SELECT * FROM dues_rental WHERE id_driver = $driver->id AND state != 0 ORDER BY date_due");
         while($o = $os->fetch_object()){
             $rental->total_due += $o->amount_due;
             $rental->total_paid += $o->amount_paid;
@@ -69,7 +87,9 @@
                 $rental->date_next_pay = $o->date_due;
             }
 
-            if($o->amount_paid == 0 && strtotime($o->date_due) < time()){
+            $due_time = strtotime($o->date_due);
+
+            if($o->amount_paid == 0 && $due_time < $today_time){
                 $rental->weeks_late += 1;
             }
 
@@ -77,6 +97,13 @@
                 $rental->last_date_paid = $o->date_paid;
 
                 $rental->total_items_paid += 1;
+            }
+
+            // Deuda vencida si conductor fue finalizado
+            if($driver->state == 2){
+                if($o->state == 1 && $due_time <= $finish_time){
+                    $driver->debt += $o->amount_due;
+                }
             }
 
             $rental->total_items += 1;
@@ -93,7 +120,7 @@
         $sale->weeks_late = 0; // Semanas de retraso
         $sale->last_date_paid = ''; // Ultima fecha pagada
 
-        $os = $this->db->get("SELECT * FROM dues_sale WHERE id_driver = $driver->id ORDER BY date_due");
+        $os = $this->db->get("SELECT * FROM dues_sale WHERE id_driver = $driver->id AND state != 0 ORDER BY date_due");
         while($o = $os->fetch_object()){
             $sale->total_due += $o->amount_due;
 
@@ -180,12 +207,6 @@
             if(!$o->date_paid && strtotime($o->date_pay) < time()){
                 $loans->weeks_late += 1;
             }
-
-            //Siguiente cuota
-            if(!$loans->last_amount && !$o->date_paid){
-                $loans->last_amount = $o->amount;
-            }
-
         }
         $loans->percent = @($loans->total_paid/$loans->total_due*100) ?: 0;
 
@@ -255,7 +276,7 @@
 
         $this->rsp['total'] = 0;
 
-        $WHERE = "dr.state > 0";
+        $WHERE = "dr.state != 0";
 
         if($id_fleet > 0){
             $WHERE .= " AND dr.id_fleet = $id_fleet";
@@ -285,6 +306,11 @@
         $table = '';
         $items = [];
 
+
+
+        $today_date = date('Y-m-d');
+        $today_time = strtotime($today_date);
+
         if($os){
             $this->rsp['total_items'] = $os->num_rows;
 
@@ -301,6 +327,50 @@
                 $oe = $this->db->o("SELECT SUM(amount) amount_total FROM expenses WHERE id_driver = $o->id AND state != 0 GROUP BY id_driver");
                 if($oe) $o->total_expenses = $oe->amount_total;
 
+                $num_dues_rental_expired = $this->db->total("SELECT id FROM dues_rental WHERE id_driver = $o->id AND state = 1 AND date_due < CURDATE()");
+
+                // Kilometraje
+                $num_kms = 0;
+                $num_maints_paid = 0;
+                $num_maints_expired = 0;
+                $num_maints_pendings = 0;
+                $oms = $this->db->get("SELECT * FROM maintenances WHERE id_driver = $o->id AND state != 0");
+                while($om = $oms->fetch_object()){
+                    $num_kms += $om->kms;
+
+                    $due_time = strtotime($om->date_item);
+
+                    if($om->state == 2){
+                        $num_maints_paid += 1;
+
+                    } else if($due_time < $today_time) {
+                        $num_maints_expired += 1;
+
+                    } else {
+                        $num_maints_pendings += 1;
+                    }
+                }
+
+
+
+                // Obtener semanas de alquiler y deuda vencida
+                $weeks_paid = 0; // Semanas pagadas
+                $expired_debt = 0; // Deuda vencida
+
+                $ols = $this->db->get("SELECT * FROM dues_rental WHERE id_driver = $o->id AND state != 0");
+                while($ol = $ols->fetch_object()){
+                    $due_time = strtotime($ol->date_due);
+
+                    if($ol->state == 2 || $ol->state == 3){
+                        $weeks_paid += 1;
+
+                    } else if($due_time < $today_time) {
+                        $expired_debt += $ol->amount_due;
+
+                    } else {
+
+                    }
+                }
 
                 $total_loans    += $o->total_loans;
                 $total_expenses += $o->total_expenses;
@@ -312,7 +382,11 @@
                 $table .= '<tr>';
                 $table .= ' <td>';
                 $table .= '  <a href="' . $link . '">' . $o->name . ' ' . $o->surname . ' </a>';
-                $table .= '  <div style="font-size:12px;color:red">Mant. 20,000km</div>';
+
+                if($num_dues_rental_expired > 0){
+                    $table .= '  <div style="font-size:12px;color:red">Retraso de <b>'.$num_dues_rental_expired.'</b> cuotas</div>';
+                }
+
                 $table .= ' </td>';
                 $table .= ' <td> ' . $o->vh_plate . ' </td>';
 
@@ -321,10 +395,20 @@
                 $table .= ' <td> '.$this->stg->coin.number_format($o->total_loans,2,'.','').' </td>';
 
 
-                $table .= ' <td> --- </td>';
+                $table .= ' <td>';
+                $table .= '  '.number_format($num_kms).' km';
+                if($num_maints_expired > 0){
+                    $table .= '  <br><span class="badge bg-red-mint">Vencido</span>';
+                } else if($num_maints_pendings > 0){
+                    $table .= '  <br><span class="badge bg-yellow-crusta">Pendiente</span>';
+                } else if($num_maints_paid > 0) {
+                    $table .= '  <br><span class="badge bg-green-jungle">Realizado</span>';
+                }
+                $table .= ' </td>';
+
                 $table .= ' <td> ' . date('d/m/Y',strtotime($o->date_added)) . ' </td>';
-                $table .= ' <td> --- </td>';
-                $table .= ' <td> '.$this->stg->coin.' -.-- </td>';
+                $table .= ' <td> '.$weeks_paid.' </td>';
+                $table .= ' <td> '.$this->stg->coin.number_format($expired_debt,2,'.','').' </td>';
                 $table .= ' <td class="nowrap">';
                 $table .= '  <a href="' . $link . '" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-eye"></i></a>';
                 $table .= '  <a href="dues_rental/' . $o->id . '" class="btn btn-outline btn-circle dark btn-sm font-md"><i class="fa fa-bar-chart"></i></a>';
@@ -349,6 +433,21 @@
 
         $this->rsp['data'] = $table;
         $this->rsp['items'] = $items;
+        $this->rsp();
+    }
+
+    public function finish_driver(){
+        $id = _POST_INT('id');
+        if($id <= 0){
+            $this->rsp['msg'] = 'ID incorrecto';
+
+        } else {
+            if($this->db->update('drivers', ['state'=>2,'date_finish'=>'NOW()'], $id)){
+                $this->rsp['ok'] = true;
+
+            } else $this->rsp['msg'] = 'Error interno :: DB';
+        }
+
         $this->rsp();
     }
 

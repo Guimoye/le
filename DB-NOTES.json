@@ -25,8 +25,33 @@
     "code": "Codigo unico no modificable para acceso on consultas acciones"
   },
 
-  "propres": {
-    "?": "Presentaciones de productos"
+  "dues_rental": {
+    "?": "Cuotas de mantenimiento",
+    "state": {
+      "0": "Eliminado",
+      "1": "Sin pagar",
+      "2": "Pago parcial",
+      "3": "Pago total"
+    }
+  },
+
+  "drivers": {
+    "date_finish": "Fecha de finalizado (solo aplica cuando state=2)",
+    "state": {
+      "0": "Eliminado",
+      "1": "Activo",
+      "2": "Finalizado"
+    }
+  },
+
+  "dues_loans": {
+    "?": "Cuotas de prestamos",
+    "state": {
+      "0": "Eliminado",
+      "1": "Sin pagar",
+      "2": "Pago parcial",
+      "3": "Pago total"
+    }
   },
 
   "maintenances": {

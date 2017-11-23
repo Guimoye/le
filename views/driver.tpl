@@ -63,7 +63,11 @@
                 <!-- SIDEBAR BUTTONS -->
                 <div class="profile-userbuttons">
                 {if $can_edit}
-                    <button type="button" class="btn btn-circle red btn-sm">Finalizar conductor</button>
+                    {if $driver->state==2}
+                        Conductor finalizado
+                    {else}
+                        <button type="button" class="btn btn-circle red btn-sm" onclick="finishDriver({$driver->id})">Finalizar conductor</button>
+                    {/if}
                 {/if}
                 </div>
                 <!-- END SIDEBAR BUTTONS -->
@@ -258,6 +262,21 @@
         </div>
         <!-- END PROFILE CONTENT -->
     </div>
+    {if $driver->state==2}
+        <div class="col-md-12">
+            <div class="portlet light">
+                <div class="portlet-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td width="1%" nowrap="true"> {$driver->name} {$driver->surname} </td>
+                            <th width="1%" nowrap="true"> Deuda vencida </th>
+                            <td> {$stg->coin}{$driver->debt|string_format:"%.2f"} </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {/if}
 </div>
 
 
@@ -266,6 +285,22 @@
     function $Ready(){
 
     }
+
+    function finishDriver(id){
+        bootbox.confirm('¿Finalizar conductor?', function(result){
+            if(result){
+                api('drivers/finish_driver', {id:id}, function(rsp){
+                    if(rsp.ok){
+                        toastr.success('Finalizado correctamente');
+                        location.reload();
+                    } else {
+                        bootbox.alert(rsp.msg);
+                    }
+                });
+            }
+        });
+    }
+
 </script>
 {/literal}
 

@@ -28,19 +28,24 @@
         $items = [];
         $total_amount = 0;
 
+        $today_date = date('Y-m-d');
+        $today_time = strtotime($today_date);
+
         $os = $this->db->get("SELECT * FROM expenses WHERE id_driver = $driver->id AND state = 1");
         if($os){
             while($o = $os->fetch_assoc()){
                 $total_amount += $o['amount'];
 
+                $due_time = strtotime($o['date_pay']);
+
                 if($o['date_paid']){
                     $o['pay_state'] = 'paid';
 
-                } else if(strtotime($o['date_pay']) > time()) {
-                    $o['pay_state'] = 'pending';
+                } else if($due_time < $today_time) {
+                    $o['pay_state'] = 'expired';
 
                 } else {
-                    $o['pay_state'] = 'expired';
+                    $o['pay_state'] = 'pending';
 
                 }
 

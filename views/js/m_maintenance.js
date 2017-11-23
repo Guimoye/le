@@ -111,3 +111,71 @@ var MMaintenance = {
     }
 
 };
+
+
+var MMaintenancePay = {
+
+    $modal: null,
+    $form: null, // Modal: Formulario
+
+    $remove: null,
+
+    init: function(){
+        if(this.$modal != null) return;
+
+        this.$modal         = $('#modal_pay_maintenance');
+        this.$modal.title   = $('.modal-title', this.$modal);
+
+        this.$form                  = $('form', this.$modal);
+        this.$form.id               = $('input[name="id"]', this.$form);
+        this.$form.ids_dues_rental  = $('input[name="ids_dues_rental"]', this.$form);
+        this.$form.amount           = $('input[name="amount"]', this.$form);
+        this.$form.amount_stored    = $('input[name="amount_stored"]', this.$form);
+        this.$form.date_paid        = $('input[name="date_paid"]', this.$form);
+
+        // Asignar eventos
+        $('.save', this.$modal).click(this.save);
+    },
+
+    show: function(){
+        MMaintenancePay.init();
+        MMaintenancePay.$modal.modal('show');
+    },
+
+    // Guardar
+    save: function(){
+        api('maintenances/set_paid', MMaintenancePay.$form.serializeObject(), function(rsp){
+            if(rsp.ok == true){
+                toastr.success('Guardado correctamente');
+                MMaintenancePay.$modal.modal('hide');
+
+                location.reload();
+
+            } else {
+                bootbox.alert(rsp.msg);
+            }
+        }, 'Registrando...');
+    },
+
+    // Pagar
+    open: function(o){
+        // Obtener el pozo para este mantenimiento
+        api('maintenances/get_pit_to_maintenance', {id:o.id}, function(rsp){
+            if(rsp.ok){
+
+                MMaintenancePay.show();
+                MMaintenancePay.$modal.title.text('Pagar mantenimiento');
+
+                MMaintenancePay.$form.id.val(o.id);
+                MMaintenancePay.$form.ids_dues_rental.val(rsp.ids_dues_rental);
+                MMaintenancePay.$form.amount.val(o.amount);
+                MMaintenancePay.$form.amount_stored.val(rsp.pit);
+                MMaintenancePay.$form.date_paid.val(o.date_item);
+
+            } else {
+                bootbox.alert(rsp.msg);
+            }
+        }, 'Obteniendo pozo de mantenimiento');
+    }
+
+};

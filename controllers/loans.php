@@ -2,27 +2,10 @@
 
     public function __construct(){
         parent::__construct();
-        // El contructor
-
-        /*$amount = 60;
-        $tea = 14;
-
-        $tes = (1+$tea) ^ (1/52) - 1;
-
-        $amount_total = $amount + (($amount*$tes)/100);
-
-        echo '$amount_total: '.$amount_total;
-        echo '<br>';
-        echo '$tes: '.$tes;
-
-        exit;*/
-
         $this->setModule('drivers');
     }
 
-    private function index(){
-        // No deberian acceder aca
-    }
+    private function index(){}
 
     public function item($id_driver){
         $driver = $this->db->o('drivers', $id_driver);
@@ -37,21 +20,63 @@
         $items = [];
         $total_amount = 0;
 
+        $today_date = date('Y-m-d');
+        $today_time = strtotime($today_date);
+
         $os = $this->db->get("SELECT * FROM loans WHERE id_driver = $driver->id AND state = 1");
         if($os){
             while($o = $os->fetch_assoc()){
                 $total_amount += $o['amount'];
 
-                if($o['date_paid']){
-                    $o['pay_state'] = 'paid';
+                $num_dues_all = 0; // Total de cuotas
+                $num_dues_paid = 0; // Total de cuotas pagadas
+                $num_dues_expired = 0; // Total de cuotas vencidas
+                $num_dues_pending = 0; // Total de cuotas pendientes
 
-                } else if(strtotime($o['date_pay']) > time()){
-                    $o['pay_state'] = 'pending';
+                $amount_total = 0; // Saldo
+                $amount_balance = 0; // Saldo
+
+                // Obtener cuotas para ver si han vencido
+                $ols = $this->db->get("SELECT * FROM dues_loans WHERE id_loan = ".$o['id']." AND state != 0");
+                while($ol = $ols->fetch_assoc()){
+
+                    $due_time = strtotime($ol['date_due']);
+
+                    $num_dues_all += 1;
+
+                    if($ol['state'] == 1){
+                        $amount_balance += ($ol['amount_due']+$ol['amount_previous']);
+                    }
+
+                    $amount_total += ($ol['amount_due']+$ol['amount_previous']);
+
+                    if($ol['state'] == 2 || $ol['state'] == 3){
+                        $num_dues_paid += 1;
+
+                    } else if($due_time < $today_time) {
+                        $num_dues_expired += 1;
+
+                    } else {
+                        $num_dues_pending += 1;
+                    }
+                }
+
+                if($num_dues_expired > 0){
+                    $o['pay_state']         = 'expired';
+                    $o['num_dues_state']    = $num_dues_expired;
+
+                } else if($num_dues_pending > 0){
+                    $o['pay_state']         = 'pending';
+                    $o['num_dues_state']    = $num_dues_pending;
 
                 } else {
-                    $o['pay_state'] = 'expired';
+                    $o['pay_state']         = 'payer';
+                    $o['num_dues_state']    = $num_dues_paid;
 
                 }
+
+                $o['amount_total']    = $amount_total;
+                $o['amount_balance']    = $amount_balance;
 
                 $items[] = $o;
             }
@@ -60,7 +85,7 @@
         $ui->assign('page_title', 'Préstamos');
         $ui->assign('driver', $driver);
         $ui->assign('items', $items);
-        $ui->assign('dates', $this->db->arr("SELECT * FROM dues_rental WHERE DATE(date_due) >= CURDATE()"));
+        $ui->assign('dates', $this->db->arr("SELECT * FROM dues_rental WHERE id_driver = $id_driver AND DATE(date_due) >= CURDATE() AND state != 0"));
         $ui->assign('total_amount_due', $total_amount);
 
         $ui->display('loans.tpl');
@@ -91,7 +116,7 @@
         }*/ else if($data['num_dues'] <= 0){
             $this->rsp['msg'] = 'Indica el número de cuotas';
 
-        } else if($data['tea'] <= 0){
+        } else if($data['tea'] < 0){
             $this->rsp['msg'] = 'Indica la tasa efectiva anual';
 
         } else if($data['amount'] <= 0){
@@ -126,7 +151,8 @@
                         'id_loan' => $id,
                         'num_due' => $i,
                         'amount_due' => $amount_total,
-                        'date_due' => $date_due
+                        'date_due' => $date_due,
+                        'state' => 1
                     ];
 
                     $this->rsp['dayy'] = date("w", $lastTime);
@@ -194,6 +220,8 @@
 
         if(is_numeric($id) && $id > 0){
             if($this->db->query("UPDATE loans SET state = 0 WHERE id = $id")){
+                $this->db->query("UPDATE dues_loans SET state = 0 WHERE id_loan = $id"); // Eliminar cuotas
+
                 $this->rsp['ok'] = true;
             } else $this->rsp['msg'] = 'Error DB :: No se pudo eliminar';
         } else $this->rsp['msg'] = 'No se puede reconocer';

@@ -142,6 +142,7 @@ var MLoanDues = {
                     html += ' <td>'+(i+1)+'</td>';
                     html += ' <td>'+o.date_due+'</td>';
                     html += ' <td class="nowrap">'+stg.coin+num(o.amount_due,2)+'</td>';
+                    html += ' <td class="nowrap">'+o.state+'</td>';
                     html += '</tr>';
                 });
 

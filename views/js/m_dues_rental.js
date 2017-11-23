@@ -88,6 +88,30 @@ var MDuesRental = {
         });
     },
 
+    // Eliminar Cronograma de alquiler de un conductor
+    removeAll: function(id_driver){
+        bootbox.confirm({
+            title: '¿Seguro que quieres eliminar todo el cronograma de alquiler?',
+            message: 'Esta acción borrará todas las cuotas de alquiler, incluso aquellas que han sido pagadas. No podrás deshacer más tarde.',
+            buttons: {
+                confirm: {label:'ELIMINAR',className:'btn-danger'},
+                cancel: {label:'Cancelar'}
+            },
+            callback: function(result){
+                if(result){
+                    api('dues_rental/remove_all', {action:'remove', id_driver:id_driver}, function(rsp){
+                        if(rsp.ok == true){
+                            toastr.success('Eliminado correctamente');
+                            location.reload();
+                        } else {
+                            bootbox.alert(rsp.msg);
+                        }
+                    }, 'Eliminando...');
+                }
+            }
+        });
+    },
+
     // Marcar como pagado
     setDuePaid: function(id, amount_total){
         bootbox.prompt({
@@ -135,6 +159,78 @@ var MDuesRental = {
         });
     }
 
+};// Modal Driver
+
+var MDuesRentalPay = {
+
+    $modal: null,
+    $form: null, // Modal: Formulario
+
+    $remove: null,
+
+    init: function(){
+        if(this.$modal != null) return;
+
+        this.$modal         = $('#modal_pay_dues_rental');
+        this.$modal.title   = $('.modal-title', this.$modal);
+
+        this.$form                  = $('form', this.$modal);
+        this.$form.id               = $('input[name="id"]', this.$form);
+        this.$form.amount_total     = $('input[name="amount_total"]', this.$form);
+        this.$form.amount_paid 	    = $('input[name="amount_paid"]', this.$form);
+        this.$form.amount_penalty   = $('input[name="amount_penalty"]', this.$form);
+        this.$form.amount_discount  = $('input[name="amount_discount"]', this.$form);
+        this.$form.date_paid        = $('input[name="date_paid"]', this.$form);
+
+        // Asignar eventos
+        //$('.save', this.$modal).click(this.save);
+        this.$form.submit(function(e){
+            e.preventDefault();
+            MDuesRentalPay.save();
+        });
+
+        this.$modal.on('shown.bs.modal', function() {
+            MDuesRentalPay.$form.amount_paid.focus();
+        });
+    },
+
+    show: function(){
+        MDuesRentalPay.init();
+        MDuesRentalPay.$modal.modal('show');
+    },
+
+    // Guardar
+    save: function(){
+        api('dues_rental/set_due_paid', MDuesRentalPay.$form.serializeObject(), function(rsp){
+            if(rsp.ok == true){
+                toastr.success('Guardado correctamente');
+                MDuesRentalPay.$modal.modal('hide');
+
+                location.reload();
+
+            } else {
+                bootbox.alert(rsp.msg);
+            }
+        }, 'Registrando...');
+    },
+
+    // Pagar
+    open: function(o){
+        MDuesRentalPay.show();
+        MDuesRentalPay.$modal.title.text('Pagar cuota');
+
+        MDuesRentalPay.$form.id.val(o.id);
+        MDuesRentalPay.$form.amount_total.val(o.amount_total);
+        MDuesRentalPay.$form.amount_paid.val('');
+        MDuesRentalPay.$form.amount_paid.attr('placeholder','Monto total: '+stg.coin+o.amount_total);
+        //MDuesRentalPay.$form.amount_paid.val(o.amount_due);
+        MDuesRentalPay.$form.amount_penalty.val(o.amount_penalty);
+        MDuesRentalPay.$form.amount_discount.val(o.amount_discount);
+        MDuesRentalPay.$form.date_paid.val(o.date_paid==null?o.date_due:o.date_paid);
+
+        console.log(o.date_paid);
+    }
+
 };
 
 // Modal Voucher
@@ -156,15 +252,16 @@ var MVoucher = {
         this.$modal.remove  = $('.remove', this.$modal);
 
         this.$form          = $('form', this.$modal);
-        this.$form.id       = $('input[name="id"]', this.$form);
-        this.$form.photo    = $('input[name="photo"]', this.$form);
+        this.$form.id       = $('input[name=id]', this.$form);
+        this.$form.photo    = $('input[name=photo]', this.$form);
         this.$form.image    = $('.image', this.$form);
+        this.$form.link     = $('.link', this.$form);
 
         // Asignar eventos
         this.$form.ajaxForm(this.save);
         this.$form.photo.change(function(){
             MVoucher.$form.submit();
-            MVoucher.$form.photo.val('');
+            //MVoucher.$form.photo.val('');
         });
         this.$modal.remove.click(function(){
             MVoucher.remove(MVoucher.$id.val());
@@ -186,7 +283,7 @@ var MVoucher = {
                 //location.reload();
                 MVoucher.open(MVoucher.$form.id.val(), rsp.pic_voucher)
             } else {
-                bootbox.alert(rsp.message);
+                bootbox.alert(rsp.msg);
             }
         }
     },
@@ -196,7 +293,20 @@ var MVoucher = {
         MVoucher.$modal.title.text('Comprobante de pago');
         MVoucher.$modal.modal('show');
         MVoucher.$form.id.val(id);
-        MVoucher.$form.image.attr('src','uploads/'+pic_voucher+'.jpg');
+
+        var url = 'uploads/'+pic_voucher;
+
+        // Verificar extension
+        MVoucher.$form.image.hide();
+        MVoucher.$form.link.hide();
+
+        if((/\.(gif|jpg|jpeg|tiff|png)$/i).test(url)){
+            MVoucher.$form.image.attr('src',url).show();
+
+        } else if(pic_voucher != ''){
+            MVoucher.$form.link.attr('href',url).show();
+        }
+
     }
 
 };

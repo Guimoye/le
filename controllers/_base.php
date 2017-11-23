@@ -53,7 +53,7 @@ class _base {
         $ui->setTemplateDir('views');
         $ui->assign('stg', $this->stg);
         $ui->assign('u', $this->user->getInfo()); // Informacion del usuario
-        $ui->assign('v', '0.0.9'); // Version (para borrar cache de css/js)
+        $ui->assign('v', '0.0.10'); // Version (para borrar cache de css/js)
         $ui->assign('url_home', $this->user->getHome());
         $ui->assign('menu', $menu);
         $ui->assign('can_edit', $this->user->can($this->module));

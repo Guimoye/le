@@ -32,20 +32,26 @@
         $items = [];
         $total_amount = 0;
 
+        $today_date = date('Y-m-d');
+        $today_time = strtotime($today_date);
+
         $os = $this->db->get("SELECT * FROM maintenances WHERE id_driver = $driver->id AND type = $type AND state != 0");
         if($os){
             while($o = $os->fetch_assoc()){
                 $o['amount_total'] = $o['amount'] - $o['amount_stored'];
                 $total_amount += $o['amount_total'];
 
+
+                $due_time = strtotime($o['date_item']);
+
                 if($o['state'] == 2){ // Pagado
                     $o['pay_state'] = 'paid';
 
-                } else if(strtotime($o['date_item']) > time()) {
-                    $o['pay_state'] = 'pending';
+                } else if($due_time < $today_time) {
+                    $o['pay_state'] = 'expired';
 
                 } else {
-                    $o['pay_state'] = 'expired';
+                    $o['pay_state'] = 'pending';
 
                 }
 
@@ -74,7 +80,7 @@
         $data['type']           = _POST_INT('type');
         $data['kms']            = _POST_INT('kms');
         $data['amount']         = _POST_INT('amount');
-        $data['amount_stored']  = _POST_INT('amount_stored');
+        //$data['amount_stored']  = _POST_INT('amount_stored');
         $data['date_item']      = _POST('date_item');
         $data['state']          = 1;
 
@@ -89,10 +95,10 @@
         } else if($data['kms'] <= 0){
             $this->rsp['msg'] = 'Indica el kilometraje';
 
-        } else if($data['amount'] <= 0){
+        } /*else if($data['amount'] <= 0){
             $this->rsp['msg'] = 'Indica el monto';
 
-        } else if(!$this->uu->isDate($data['date_item'])){
+        }*/ else if(!$this->uu->isDate($data['date_item'])){
             $this->rsp['msg'] = 'Indica la fecha';
 
         } else {
@@ -135,12 +141,20 @@
     public function set_paid(){
         $this->checkEditPerms();
 
-        $id = _POST_INT('id');
+        $id             = _POST_INT('id');
+        $amount         = _POST_INT('amount');
+        $amount_stored  = _POST_INT('amount_stored');
+        $date_paid      = _POST('date_paid');
+
+        $ids_dues_rental = _POST('ids_dues_rental');
 
         $o = $this->db->o('maintenances', $id);
 
         if(!$o){
             $this->rsp['msg'] = 'No se reconoce el registro';
+
+        } else if(!$this->uu->isDate($date_paid)){
+            $this->rsp['msg'] = 'Ingresa la fecha';
 
         } else {
 
@@ -151,6 +165,8 @@
              * 10000 = ? dias
              *
              */
+
+            $amount_paid = ($amount - $amount_stored);
 
             $next_kms = $this->getNextKms($o->kms,$o->type);
 
@@ -182,9 +198,24 @@
 
 
             $data = [];
-            $data['date_paid'] = 'NOW()';
+            $data['amount'] = $amount;
+            $data['amount_stored'] = $amount_stored;
+            $data['amount_paid'] = $amount_paid;
+            $data['date_item'] = $date_paid;
+            $data['date_paid'] = $date_paid;
             $data['state'] = 2; // Pagado
             if($this->db->update('maintenances', $data, $id)){
+
+                // Marcamos como usado los pozos de mantenimiento usados
+                if(!empty($ids_dues_rental)){
+                    $arr = explode(',',$ids_dues_rental);
+                    foreach($arr as $id_dues_rental){
+                        if(is_numeric($id_dues_rental) && $id_dues_rental > 0){
+                            $this->db->update('dues_rental', ['amount_pit_used'=>1], $id_dues_rental);
+                        }
+                    }
+                }
+
                 $this->rsp['ok'] = true;
             } else {
                 $this->rsp['msg'] = 'Error interno :: DB';
@@ -229,6 +260,31 @@
                 $this->rsp['ok'] = true;
             } else $this->rsp['msg'] = 'Error DB :: No se pudo eliminar';
         } else $this->rsp['msg'] = 'No se puede reconocer';
+
+        $this->rsp();
+    }
+
+    // obtener pozo disponible para este mantenimiento
+    public function get_pit_to_maintenance(){
+        $id = _POST_INT('id');
+        $mnt = $this->db->o('maintenances', $id);
+        if(!$mnt){
+            $this->rsp['msg'] = 'No se reconoce el registro';
+
+        } else {
+            $pit = 0;
+            $ids_dues_rental = [];
+
+            $os = $this->db->get("SELECT * FROM dues_rental WHERE id_driver = $mnt->id_driver AND amount_pit_used = 0 AND (state = 2 OR state = 3)");
+            while($o = $os->fetch_object()){
+                $pit += $o->amount_pit;
+                $ids_dues_rental[] = $o->id;
+            }
+
+            $this->rsp['pit'] = $pit;
+            $this->rsp['ids_dues_rental'] = implode(',',$ids_dues_rental);
+            $this->rsp['ok'] = true;
+        }
 
         $this->rsp();
     }

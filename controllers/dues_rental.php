@@ -10,6 +10,13 @@
     private function index(){}
 
     public function item($id_driver){
+
+        /*$time_pay = strtotime('2017-11-21');
+        $time_curr = strtotime(date('Y-m-d'));
+        echo 'time_pay:'.$time_pay;
+        echo '<br>time_curr:'.$time_curr;
+        exit;*/
+
         $ui = $this->ui();
 
         $driver = $this->db->o('drivers', $id_driver);
@@ -22,47 +29,61 @@
         $items = [];
         $total_amount_due = 0;
 
+        $today_date = date('Y-m-d');
+        $today_time = strtotime($today_date);
+
         $SQL = "SELECT dr.*,
                        COALESCE(SUM(dl.amount_due),0) amount_loans
                 FROM dues_rental dr
-                  LEFT JOIN loans lo ON lo.id_driver = dr.id_driver
-                    LEFT JOIN dues_loans dl ON dl.id_loan = lo.id AND dl.date_due = dr.date_due
-                WHERE dr.id_driver = $driver->id
+                  LEFT JOIN loans lo ON lo.id_driver = dr.id_driver AND lo.state != 0
+                    LEFT JOIN dues_loans dl ON dl.id_loan = lo.id AND dl.date_due = dr.date_due AND dl.state != 0
+                WHERE dr.id_driver = $driver->id AND dr.state != 0
                 GROUP BY dr.id";
 
         $os = $this->db->get($SQL);
         if($os){
             while($o = $os->fetch_assoc()){
 
-                //$o['amount_loans'] = 0;
-
-                $o['amount_total'] = $o['amount_due']+
+                $o['amount_total'] = ($o['amount_due']+
+                    $o['amount_pit'] +
                     $o['amount_penalty'] +
                     $o['amount_previous']
 
-                    + $o['amount_loans'];
+                    + $o['amount_loans']) - $o['amount_discount'];
 
                 $total_amount_due += $o['amount_due'];
 
-                if(empty($o['free_days'])){
+                if($o['free_days'] == ''){
                     $o['worked_days_text'] = '(7/7)';
                 } else {
                     $arr = explode(',',$o['free_days']);
-                    $o['worked_days_text'] = '('.count($arr).'/7)';
+                    $o['worked_days_text'] = '('.(7-count($arr)).'/7)';
                 }
 
-                if($o['amount_paid'] > 0){
+                $due_time = strtotime($o['date_due']);
+
+                $expired_days = 0;
+
+                if($o['state'] == 2 || $o['state'] == 3){
                     $o['pay_state'] = 'paid';
 
-                    $o['all_paid'] = $o['amount_paid'] >= $o['amount_total'];
+                    $o['all_paid'] = ($o['state'] == 3);
 
-                } else if(strtotime($o['date_due']) > time()) {
-                    $o['pay_state'] = 'pending';
-
-                } else {
+                } else if($due_time < $today_time) {
                     $o['pay_state'] = 'expired';
 
+                    $expired_days = floor(($today_time-$due_time) / (60 * 60 * 24));
+
+                    $o['amount_penalty'] += ($expired_days*5);
+
+                    $o['amount_total'] += $o['amount_penalty'];
+
+                } else {
+                    $o['pay_state'] = 'pending';
+
                 }
+
+                $o['expired_days'] = $expired_days;
 
                 $items[] = $o;
             }
@@ -82,12 +103,13 @@
         $id_driver  = _POST_INT('id_driver');
         $dues       = _POST_INT('dues');
         $amount     = _POST_INT('amount');
+        $amount_pit = _POST_INT('amount_pit');
         $date       = _POST('date');
 
         if($id_driver <= 0){
             $this->rsp['msg'] = 'No se reconoce el conductor';
 
-        } else if($this->db->has('dues_rental', 'id_driver', $id_driver)){
+        } else if($this->db->has("SELECT * FROM dues_rental WHERE id_driver = $id_driver AND state != 0")){
             $this->rsp['msg'] = 'El programa de alquiler para este conductor se generó previamente.';
 
         } else if($dues <= 0){
@@ -121,7 +143,9 @@
                     'num_due' => $i,
                     'id_driver' => $id_driver,
                     'amount_due' => $amount,
-                    'date_due' => $date_due
+                    'amount_pit' => $amount_pit,
+                    'date_due' => $date_due,
+                    'state' => 1
                 ]);
 
                 $lastTime = strtotime('next '.$day_nam, $lastTime);
@@ -139,15 +163,52 @@
         $this->rsp();
     }
 
+    public function remove_all(){
+        $id_driver = _POST_INT('id_driver');
+
+        if($id_driver <= 0){
+            $this->rsp['msg'] = 'No se reconoce el conductor';
+
+        } else {
+            if($this->db->query("UPDATE dues_rental SET state = 0 WHERE id_driver = $id_driver")){
+                $this->rsp['ok'] = true;
+
+                $this->db->update('drivers', [
+                    'rental_date' => 'NULL',
+                    'rental_amount' => 0,
+                    'rental_dues' => 0
+                ], $id_driver);
+
+            } else {
+                $this->rsp['msg'] = 'Error interno :: DB';
+            }
+        }
+
+        $this->rsp();
+    }
+
     public function set_due_paid(){
         $this->checkEditPerms();
 
         $id = _POST_INT('id');
 
-        $amount_total = _POST_INT('amount_total');
-        $amount = _POST_INT('amount');
+        $amount_total       = _POST_INT('amount_total');
+        $amount             = _POST_INT('amount_paid');
+        $amount_penalty     = _POST_INT('amount_penalty');
+        $amount_discount    = _POST_INT('amount_discount');
+        $date_paid          = _POST('date_paid');
 
-        $due = $this->db->o('dues_rental', $id);
+        // Obtener actual cuota a pagar
+        $SQL = "SELECT dr.*,
+                       COALESCE(SUM(dl.amount_due),0) amount_loans
+                FROM dues_rental dr
+                  LEFT JOIN loans lo ON lo.id_driver = dr.id_driver AND lo.state != 0
+                    LEFT JOIN dues_loans dl ON dl.id_loan = lo.id AND dl.date_due = dr.date_due AND dl.state != 0
+                WHERE dr.id = $id
+                GROUP BY dr.id
+                LIMIT 1";
+
+        $due = $this->db->o($SQL);
 
         if(!$due){
             $this->rsp['msg'] = 'No se reconoce el registro';
@@ -155,23 +216,54 @@
         } else if($amount <= 0){
             $this->rsp['msg'] = 'Debe ingresar un monto válido';
 
+        } else if(!$this->uu->isDate($date_paid)){
+            $this->rsp['msg'] = 'Debe ingresar la fecha de pago';
+
         } else {
+
+            $amount_total = (
+                $amount_penalty
+                + $due->amount_due
+                + $due->amount_pit
+                + $due->amount_loans
+                + $due->amount_previous
+                ) - $amount_discount;
+
+
+            $data = [];
+            $data['amount_paid']        = $amount;
+            $data['amount_penalty']     = $amount_penalty;
+            $data['amount_discount']    = $amount_discount;
+            $data['date_paid']          = $date_paid;
+            $data['state']              = 3; // Pago total
 
             // La siguiente cuota
             if($amount < $amount_total){
                 $next_amount = $amount_total - $amount; // A pagar el proximo mes
 
+                $data['state'] = 2; // Pago parcial
+
                 // Obtener la siguiente cuota
-                $nextO = $this->db->o("SELECT * FROM dues_rental WHERE date_due > '$due->date_due' LIMIT 1");
+                $nextO = $this->db->o("SELECT * FROM dues_rental WHERE id_driver = $due->id_driver AND num_due > $due->num_due AND state != 0 LIMIT 1");
                 if($nextO){
                     $this->db->update('dues_rental', ['amount_previous' => $next_amount], $nextO->id);
+                    //exit('$nextO: '.$nextO->id);
                 }
             }
 
-            $data = [];
-            $data['amount_paid'] = $amount;
-            $data['date_paid'] = 'NOW()';
             if($this->db->update('dues_rental', $data, $id)){
+
+                // Se pagan todos los prestamos de esta fecha, si no es pago total, se agrega como anterior
+                $SQL = "SELECT dl.*
+                        FROM dues_loans dl
+                          LEFT JOIN loans lo ON lo.id = dl.id_loan
+                        WHERE lo.id_driver = $due->id_driver AND dl.date_due = '2017-11-22' AND dl.state != 0";
+                $os = $this->db->get($SQL);
+                while($o = $os->fetch_object()){
+                    $this->db->update('dues_loans', ['amount_paid'=>$o->amount_due,'date_paid'=>'NOW()','state'=>3], $o->id);
+                }
+
+
                 $this->rsp['ok'] = true;
             } else {
                 $this->rsp['msg'] = 'Error interno :: DB';
@@ -270,7 +362,7 @@
                 // Obtener la ultima cuota
                 // En caso que la cuota sea menor, aplicamos, caso contrario creamos nueva
                 $SQL = "SELECT * FROM dues_rental
-                        WHERE id_driver = $due->id_driver
+                        WHERE id_driver = $due->id_driver AND state != 0
                         ORDER BY date_due DESC LIMIT 1";
                 $ld = $this->db->o($SQL);
 
@@ -294,6 +386,7 @@
                         $data['id_driver'] = $ld->id_driver;
                         $data['amount_due'] = $amount_due_dif;
                         $data['date_due'] = $date_due;
+                        $data['state'] = 1;
                         $this->db->insert('dues_rental', $data);
                     }
 
@@ -308,13 +401,23 @@
                     $data['id_driver'] = $ld->id_driver;
                     $data['amount_due'] = $discount;
                     $data['date_due'] = $date_due;
+                    $data['state'] = 1;
                     $this->db->insert('dues_rental', $data);
 
                 }
                 $this->rsp['$lastD'] = $ld;
 
             } else {
-                $this->rsp['msg'] = 'No se ha descontado';
+
+                // Guardar notas aunque no descuente
+                if($this->db->update('dues_rental', ['fd_notes'=>$notes], $id)){
+                    $this->rsp['ok'] = true;
+
+                } else {
+                    $this->rsp['msg'] = 'Error interno :: DB';
+                }
+
+                //$this->rsp['msg'] = 'No se ha descontado';
             }
             $this->rsp['amount'] = $amount;
             $this->rsp['data'] = $days;
@@ -330,6 +433,9 @@
         $id = _POST_INT('id');
 
         $photo = (isset($_FILES['photo']) ? $_FILES['photo'] : '' );
+
+        $this->rsp['photo'] = $photo;
+
         if($id <= 0){
             $this->rsp['msg'] = 'No se reconoce el registro';
 
@@ -338,13 +444,11 @@
 
         } else {
             require('inc/plugins/ImageResize.php');
-            $pic_voucher = md5(uniqid($id));
+            $ext = pathinfo($photo['name'], PATHINFO_EXTENSION);
+            $pic_voucher = md5(uniqid($id)).'.'.$ext;
 
-            $image = new ImageResize($photo['tmp_name']);
-            $image->width(600);
-            $image->height(600);
-            $image->resize();
-            if($image->save('uploads/'.$pic_voucher.'.jpg')){
+
+            if (move_uploaded_file($photo['tmp_name'], 'uploads/'.$pic_voucher)) {
                 if($this->db->update('dues_rental', ['pic_voucher'=>$pic_voucher], $id)){
                     $this->rsp['pic_voucher'] = $pic_voucher;
                     $this->rsp['ok'] = true;
@@ -355,6 +459,22 @@
             } else {
                 $this->rsp['msg'] = 'Error al guardar la imágen';
             }
+
+            /*$image = new ImageResize($photo['tmp_name']);
+            $image->width(600);
+            $image->height(600);
+            $image->resize();
+            if($image->save('uploads/'.$pic_voucher)){
+                if($this->db->update('dues_rental', ['pic_voucher'=>$pic_voucher], $id)){
+                    $this->rsp['pic_voucher'] = $pic_voucher;
+                    $this->rsp['ok'] = true;
+
+                } else {
+                    $this->rsp['msg'] = 'Error interno :: DB';
+                }
+            } else {
+                $this->rsp['msg'] = 'Error al guardar la imágen';
+            }*/
 
         }
         $this->rsp();

@@ -7,6 +7,7 @@
     <div class="portlet-title">
         <div class="caption">
             <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
+            <br><a class="caption-helper" href="drivers/{$driver->id}">{$driver->name} {$driver->surname}</a>
         </div>
         <div class="actions">
             {if $can_edit}

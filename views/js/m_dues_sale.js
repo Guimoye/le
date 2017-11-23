@@ -88,6 +88,30 @@ var MDuesSale = {
         });
     },
 
+    // Eliminar Cronograma de venta de un conductor
+    removeAll: function(id_driver){
+        bootbox.confirm({
+            title: '¿Seguro que quieres eliminar todo el cronograma de venta?',
+            message: 'Esta acción borrará todas las cuotas de venta, incluso aquellas que han sido pagadas. No podrás deshacer más tarde.',
+            buttons: {
+                confirm: {label:'ELIMINAR',className:'btn-danger'},
+                cancel: {label:'Cancelar'}
+            },
+            callback: function(result){
+                if(result){
+                    api('dues_sale/remove_all', {action:'remove', id_driver:id_driver}, function(rsp){
+                        if(rsp.ok == true){
+                            toastr.success('Eliminado correctamente');
+                            location.reload();
+                        } else {
+                            bootbox.alert(rsp.msg);
+                        }
+                    }, 'Eliminando...');
+                }
+            }
+        });
+    },
+
     // Marcar como pagado
     setDuePaid: function(id, amount_total){
         bootbox.prompt({
@@ -159,6 +183,7 @@ var MVoucher = {
         this.$form.id       = $('input[name="id"]', this.$form);
         this.$form.photo    = $('input[name="photo"]', this.$form);
         this.$form.image    = $('.image', this.$form);
+        this.$form.link     = $('.link', this.$form);
 
         // Asignar eventos
         this.$form.ajaxForm(this.save);
@@ -196,7 +221,19 @@ var MVoucher = {
         MVoucher.$modal.title.text('Comprobante de pago');
         MVoucher.$modal.modal('show');
         MVoucher.$form.id.val(id);
-        MVoucher.$form.image.attr('src','uploads/'+pic_voucher+'.jpg');
+
+        var url = 'uploads/'+pic_voucher;
+
+        // Verificar extension
+        MVoucher.$form.image.hide();
+        MVoucher.$form.link.hide();
+
+        if((/\.(gif|jpg|jpeg|tiff|png)$/i).test(url)){
+            MVoucher.$form.image.attr('src',url).show();
+
+        } else if(pic_voucher != ''){
+            MVoucher.$form.link.attr('href',url).show();
+        }
     }
 
 };

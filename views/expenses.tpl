@@ -7,6 +7,7 @@
     <div class="portlet-title">
         <div class="caption">
             <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
+            <br><a class="caption-helper" href="drivers/{$driver->id}">{$driver->name} {$driver->surname}</a>
         </div>
         <div class="actions">
             {if $can_edit}
@@ -168,5 +169,6 @@
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
     'assets/global/plugins/jquery.form.min.js',
-    'views/js/m_expense.js'
+    'views/js/m_expense.js',
+    'views/js/core_acs_modal.js'
 ]}

@@ -7,6 +7,7 @@
     <div class="portlet-title">
         <div class="caption">
             <span class="caption-subject font-dark bold uppercase">{$page_title}</span>
+            <br><a class="caption-helper" href="drivers/{$driver->id}">{$driver->name} {$driver->surname}</a>
         </div>
         <div class="actions">
             <!--<span class="btn btn-circle blue" onclick="MMaintenance.add();"> <i class="fa fa-plus"></i> Registrar </span>-->
@@ -43,28 +44,20 @@
                         <td> {$o.kms|number_format} km </td>
                         <td> {$o.date_item|date_format:"%d-%m-%Y"} </td>
                         <td> {$o.kms_daily|string_format:"%.1f"} km diarios </td>
-                        <td> {$stg->coin}{$o.amount} </td>
-                        <td> {$stg->coin}{$o.amount_stored} </td>
-                        <td> {$stg->coin}{$o.amount_total} </td>
+                        <td> {$stg->coin}{$o.amount|string_format:"%.2f"} </td>
+                        <td> {$stg->coin}{$o.amount_stored|string_format:"%.2f"} </td>
+                        <td> {$stg->coin}{$o.amount_total|string_format:"%.2f"} </td>
                         <td>
                             {if $o.pay_state == 'paid'}
-                                <span {*onclick="MMaintenance.setUnpaid({$o.id});"*}
-                                      class="btn btn-xs green-jungle">Pagado</span>
+                                <span {if $can_edit}onclick="MMaintenancePay.open(items[{$i}]);"{/if}
+                                      class="btn btn-xs green-jungle">Realizado</span>
 
                             {elseif $o.pay_state == 'pending'}
-                                <span
-                                        {if $can_edit}
-                                            onclick="MMaintenance.setPaid({$o.id});"
-                                        {/if}
-
+                                <span {if $can_edit}onclick="MMaintenancePay.open(items[{$i}]);"{/if}
                                       class="btn btn-xs yellow-crusta">Pendiente</span>
 
                             {elseif $o.pay_state == 'expired'}
-                                <span
-                                        {if $can_edit}
-                                            onclick="MMaintenance.setPaid({$o.id});"
-                                        {/if}
-
+                                <span {if $can_edit}onclick="MMaintenancePay.open(items[{$i}]);"{/if}
                                       class="btn btn-xs red-mint">Vencido</span>
 
                             {/if}
@@ -126,7 +119,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group hide">
                         <label class="col-md-4 control-label">Acumulado</label>
                         <div class="col-md-7">
                             <div class="input-group">
@@ -150,6 +143,61 @@
                 <button type="button" class="btn red pull-left remove">Eliminar</button>
                 <button type="button" data-dismiss="modal" class="btn btn-outline btn-default cancel hide">Cancelar</button>
                 <button type="button" class="btn blue save">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL -->
+
+
+<!-- MODAL -->
+<div id="modal_pay_maintenance" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"></button>
+                <h4 class="modal-title">---</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal">
+                    <input type="hidden" name="id" value="">
+                    <input type="hidden" name="ids_dues_rental" value="">
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Costo</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">{$stg->coin}</span>
+                                <input class="form-control" name="amount" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Acumulado</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">{$stg->coin}</span>
+                                <input class="form-control" name="amount_stored" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Fecha de mantenimiento</label>
+                        <div class="col-md-6">
+                            <input class="form-control" name="date_paid" type="date">
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn red pull-left remove hide">Eliminar</button>
+                <button type="button" data-dismiss="modal" class="btn btn-outline btn-default cancel">Cancelar</button>
+                <button type="button" class="btn blue save">Generar</button>
             </div>
         </div>
     </div>
