@@ -2,7 +2,7 @@
 ini_set('max_execution_time', 600);
 
 $url    =  'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/';
-$cm     = @$_GET['cm'];
+$cm     = @$_GET['cm'] ?: 'protemax/syncKms';
 
 if(empty($cm)){
     echo '??';

@@ -4,15 +4,9 @@
     <list default="true" id="e6ef41d0-86c3-462e-87a4-a986f3ae332a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/76813738-3381-443e-bc21-6aa1b39fb81c.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/76813738-3381-443e-bc21-6aa1b39fb81c.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/_base.php" afterPath="$PROJECT_DIR$/controllers/_base.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/drivers.php" afterPath="$PROJECT_DIR$/controllers/drivers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/fleets.php" afterPath="$PROJECT_DIR$/controllers/fleets.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/kms.php" afterPath="$PROJECT_DIR$/controllers/kms.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/levels.php" afterPath="$PROJECT_DIR$/controllers/levels.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/login.php" afterPath="$PROJECT_DIR$/controllers/login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/settings.php" afterPath="$PROJECT_DIR$/controllers/settings.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/users.php" afterPath="$PROJECT_DIR$/controllers/users.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/protemax.php" afterPath="$PROJECT_DIR$/controllers/protemax.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cron.php" afterPath="$PROJECT_DIR$/cron.php" />
     </list>
     <ignored path="SmartRest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,7 +46,42 @@
     <favorites_list name="SmartRest" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="protemax.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/protemax.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="444">
+              <caret line="43" column="39" lean-forward="false" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+              <folding>
+                <marker date="1512072711000" expanded="true" signature="1225:1272" ph="SELECT * FRO... drivers" />
+                <marker date="1512072711000" expanded="true" signature="2664:2698" ph="SELECT * FRO... drivers" />
+                <marker date="1512072711000" expanded="true" signature="2664:2704" ph="SELECT * FRO... drivers" />
+                <marker date="1512072711000" expanded="true" signature="2664:2706" ph="SELECT * FRO... drivers" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cron.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cron.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="drivers" pinned="false" current-in-tab="true">
+        <entry file="das://table:/6b9c2ae1/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.drivers">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -170,10 +199,10 @@
         <option value="$PROJECT_DIR$/controllers/_base.php" />
         <option value="$PROJECT_DIR$/controllers/login.php" />
         <option value="$PROJECT_DIR$/controllers/settings.php" />
+        <option value="$PROJECT_DIR$/controllers/drivers.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/76813738-3381-443e-bc21-6aa1b39fb81c/console.sql" />
         <option value="$PROJECT_DIR$/cron.php" />
         <option value="$PROJECT_DIR$/controllers/protemax.php" />
-        <option value="$PROJECT_DIR$/controllers/drivers.php" />
       </list>
     </option>
   </component>
@@ -234,6 +263,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -250,8 +281,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -474,29 +503,30 @@
       <workItem from="1511356221618" duration="4466000" />
       <workItem from="1511361231973" duration="26888000" />
       <workItem from="1512047707116" duration="9006000" />
+      <workItem from="1512071937777" duration="1065000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="893192000" />
+    <option name="totallyTimeSpent" value="894257000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="330" y="23" width="1590" height="1002" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263506" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280363" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2216097" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2015504" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20413436" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20284238" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32524806" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2495238" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22617246" sideWeight="0.50653595" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39932126" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22617246" sideWeight="0.50653595" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -505,6 +535,7 @@
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277592" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32524806" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -662,13 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="53" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DB-NOTES.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -788,7 +812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="25" column="38" lean-forward="false" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -810,7 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2376">
           <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="147" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -818,7 +840,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3006">
           <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -826,9 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="182" column="79" lean-forward="false" selection-start-line="182" selection-start-column="79" selection-end-line="182" selection-end-column="79" />
-          <folding>
-            <element signature="e#34#5441#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -836,9 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1764">
           <caret line="98" column="78" lean-forward="true" selection-start-line="98" selection-start-column="78" selection-end-line="98" selection-end-column="78" />
-          <folding>
-            <marker date="1511392916000" expanded="true" signature="1071:1083" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -871,19 +886,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/76813738-3381-443e-bc21-6aa1b39fb81c/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../SmartCab/app/client/upload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="1" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,13 +898,6 @@
         <state relative-caret-position="774">
           <caret line="43" column="9" lean-forward="false" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/6b9c2ae1/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.drivers">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -914,10 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
           <caret line="29" column="11" lean-forward="false" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
-          <folding>
-            <marker date="1503608244000" expanded="true" signature="322:711" ph="SELECT ca.*,... carreras" />
-            <marker date="1503608244000" expanded="true" signature="1060:1363" ph="SELECT *, SQ... conductores" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -925,7 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="1" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -937,52 +931,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="53" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/76813738-3381-443e-bc21-6aa1b39fb81c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/drivers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="395" column="0" lean-forward="false" selection-start-line="395" selection-start-column="0" selection-end-line="395" selection-end-column="0" />
+          <folding>
+            <marker date="1512072177000" expanded="true" signature="347:386" ph="SELECT * FRO... vh_brands" />
+            <marker date="1512072177000" expanded="true" signature="437:487" ph="SELECT * FRO... fleets" />
+            <marker date="1512072177000" expanded="true" signature="1835:2052" ph="SELECT dl.* dues_loans" />
+            <marker date="1512072177000" expanded="true" signature="2677:2765" ph="SELECT * FRO... dues_rental" />
+            <marker date="1512072177000" expanded="true" signature="4213:4299" ph="SELECT * FRO... dues_sale" />
+            <marker date="1512072177000" expanded="true" signature="5506:5590" ph="SELECT * FRO... expenses" />
+            <marker date="1512072177000" expanded="true" signature="6743:6824" ph="SELECT * FRO... loans" />
+            <marker date="1512072177000" expanded="true" signature="7747:7862" ph="SELECT * FRO... maintenances" />
+            <marker date="1512072177000" expanded="true" signature="8400:8515" ph="SELECT * FRO... maintenances" />
+            <marker date="1512072177000" expanded="true" signature="9032:9101" ph="SELECT * FRO... obligations" />
+            <marker date="1512072177000" expanded="true" signature="11050:11220" ph="SELECT dr.* drivers" />
+            <marker date="1512072177000" expanded="true" signature="11690:11791" ph="SELECT SUM(a... loans" />
+            <marker date="1512072177000" expanded="true" signature="11893:11997" ph="SELECT SUM(a... expenses" />
+            <marker date="1512072177000" expanded="true" signature="12127:12217" ph="SELECT id FR... dues_rental" />
+            <marker date="1512072177000" expanded="true" signature="12520:12586" ph="SELECT * FRO... maintenances" />
+            <marker date="1512072177000" expanded="true" signature="13380:13445" ph="SELECT * FRO... dues_rental" />
+            <marker date="1512072177000" expanded="true" signature="14304:14328" ph="..." />
+            <marker date="1512072177000" expanded="true" signature="21352:21392" ph="UPDATE drive... " />
+            <marker date="1512072177000" expanded="true" signature="21720:21784" ph="SELECT * FRO... vh_models" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cron.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state relative-caret-position="234">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/protemax.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="89" column="32" lean-forward="true" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
+        <state relative-caret-position="444">
+          <caret line="43" column="39" lean-forward="false" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
           <folding>
-            <marker date="1512057466000" expanded="true" signature="1149:1196" ph="SELECT * FRO... drivers" />
-            <marker date="1512057466000" expanded="true" signature="2545:2579" ph="SELECT * FRO... drivers" />
-            <marker date="1512057466000" expanded="true" signature="2545:2585" ph="SELECT * FRO... drivers" />
-            <marker date="1512057466000" expanded="true" signature="2545:2587" ph="SELECT * FRO... drivers" />
+            <marker date="1512072711000" expanded="true" signature="1225:1272" ph="SELECT * FRO... drivers" />
+            <marker date="1512072711000" expanded="true" signature="2664:2698" ph="SELECT * FRO... drivers" />
+            <marker date="1512072711000" expanded="true" signature="2664:2704" ph="SELECT * FRO... drivers" />
+            <marker date="1512072711000" expanded="true" signature="2664:2706" ph="SELECT * FRO... drivers" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/drivers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="373" column="42" lean-forward="true" selection-start-line="373" selection-start-column="42" selection-end-line="373" selection-end-column="42" />
-          <folding>
-            <marker date="1512058141000" expanded="true" signature="347:386" ph="SELECT * FRO... vh_brands" />
-            <marker date="1512058141000" expanded="true" signature="437:487" ph="SELECT * FRO... fleets" />
-            <marker date="1512058141000" expanded="true" signature="1835:2052" ph="SELECT dl.* dues_loans" />
-            <marker date="1512058141000" expanded="true" signature="2677:2765" ph="SELECT * FRO... dues_rental" />
-            <marker date="1512058141000" expanded="true" signature="4213:4299" ph="SELECT * FRO... dues_sale" />
-            <marker date="1512058141000" expanded="true" signature="5506:5590" ph="SELECT * FRO... expenses" />
-            <marker date="1512058141000" expanded="true" signature="6743:6824" ph="SELECT * FRO... loans" />
-            <marker date="1512058141000" expanded="true" signature="7747:7862" ph="SELECT * FRO... maintenances" />
-            <marker date="1512058141000" expanded="true" signature="8400:8515" ph="SELECT * FRO... maintenances" />
-            <marker date="1512058141000" expanded="true" signature="9032:9101" ph="SELECT * FRO... obligations" />
-            <marker date="1512058141000" expanded="true" signature="11050:11220" ph="SELECT dr.* drivers" />
-            <marker date="1512058141000" expanded="true" signature="11690:11791" ph="SELECT SUM(a... loans" />
-            <marker date="1512058141000" expanded="true" signature="11893:11997" ph="SELECT SUM(a... expenses" />
-            <marker date="1512058141000" expanded="true" signature="12127:12217" ph="SELECT id FR... dues_rental" />
-            <marker date="1512058141000" expanded="true" signature="12443:12509" ph="SELECT * FRO... maintenances" />
-            <marker date="1512058141000" expanded="true" signature="13194:13259" ph="SELECT * FRO... dues_rental" />
-            <marker date="1512058141000" expanded="true" signature="14118:14142" ph="..." />
-            <marker date="1512058141000" expanded="true" signature="21087:21127" ph="UPDATE drive... " />
-            <marker date="1512058141000" expanded="true" signature="21455:21519" ph="SELECT * FRO... vh_models" />
-          </folding>
+    <entry file="das://table:/6b9c2ae1/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.drivers">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>

@@ -327,6 +327,8 @@
 
                 // Kilometraje
                 $num_kms = 0;
+                $num_kms_expired = 0;
+                $num_kms_pendings = 0;
                 $num_maints_paid = 0;
                 $num_maints_expired = 0;
                 $num_maints_pendings = 0;
@@ -341,9 +343,11 @@
 
                     } else if($due_time < $today_time) {
                         $num_maints_expired += 1;
+                        $num_kms_expired += $om->kms;
 
                     } else {
                         $num_maints_pendings += 1;
+                        $num_kms_pendings += $om->kms;
                     }
                 }
 
@@ -395,9 +399,9 @@
                 $table .= '  '.number_format($o->pmx_kms).' km';
                 //$table .= '  '.number_format($num_kms).' km';
                 if($num_maints_expired > 0){
-                    $table .= '  <br><span class="badge bg-red-mint">Vencido</span>';
+                    $table .= '  <br><span class="badge bg-red-mint">Vencido '.number_format($num_kms_expired).' KM</span>';
                 } else if($num_maints_pendings > 0){
-                    $table .= '  <br><span class="badge bg-yellow-crusta">Pendiente</span>';
+                    $table .= '  <br><span class="badge bg-yellow-crusta">Pendiente '.number_format($num_kms_pendings).' KM</span>';
                 } else if($num_maints_paid > 0) {
                     $table .= '  <br><span class="badge bg-green-jungle">Realizado</span>';
                 }

@@ -36,6 +36,7 @@ class protemax extends _base{
 
                     $arr_name = explode(' - ', @$a->name);
                     $plate = count($arr_name) > 0 ? trim($arr_name[0]) : '';
+                    $name = count($arr_name) > 1 ? trim($arr_name[1]) : '';
 
                     $item['id_pmx'] = $pmx_id;
                     $item['plate'] = $plate;
@@ -47,7 +48,7 @@ class protemax extends _base{
                         if($o){
                             $item['id'] = (int) $o->id;
 
-                            if($this->db->update('drivers', ['pmx_id'=>$pmx_id], $o->id)){
+                            if($this->db->update('drivers', ['pmx_id'=>$pmx_id,'pmx_name'=>$name,'pmx_date_sync'=>'NOW()'], $o->id)){
                                 $item['ok'] = true;
 
                             } else {
@@ -121,7 +122,7 @@ class protemax extends _base{
 
                         $item['pmx_kms'] = $kms;
 
-                        if($this->db->update('drivers', ['pmx_kms'=>$kms], $o->id)){
+                        if($this->db->update('drivers', ['pmx_kms'=>$kms,'pmx_date_sync_kms'=>'NOW()'], $o->id)){
                             $item['ok'] = true;
 
                         } else {
