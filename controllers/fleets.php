@@ -1,9 +1,5 @@
 <?php class fleets extends _base{
 
-    public function __construct(){
-        parent::__construct();
-    }
-
     public function index(){
         $items = $this->db->arr("SELECT * FROM fleets WHERE state = 1 ORDER BY name");
 

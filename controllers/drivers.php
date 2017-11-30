@@ -1,9 +1,5 @@
 <?php class drivers extends _base{
 
-    public function __construct(){
-        parent::__construct();
-    }
-
     public function index(){
 
         // Evitar que un conductor pueda acceder a lista
@@ -396,7 +392,8 @@
 
 
                 $table .= ' <td>';
-                $table .= '  '.number_format($num_kms).' km';
+                $table .= '  '.number_format($o->pmx_kms).' km';
+                //$table .= '  '.number_format($num_kms).' km';
                 if($num_maints_expired > 0){
                     $table .= '  <br><span class="badge bg-red-mint">Vencido</span>';
                 } else if($num_maints_pendings > 0){

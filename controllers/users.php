@@ -1,10 +1,6 @@
 <?php
 class users extends _base{
 
-    public function __construct(){
-        parent::__construct();
-    }
-
     public function index(){
         $ui = $this->ui();
         $ui->assign('page_title', 'Usuarios');

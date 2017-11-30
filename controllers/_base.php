@@ -18,7 +18,7 @@ class _base {
 
     public $module;
 
-    public function __construct(){
+    public function __construct($login_required = true){
         $this->module = get_class($this);
 
         $this->uu 	= new Util();
@@ -26,7 +26,7 @@ class _base {
         $this->user	= new User($this->db);
         $this->stg 	= $this->db->getSettings();
 
-        if($this->module != "login" && !$this->user->isLogged()){
+        if($login_required && !$this->user->isLogged()){
             $this->redirect('login?r='.base64_encode($_SERVER['REQUEST_URI']));
         }
     }

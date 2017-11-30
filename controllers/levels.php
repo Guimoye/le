@@ -1,9 +1,5 @@
 <?php class levels extends _base{
 
-    public function __construct(){
-        parent::__construct();
-    }
-
     public function index(){
 
         $menu = $this->uu->ordMenu($this->db->arr("SELECT * FROM menu WHERE state = 1 ORDER BY sort"));
