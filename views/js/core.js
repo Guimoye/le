@@ -158,6 +158,19 @@ function api(api,data,callback,loading,cache){
     }
 }
 
+// Obtener respuesta desde un string
+function getRsp(str_json){
+    if(str_json) {
+        try {
+            return JSON.parse(str_json);
+        } catch(e) {}
+    }
+    return {
+        ok: false,
+        msg: 'Se produjo un error, por favor vuelve a intentarlo.'
+    };
+}
+
 // Cargar JS dinamicamente
 function js(url){
     var script_tag = document.createElement('script');

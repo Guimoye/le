@@ -27,7 +27,18 @@
         }
 
         $items = [];
-        $total_amount_due = 0;
+
+
+        $tts = [];
+        $tts['total_amount_due']     = 0;
+        $tts['total_amount_pit']     = 0;
+        $tts['total_amount_cabify']  = 0;
+        $tts['total_amount_penalty'] = 0;
+        $tts['total_amount_discount']= 0;
+        $tts['total_amount_loans']   = 0;
+        $tts['total_amount_previous']= 0;
+        $tts['total_amount_total']   = 0;
+        $tts['total_amount_paid']   = 0;
 
         $today_date = date('Y-m-d');
         $today_time = strtotime($today_date);
@@ -49,9 +60,17 @@
                     $o['amount_penalty'] +
                     $o['amount_previous']
 
-                    + $o['amount_loans']) - $o['amount_discount'];
+                    + $o['amount_loans']) - $o['amount_cabify'] - $o['amount_discount'];
 
-                $total_amount_due += $o['amount_due'];
+                $tts['total_amount_due']        += $o['amount_due'];
+                $tts['total_amount_pit']        += $o['amount_pit'];
+                $tts['total_amount_cabify']     += $o['amount_cabify'];
+                $tts['total_amount_penalty']    += $o['amount_penalty'];
+                $tts['total_amount_discount']   += $o['amount_discount'];
+                $tts['total_amount_loans']      += $o['amount_loans'];
+                $tts['total_amount_previous']   += $o['amount_previous'];
+                $tts['total_amount_total']      += $o['amount_total'];
+                $tts['total_amount_paid']       += $o['amount_paid'];
 
                 if($o['free_days'] == ''){
                     $o['worked_days_text'] = '(7/7)';
@@ -92,7 +111,7 @@
         $ui->assign('page_title', 'Cronograma de alquiler');
         $ui->assign('driver', $driver);
         $ui->assign('items', $items);
-        $ui->assign('total_amount_due', $total_amount_due);
+        $ui->assign('tts', $tts);
 
         $ui->display('dues_rental.tpl');
     }
@@ -194,6 +213,7 @@
 
         $amount_total       = _POST_INT('amount_total');
         $amount             = _POST_INT('amount_paid');
+        $amount_cabify      = _POST_INT('amount_cabify');
         $amount_penalty     = _POST_INT('amount_penalty');
         $amount_discount    = _POST_INT('amount_discount');
         $date_paid          = _POST('date_paid');
@@ -227,21 +247,25 @@
                 + $due->amount_pit
                 + $due->amount_loans
                 + $due->amount_previous
-                ) - $amount_discount;
+                ) - $amount_cabify - $amount_discount;
 
 
             $data = [];
             $data['amount_paid']        = $amount;
+            $data['amount_cabify']      = $amount_cabify;
             $data['amount_penalty']     = $amount_penalty;
             $data['amount_discount']    = $amount_discount;
             $data['date_paid']          = $date_paid;
             $data['state']              = 3; // Pago total
 
+            // El pago parcial es cuando el pago de alquiler es menor, solo eso
+            if(($amount) < ($due->amount_due - ($amount_cabify - $amount_discount))){
+                $data['state'] = 2; // Pago parcial
+            }
+
             // La siguiente cuota
             if($amount < $amount_total){
                 $next_amount = $amount_total - $amount; // A pagar el proximo mes
-
-                $data['state'] = 2; // Pago parcial
 
                 // Obtener la siguiente cuota
                 $nextO = $this->db->o("SELECT * FROM dues_rental WHERE id_driver = $due->id_driver AND num_due > $due->num_due AND state != 0 LIMIT 1");
@@ -427,16 +451,44 @@
         $this->rsp();
     }
 
+    public function get_pics($id_ref){
+        //$id_driver = _POST_INT('id_driver');
+
+        if($id_ref <= 0){
+            $this->rsp['msg'] = 'No se reconoce el registro';
+
+        } else {
+            $this->rsp['items'] = $this->db->arr("SELECT * FROM pics WHERE type = 1 AND id_ref = $id_ref AND state = 1");
+            $this->rsp['ok'] = true;
+
+        }
+        $this->rsp();
+    }
+
+    public function remove_pic(){
+        $id = _POST_INT('id');
+
+        if($id <= 0){
+            $this->rsp['msg'] = 'No se reconoce el registro';
+
+        } else {
+            if($this->db->update('pics', ['state'=>0], $id)){
+                $this->rsp['ok'] = true;
+            }
+        }
+        $this->rsp();
+    }
+
     public function upload_voucher(){
         $this->checkEditPerms();
 
-        $id = _POST_INT('id');
+        $id_ref = _POST_INT('id');
 
         $photo = (isset($_FILES['photo']) ? $_FILES['photo'] : '' );
 
         $this->rsp['photo'] = $photo;
 
-        if($id <= 0){
+        if($id_ref <= 0){
             $this->rsp['msg'] = 'No se reconoce el registro';
 
         } else if(empty($photo['name'])){
@@ -445,17 +497,29 @@
         } else {
             require('inc/plugins/ImageResize.php');
             $ext = pathinfo($photo['name'], PATHINFO_EXTENSION);
-            $pic_voucher = md5(uniqid($id)).'.'.$ext;
+            $pic_voucher = md5(uniqid($id_ref)).'.'.$ext;
 
 
             if (move_uploaded_file($photo['tmp_name'], 'uploads/'.$pic_voucher)) {
-                if($this->db->update('dues_rental', ['pic_voucher'=>$pic_voucher], $id)){
-                    $this->rsp['pic_voucher'] = $pic_voucher;
+                $data = [];
+                $data['type']   = 1;
+                $data['id_ref'] = $id_ref;
+                $data['pic']    = $pic_voucher;
+                $data['state']  = 1;
+                if($this->db->insert('pics', $data)){
+                    $this->rsp['pic'] = $pic_voucher;
                     $this->rsp['ok'] = true;
 
                 } else {
                     $this->rsp['msg'] = 'Error interno :: DB';
                 }
+                /*if($this->db->update('dues_rental', ['pic_voucher'=>$pic_voucher], $id_ref)){
+                    $this->rsp['pic_voucher'] = $pic_voucher;
+                    $this->rsp['ok'] = true;
+
+                } else {
+                    $this->rsp['msg'] = 'Error interno :: DB';
+                }*/
             } else {
                 $this->rsp['msg'] = 'Error al guardar la imágen';
             }
@@ -465,7 +529,7 @@
             $image->height(600);
             $image->resize();
             if($image->save('uploads/'.$pic_voucher)){
-                if($this->db->update('dues_rental', ['pic_voucher'=>$pic_voucher], $id)){
+                if($this->db->update('dues_rental', ['pic_voucher'=>$pic_voucher], $id_ref)){
                     $this->rsp['pic_voucher'] = $pic_voucher;
                     $this->rsp['ok'] = true;
 

@@ -348,4 +348,42 @@ class Util{
         return floor($first->diff($second)->days/7);
     }
 
+
+    /**
+     * Obtener datos de un CSV
+     * @param string $file_path : Ruta del archivo
+     * @return stdClass
+     */
+    public function getDataCSV($file_path){
+        $data = new stdClass();
+        $data->cols = [];
+        $data->rows = [];
+
+        if(($gestor = fopen($file_path, "r")) !== FALSE){
+
+            while(($datos = fgetcsv($gestor, 100000, ",")) !== FALSE) {
+                if(!isset($col_csv)) { // Fila uno
+                    foreach($datos as $col_csv){
+                        $data->cols[] = $this->convertCsvVal($col_csv);
+                    }
+                } else {
+                    $row = [];
+                    foreach($datos as $d){
+                        $row[] = $this->convertCsvVal($d);
+                    }
+                    $data->rows[] = $row;
+                }
+            }
+
+            fclose($gestor);
+        }
+
+        return $data;
+    }
+    function convertCsvVal($str){
+        return $str;
+        //return mb_convert_encoding($str, "HTML-ENTITIES","UTF-8");
+        //return utf8_decode($str);
+        //return @iconv("Windows-1252", "UTF-8", $str);
+    }
 }

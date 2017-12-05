@@ -178,6 +178,7 @@ var MDuesRentalPay = {
         this.$form.id               = $('input[name="id"]', this.$form);
         this.$form.amount_total     = $('input[name="amount_total"]', this.$form);
         this.$form.amount_paid 	    = $('input[name="amount_paid"]', this.$form);
+        this.$form.amount_cabify    = $('input[name="amount_cabify"]', this.$form);
         this.$form.amount_penalty   = $('input[name="amount_penalty"]', this.$form);
         this.$form.amount_discount  = $('input[name="amount_discount"]', this.$form);
         this.$form.date_paid        = $('input[name="date_paid"]', this.$form);
@@ -224,89 +225,12 @@ var MDuesRentalPay = {
         MDuesRentalPay.$form.amount_paid.val('');
         MDuesRentalPay.$form.amount_paid.attr('placeholder','Monto total: '+stg.coin+o.amount_total);
         //MDuesRentalPay.$form.amount_paid.val(o.amount_due);
+        MDuesRentalPay.$form.amount_cabify.val(o.amount_cabify);
         MDuesRentalPay.$form.amount_penalty.val(o.amount_penalty);
         MDuesRentalPay.$form.amount_discount.val(o.amount_discount);
         MDuesRentalPay.$form.date_paid.val(o.date_paid==null?o.date_due:o.date_paid);
 
         console.log(o.date_paid);
-    }
-
-};
-
-// Modal Voucher
-var MVoucher = {
-
-    callback: null,
-
-    $modal: null,
-    $title: null, // Modal: Titulo
-    $form: null, // Modal: Formulario
-
-    $remove: null,
-
-    init: function(callback){
-        this.callback = (typeof callback === 'function') ? callback : null;
-
-        this.$modal         = $('#modal_add_voucher');
-        this.$modal.title   = $('.modal-title', this.$modal);
-        this.$modal.remove  = $('.remove', this.$modal);
-
-        this.$form          = $('form', this.$modal);
-        this.$form.id       = $('input[name=id]', this.$form);
-        this.$form.photo    = $('input[name=photo]', this.$form);
-        this.$form.image    = $('.image', this.$form);
-        this.$form.link     = $('.link', this.$form);
-
-        // Asignar eventos
-        this.$form.ajaxForm(this.save);
-        this.$form.photo.change(function(){
-            MVoucher.$form.submit();
-            //MVoucher.$form.photo.val('');
-        });
-        this.$modal.remove.click(function(){
-            MVoucher.remove(MVoucher.$id.val());
-        });
-        $('.save', this.$modal).click(this.save);
-    },
-
-    // Guardar
-    save: {
-        beforeSend: function() {
-            Loading.show();
-        },
-        complete: function(xhr) {
-            Loading.hide();
-            var rsp = JSON.parse(xhr.responseText);
-            if(rsp.ok == true){
-                //MVoucher.$modal.modal('hide');
-                toastr.success('Guardado correctamente');
-                //location.reload();
-                MVoucher.open(MVoucher.$form.id.val(), rsp.pic_voucher)
-            } else {
-                bootbox.alert(rsp.msg);
-            }
-        }
-    },
-
-    // Abrir para nuevo NUEVO
-    open: function(id,pic_voucher){
-        MVoucher.$modal.title.text('Comprobante de pago');
-        MVoucher.$modal.modal('show');
-        MVoucher.$form.id.val(id);
-
-        var url = 'uploads/'+pic_voucher;
-
-        // Verificar extension
-        MVoucher.$form.image.hide();
-        MVoucher.$form.link.hide();
-
-        if((/\.(gif|jpg|jpeg|tiff|png)$/i).test(url)){
-            MVoucher.$form.image.attr('src',url).show();
-
-        } else if(pic_voucher != ''){
-            MVoucher.$form.link.attr('href',url).show();
-        }
-
     }
 
 };

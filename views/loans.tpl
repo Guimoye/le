@@ -30,7 +30,9 @@
                     <th width="1%"> Fecha de creación </th>
                     <th> Descripción </th>
                     <th width="1%"> Monto </th>
-                    <th width="1%"> TEA </th>
+                    {if !$stg->isDriver}
+                        <th width="1%"> TEA </th>
+                    {/if}
                     <th width="1%"> Monto Total </th>
                     <th width="1%"> Balance </th>
                     <th width="1%"> Estado </th>
@@ -44,7 +46,9 @@
                         <td class="nowrap"> {$o.date_added|date_format:"%d-%m-%Y"} </td>
                         <td> {$o.description} </td>
                         <td class="nowrap"> {$stg->coin}{$o.amount|string_format:"%.2f"} </td>
-                        <td class="nowrap"> {$o.tea}% </td>
+                        {if !$stg->isDriver}
+                            <td class="nowrap"> {$o.tea}% </td>
+                        {/if}
                         <td class="nowrap"> {$stg->coin}{$o.amount_total|string_format:"%.2f"} </td>
                         <td class="nowrap"> {$stg->coin}{$o.amount_balance|string_format:"%.2f"} </td>
                         <td class="nowrap">

@@ -1,10 +1,17 @@
 {include file='_header.tpl' css=[
-    'assets/pages/css/profile.min.css'
+    'assets/pages/css/profile.min.css',
+    'assets/global/plugins/fancybox/source/jquery.fancybox.css'
 ]}
 
 <style>
     .left_infos{ padding:10px 15px }
     .left_infos ._t{ font-size:14px; color:#8A9AAE; margin-top:10px }
+
+    .profile-userpic{ position: relative; margin-bottom:15px }
+    .profile-userpic button{ position:absolute; bottom:-12px; right:calc(50% - 12px); border: 2px solid white;
+        overflow: hidden;}
+    .profile-userpic button input{ position: absolute; top:0; right:0; opacity:0;
+        cursor:pointer; margin:0; direction:ltr; font-size: 100px }
 </style>
 
 <div class="row">
@@ -13,10 +20,30 @@
         <div class="profile-sidebar">
             <!-- PORTLET MAIN -->
             <div class="portlet light profile-sidebar-portlet ">
+
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img src="img/ph_person.png" class="img-responsive" alt=""> </div>
+                    <form action="drivers/upload_pic" method="post" id="picform">
+
+                        {if empty($driver->pic)}
+                            <img src="views/img/ph_person.png" class="img-responsive">
+                        {else}
+                            <a href="uploads/{$driver->pic}" class="fancybox">
+                                <img src="uploads/{$driver->pic}" class="img-responsive">
+                            </a>
+                        {/if}
+
+                        {if $can_edit}
+                            <button type="button" class="btn btn-circle btn-sm tooltips" title="Editar imagen">
+                                <i class="fa fa-pencil"></i>
+                                <input type="hidden" name="id" value="{$driver->id}"/>
+                                <input type="file" name="photo">
+                            </button>
+                        {/if}
+                    </form>
+                </div>
                 <!-- END SIDEBAR USERPIC -->
+
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"> {$driver->name} {$driver->surname} </div>
@@ -283,7 +310,9 @@
 {literal}
 <script>
     function $Ready(){
+        MPic.init();
 
+        $(".fancybox").fancybox();
     }
 
     function finishDriver(id){
@@ -301,9 +330,49 @@
         });
     }
 
+    // Modal Voucher
+    var MPic = {
+
+        $form: null, // Modal: Formulario
+
+        init: function(){
+
+            this.$form          = $('#picform');
+            this.$form.id       = $('input[name=id]', this.$form);
+            this.$form.photo    = $('input[name=photo]', this.$form);
+            this.$form.image    = $('img', this.$form);
+
+            // Asignar eventos
+            this.$form.ajaxForm(this.save);
+            this.$form.photo.change(function(){
+                MPic.$form.submit();
+            });
+        },
+
+        // Guardar
+        save: {
+            beforeSend: function() {
+                Loading.show();
+            },
+            complete: function(xhr) {
+                Loading.hide();
+                var rsp = JSON.parse(xhr.responseText);
+                if(rsp.ok == true){
+                    toastr.success('Guardado correctamente');
+                    //location.reload();
+                    MPic.$form.image.attr('src', 'uploads/'+rsp.pic);
+
+                } else {
+                    bootbox.alert(rsp.msg);
+                }
+            }
+        }
+
+    };
 </script>
 {/literal}
 
 {include file='_footer.tpl' js=[
-
+    'assets/global/plugins/jquery.form.min.js',
+    'assets/global/plugins/fancybox/source/jquery.fancybox.pack.js'
 ]}

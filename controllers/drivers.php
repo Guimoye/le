@@ -77,7 +77,10 @@
         $os = $this->db->get("SELECT * FROM dues_rental WHERE id_driver = $driver->id AND state != 0 ORDER BY date_due");
         while($o = $os->fetch_object()){
             $rental->total_due += $o->amount_due;
-            $rental->total_paid += $o->amount_paid;
+
+            if($o->state == 2 || $o->state == 3){
+                $rental->total_paid += $o->amount_due;
+            }
 
             if(!$rental->date_next_pay && $o->amount_paid == 0){
                 $rental->date_next_pay = $o->date_due;
@@ -123,7 +126,6 @@
             if($o->amount_paid > 0){
                 $sale->total_paid += $o->amount_due;
             }
-
 
             if(!$sale->date_next_pay && $o->amount_paid == 0){
                 $sale->date_next_pay = $o->date_due;
@@ -577,4 +579,134 @@
         $this->rsp();
     }
 
+    public function upload_pic(){
+        $this->checkEditPerms();
+
+        $id = _POST_INT('id');
+
+        $photo = (isset($_FILES['photo']) ? $_FILES['photo'] : '' );
+
+        $this->rsp['photo'] = $photo;
+
+        if($id <= 0){
+            $this->rsp['msg'] = 'No se reconoce el registro';
+
+        } else if(empty($photo['name'])){
+            $this->rsp['msg'] = 'No se ha seleccionado la imágen';
+
+        } else {
+            require('inc/plugins/ImageResize.php');
+            $ext = pathinfo($photo['name'], PATHINFO_EXTENSION);
+            $pic = md5(uniqid($id)).'.'.$ext;
+
+            $image = new ImageResize($photo['tmp_name']);
+            $image->width(600);
+            $image->height(600);
+            $image->resize();
+            if($image->save('uploads/'.$pic)){
+                if($this->db->update('drivers', ['pic'=>$pic], $id)){
+                    $this->rsp['pic'] = $pic;
+                    $this->rsp['ok'] = true;
+
+                } else {
+                    $this->rsp['msg'] = 'Error interno :: DB';
+                }
+            } else {
+                $this->rsp['msg'] = 'Error al guardar la imágen';
+            }
+
+        }
+        $this->rsp();
+    }
+
+    public function import_cabify(){
+
+        $csv = $this->uu->getDataCSV(@$_FILES['file']['tmp_name']);
+
+        $ix_dni     = -1;
+        $ix_amount  = -1;
+
+        // Obtener los indices de las columnas para identificar datos
+        foreach($csv->cols as $ix => $col){
+            if($col == 'No. DNI')       $ix_dni     = $ix;
+            if($col == 'Producción')    $ix_amount  = $ix;
+        }
+
+        // Indices de columnas corectos
+        if($ix_dni != -1 && $ix_amount != -1){
+
+            $items = [];
+
+            foreach($csv->rows as $row){
+                $item = [];
+                $dni    = trim(@$row[$ix_dni]);
+                $amount = (float) @$row[$ix_amount];
+
+                $item['ok'] = false;
+                $item['dni'] = $dni;
+                $item['amount'] = $amount;
+
+                if(empty($dni)){
+                    $item['msg'] = 'DNI incorrecto';
+
+                } else if($amount < 0){
+                    $item['msg'] = 'Monto incorrecto';
+
+                } else{
+                    $dv = $this->db->o('drivers','dni',$dni);
+                    if($dv){
+                        $item['driver'] = [
+                            'id' => (int) $dv->id,
+                            'name' => $dv->name.' '.$dv->surname
+                        ];
+
+                        $SQL = "SELECT *
+                                FROM dues_rental
+                                WHERE id_driver = $dv->id AND WEEKOFYEAR(date_due) = WEEKOFYEAR(NOW())
+                                      AND state != 0
+                                LIMIT 1";
+                        $du = $this->db->o($SQL);
+                        if($du){
+                            $item['due'] = [
+                                'id' => (int) $du->id,
+                                'num_due' => (int) $du->num_due,
+                                'date_due' => $du->date_due
+                            ];
+
+                            if($this->db->update('dues_rental', ['amount_cabify'=>$amount], $du->id)){
+                                $item['ok'] = true;
+
+                            } else {
+                                $item['msg'] = 'Error interno :: DB';
+                            }
+                        } else {
+                            $item['msg'] = 'No hay cuota para esta semana';
+                        }
+                    } else {
+                        $item['msg'] = 'Conductor no existe';
+                    }
+                }
+
+                $items[] = $item;
+            }
+            $this->rsp['items'] = $items;
+            $this->rsp['ok'] = true;
+
+        } else {
+            $this->rsp['msg'] = 'Indices incorrectos';
+        }
+
+        //$this->rsp['$csv'] = $csv;
+
+        $this->rsp();
+    }
+
+    function debug($data) {
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
+    }
+    function escape($string) {
+        return htmlspecialchars($string, ENT_QUOTES);
+    }
 }

@@ -8,6 +8,8 @@
     private function index(){}
 
     public function item($id_driver){
+        $this->stg->isDriver = $this->user->isDriver();
+
         $driver = $this->db->o('drivers', $id_driver);
 
         $ui = $this->ui();

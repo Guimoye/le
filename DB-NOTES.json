@@ -68,6 +68,15 @@
       "1": "Motor",
       "2": "GAS"
     }
+  },
+
+  "pics": {
+    "type": {
+      "?": "Tipo de foto",
+      "1": "dues_rental",
+      "2": "dues_sale"
+    },
+    "id_ref": "ID segun tipo de tabla"
   }
 
 }

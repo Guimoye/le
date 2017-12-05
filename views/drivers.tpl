@@ -9,6 +9,9 @@
         <div class="actions">
             {if $can_edit}
                 <span class="btn btn-circle blue" onclick="MDriver.add();"> <i class="fa fa-plus"></i> Registrar </span>
+                <span class="btn btn-circle btn-outline green-jungle" onclick="MImportCabify.open();">
+                    <i class="fa fa-file-excel-o"></i> Importar Cabify
+                </span>
             {/if}
         </div>
     </div>
@@ -479,17 +482,20 @@
 </div>
 <!-- END MODAL -->
 
-
 {literal}
 <script>
     function $Ready(){
         MDriver.init();
         //MDriver.add();
+
+        //MImportCabify.open();
     }
 </script>
 {/literal}
 
 {include file='_footer.tpl' js=[
+    'assets/global/plugins/jquery.form.min.js',
+    'views/js/m_import_cabify.js',
     'views/js/m_driver.js',
     'views/js/pager.js'
 ]}

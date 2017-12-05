@@ -76,7 +76,7 @@
                         <td class="nowrap">
 
                             {if $can_edit}
-                                <span onclick="MVoucher.open({$o.id},'{$o.pic_voucher}');"
+                                <span onclick="MVoucher.open(2, {$o.id});"
                                       class="btn btn-outline btn-circle dark btn-sm font-md">
                                     <i class="fa fa-paperclip"></i>
                                 </span>
@@ -91,19 +91,20 @@
                     </tr>
                 {/foreach}
 
-
-                <tr style="background:#e7ecf1">
-                    <td colspan="2"></td>
-                    <th>{$stg->coin}{$total_amount_due}</th>
-                    <td colspan="6"></td>
-                    <th>
+                {if $can_edit}
+                    <tr style="background:#e7ecf1">
+                        <td colspan="2"></td>
+                        <th>{$stg->coin}{$total_amount_due}</th>
+                        <td colspan="6"></td>
+                        <th>
                         <span class="btn btn-outline btn-circle red btn-xs font-md tooltips"
                               title="Eliminar cronograma de venta"
                               onclick="MDuesSale.removeAll({$driver->id});">
                             <i class="fa fa-trash"></i> Eliminar
                         </span>
-                    </th>
-                </tr>
+                        </th>
+                    </tr>
+                {/if}
 
                 </tbody>
             </table>
@@ -185,48 +186,7 @@
 </div>
 <!-- END MODAL -->
 
-<!-- MODAL VOUCHER -->
-<div id="modal_add_voucher" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"></button>
-                <h4 class="modal-title">---</h4>
-            </div>
-            <div class="modal-body">
-
-                <form class="form-horizontal" action="dues_sale/upload_voucher" method="post">
-                    <input type="hidden" name="action" value="upload_voucher">
-                    <input type="hidden" name="id" value="">
-
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <span class="btn green btn-file">
-                            <span class="fileinput-new"> Elegir imagen... </span>
-                            <span class="fileinput-exists"> Cambiar... </span>
-                            <input type="file" name="photo">
-                        </span>
-                        <span class="fileinput-filename"> </span> &nbsp;
-                        <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
-                    </div>
-
-                    <div style="max-width:100%; margin-top:10px">
-                        <img class="image" src="">
-                        <a href="#" class="btn btn-default btn-sm link" target="_blank">Mostrar archivo</a>
-                    </div>
-
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-outline btn-default cancel">Cerrar</button>
-                <button type="button" class="btn blue save hide">Generar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END MODAL VOUCHER -->
-
-<!-- MODAL VOUCHER -->
+<!-- MODAL EDIT SALE -->
 <div id="modal_edit_dues_sale" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -260,14 +220,13 @@
         </div>
     </div>
 </div>
-<!-- END MODAL VOUCHER -->
+<!-- END MODAL EDIT SALE -->
 
 
 {literal}
 <script>
     function $Ready(){
         MDuesSale.init();
-        MVoucher.init();
         MEditDuesSale.init();
 
         //MEditDuesSale.open(1, 0);
@@ -286,5 +245,6 @@
 {include file='_footer.tpl' js=[
     'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
     'assets/global/plugins/jquery.form.min.js',
+    'views/js/m_voucher.js',
     'views/js/m_dues_sale.js'
 ]}
