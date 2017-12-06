@@ -37,6 +37,7 @@ var MImportCabify = {
 
             '   </div>' +
             '   <div class="modal-footer">' +
+            '    <a href="drivers/generate_cabify_template" class="btn btn-outline btn-default pull-left down" download><i class="fa fa-download"></i> Descargar plantilla</a>' +
             '    <button type="button" data-dismiss="modal" class="btn btn-outline btn-default cancel">Cerrar</button>' +
             '   </div>' +
             '  </div>' +

@@ -222,7 +222,7 @@ var MDuesRentalPay = {
 
         MDuesRentalPay.$form.id.val(o.id);
         MDuesRentalPay.$form.amount_total.val(o.amount_total);
-        MDuesRentalPay.$form.amount_paid.val('');
+        MDuesRentalPay.$form.amount_paid.val(o.amount_paid!='0' ? o.amount_paid : '');
         MDuesRentalPay.$form.amount_paid.attr('placeholder','Monto total: '+stg.coin+o.amount_total);
         //MDuesRentalPay.$form.amount_paid.val(o.amount_due);
         MDuesRentalPay.$form.amount_cabify.val(o.amount_cabify);

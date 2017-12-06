@@ -80,7 +80,7 @@
             </div>
             <div class="modal-body">
 
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="drivers/add" method="post">
                     <input type="hidden" name="action" value="add">
                     <input type="hidden" name="id" value="">
 
@@ -248,6 +248,13 @@
                                             <label class="col-md-5 control-label">Número de cuenta</label>
                                             <div class="col-md-7">
                                                 <input class="form-control" name="bank_account" placeholder="Escribir...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Foto de perfil</label>
+                                            <div class="col-md-7">
+                                                <input type="file" name="photo">
                                             </div>
                                         </div>
 
@@ -475,7 +482,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn red pull-left remove">Eliminar</button>
                 <button type="button" data-dismiss="modal" class="btn btn-outline btn-default cancel">Cancelar</button>
-                <button type="button" class="btn blue save">Guardar</button>
+                <button class="btn blue save">Guardar</button>
             </div>
         </div>
     </div>

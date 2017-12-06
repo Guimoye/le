@@ -57,7 +57,7 @@
                         <td> {$stg->coin}{$o.amount_total|string_format:"%.2f"} </td>
                         <td> {$stg->coin}{$o.amount_paid|string_format:"%.2f"} </td>
                         <td class="nowrap">
-                            {$o.date_paid}
+                            {if !empty($o.date_paid)}{$o.date_paid|date_format:"%d-%m-%Y"}<br>{/if}
                             {if $o.pay_state == 'paid'}
 
                                 {if $o.all_paid}

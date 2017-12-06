@@ -43,7 +43,7 @@
     </script>
 </head>
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid {if isset($sidebar_closed)}page-sidebar-closed{/if}">
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid {if $stg->menu_collapsed==1}page-sidebar-closed{/if}">
 
     <!-- HEADER -->
     <div class="page-header navbar navbar-fixed-top">
@@ -134,7 +134,8 @@
             <div class="page-sidebar navbar-collapse collapse">
 
                 <!-- SIDEBAR MENU -->
-                <ul class="page-sidebar-menu  page-header-fixed {if isset($sidebar_closed)}page-sidebar-menu-closed{/if}" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top:10px">
+                <ul class="page-sidebar-menu  page-header-fixed {if $stg->menu_collapsed==1}page-sidebar-menu-closed{/if}"
+                    data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top:10px">
                     <li class="sidebar-toggler-wrapper hide">
                         <!-- SIDEBAR TOGGLER BUTTON -->
                         <div class="sidebar-toggler"> </div>

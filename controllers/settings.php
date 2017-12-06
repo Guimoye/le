@@ -15,6 +15,7 @@
         $data['igv']                = @$_POST['igv'] ?: '';
         $data['comp_name']          = @$_POST['comp_name'] ?: '';
         $data['comp_ruc']           = @$_POST['comp_ruc'] ?: '';
+        $data['menu_collapsed']     = isset($_POST['menu_collapsed']) ? 1 : 0;
         if($this->update($data)){
             $this->rsp['ok'] = true;
         } else $this->rsp['msg'] = 'Erroe interno::DB';

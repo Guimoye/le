@@ -71,7 +71,12 @@ var MDriver = {
         this.$modal.remove.click(function(){
             MDriver.remove(MDriver.$id.val());
         });
-        $('.save', this.$modal).click(this.save);
+
+        this.$form.ajaxForm(this.save);
+        $('.save', this.$modal).click(function(){
+            MDriver.$form.submit();
+        });
+        //$('.save', this.$modal).click(this.save);
 
         this.$form.id_brand.change(function(){
             MDriver.getModelsBrand(0);
@@ -100,7 +105,31 @@ var MDriver = {
     },
 
     // Guardar
-    save: function(){
+    save: {
+        beforeSend: function() {
+            Loading.show();
+        },
+        complete: function(xhr) {
+            Loading.hide();
+            var rsp = JSON.parse(xhr.responseText);
+            if(rsp.ok == true){
+                toastr.success('Guardado correctamente');
+                MDriver.$modal.modal('hide');
+
+                if(MDriver.callback == null){
+                    location.reload();
+                } else {
+                    MDriver.callback(rsp.id, false);
+                }
+
+            } else {
+                bootbox.alert(rsp.msg);
+            }
+        }
+    },
+
+    // Guardar
+    /*save: function(){
         api('drivers/add', MDriver.$form.serializeObject(), function(rsp){
             if(rsp.ok == true){
                 toastr.success('Guardado correctamente');
@@ -116,7 +145,7 @@ var MDriver = {
                 bootbox.alert(rsp.msg);
             }
         }, 'Registrando...');
-    },
+    },*/
     
     // Abrir para nuevo NUEVO
     add: function(){

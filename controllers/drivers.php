@@ -546,6 +546,13 @@
                     $this->rsp['msg'] = 'Se produjo un error al registrar';
                 }
             }
+
+            $id = $this->rsp['id'];
+            if($this->rsp['ok'] && $id > 0){
+
+                $this->uploadPicToDriverByFile($id, @$_FILES['photo']);
+
+            }
         }
         $this->rsp();
     }
@@ -579,23 +586,25 @@
         $this->rsp();
     }
 
-    public function upload_pic(){
-        $this->checkEditPerms();
-
-        $id = _POST_INT('id');
-
-        $photo = (isset($_FILES['photo']) ? $_FILES['photo'] : '' );
-
-        $this->rsp['photo'] = $photo;
+    /**
+     * @param $id
+     * @param $photo
+     * @return array
+     */
+    private function uploadPicToDriverByFile($id, $photo){
+        $rsp = [
+            'ok' => false,
+            'msg' => '---'
+        ];
 
         if($id <= 0){
-            $this->rsp['msg'] = 'No se reconoce el registro';
+            $rsp['msg'] = 'No se reconoce el registro';
 
         } else if(empty($photo['name'])){
-            $this->rsp['msg'] = 'No se ha seleccionado la imágen';
+            $rsp['msg'] = 'No se ha seleccionado la imágen';
 
         } else {
-            require('inc/plugins/ImageResize.php');
+            require_once('inc/plugins/ImageResize.php');
             $ext = pathinfo($photo['name'], PATHINFO_EXTENSION);
             $pic = md5(uniqid($id)).'.'.$ext;
 
@@ -605,17 +614,32 @@
             $image->resize();
             if($image->save('uploads/'.$pic)){
                 if($this->db->update('drivers', ['pic'=>$pic], $id)){
-                    $this->rsp['pic'] = $pic;
-                    $this->rsp['ok'] = true;
+                    $rsp['pic'] = $pic;
+                    $rsp['ok'] = true;
 
                 } else {
-                    $this->rsp['msg'] = 'Error interno :: DB';
+                    $rsp['msg'] = 'Error interno :: DB';
                 }
             } else {
-                $this->rsp['msg'] = 'Error al guardar la imágen';
+                $rsp['msg'] = 'Error al guardar la imágen';
             }
 
         }
+
+        return $rsp;
+    }
+
+    public function upload_pic(){
+        $this->checkEditPerms();
+
+        $id = _POST_INT('id');
+
+        $photo = (isset($_FILES['photo']) ? $_FILES['photo'] : '' );
+
+        $this->rsp['photo'] = $photo;
+
+        $this->rsp = $this->uploadPicToDriverByFile($id, $photo);
+
         $this->rsp();
     }
 
@@ -623,22 +647,25 @@
 
         $csv = $this->uu->getDataCSV(@$_FILES['file']['tmp_name']);
 
+        $ix_id      = -1;
         $ix_dni     = -1;
         $ix_amount  = -1;
 
         // Obtener los indices de las columnas para identificar datos
         foreach($csv->cols as $ix => $col){
-            if($col == 'No. DNI')       $ix_dni     = $ix;
-            if($col == 'Producción')    $ix_amount  = $ix;
+            if($col == 'ID_DRIVER')         $ix_id      = $ix;
+            if($col == 'No. DNI')           $ix_dni     = $ix;
+            if($col == 'Cuota recaudada')   $ix_amount  = $ix;
         }
 
         // Indices de columnas corectos
-        if($ix_dni != -1 && $ix_amount != -1){
+        if($ix_id != -1 && $ix_dni != -1 && $ix_amount != -1){
 
             $items = [];
 
             foreach($csv->rows as $row){
                 $item = [];
+                $id     = trim(@$row[$ix_id]);
                 $dni    = trim(@$row[$ix_dni]);
                 $amount = (float) @$row[$ix_amount];
 
@@ -674,7 +701,13 @@
                             ];
 
                             if($this->db->update('dues_rental', ['amount_cabify'=>$amount], $du->id)){
-                                $item['ok'] = true;
+
+                                if($this->db->update('drivers',['cabify_id'=>$id], $dv->id)){
+                                    $item['ok'] = true;
+
+                                } else {
+                                    $item['msg'] = 'Error interno :: Actualizar ID Cabify';
+                                }
 
                             } else {
                                 $item['msg'] = 'Error interno :: DB';
@@ -699,6 +732,20 @@
         //$this->rsp['$csv'] = $csv;
 
         $this->rsp();
+    }
+
+    public function generate_cabify_template(){
+        header('Content-Type: application/csv; charset=UTF-8');
+        header('Content-Disposition: attachment; filename="modelo_cabify.csv";');
+
+        echo 'ID_DRIVER,No. DNI,Nombre Completo,Cuota Mensual,Cuota recaudada';
+
+        $os = $this->db->get("SELECT * FROM drivers WHERE state != 0");
+        while($o = $os->fetch_object()){
+            echo "\n";
+            echo $o->cabify_id.','.$o->dni.','.$o->name.' '.$o->surname.',, ';
+        }
+
     }
 
     function debug($data) {

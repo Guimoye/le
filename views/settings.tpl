@@ -47,6 +47,15 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-6 control-label"></label>
+                            <div class="col-md-6">
+                                <label>
+                                    <input type="checkbox" name="menu_collapsed" value="1" {if $stg->menu_collapsed==1}checked{/if}>
+                                    Menu siempre colapsado
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-md-6"></label>
                             <div class="col-md-6 bold"> Empresa </div>
                         </div>
@@ -78,7 +87,8 @@
     function saveSetting(id_form){
         api('settings/edit_general', $('#'+id_form).serializeObject(), function(rsp){
             if(rsp.ok){
-                toastr.success('Guardado correctamente')
+                toastr.success('Guardado correctamente');
+                location.reload();
             } else {
                 bootbox.alert(rsp.msg);
             }
