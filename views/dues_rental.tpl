@@ -36,8 +36,8 @@
                     <th> Dsctos </th>
                     <th> Préstamos </th>
                     <th> Anterior </th>
-                    <th> Monto Total </th>
-                    <th> Monto Pagado </th>
+                    <th> Saldo por pagar </th>
+                    <th> Pago directo </th>
                     <th width="1%" class="nowrap"> Fecha de pago </th>
                     <th width="1%">Opciones</th>
                 </tr>
@@ -246,6 +246,13 @@
                         <label class="col-md-4 control-label">Fecha de pago</label>
                         <div class="col-md-6">
                             <input class="form-control" name="date_paid" type="date">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Comprobante de Pago</label>
+                        <div class="col-md-6">
+                            <input class="form-control" name="voucher_code" placeholder="Código de comprobante de pago">
                         </div>
                     </div>
 

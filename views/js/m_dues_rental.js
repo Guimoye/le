@@ -182,6 +182,7 @@ var MDuesRentalPay = {
         this.$form.amount_penalty   = $('input[name="amount_penalty"]', this.$form);
         this.$form.amount_discount  = $('input[name="amount_discount"]', this.$form);
         this.$form.date_paid        = $('input[name="date_paid"]', this.$form);
+        this.$form.voucher_code     = $('input[name="voucher_code"]', this.$form);
 
         // Asignar eventos
         //$('.save', this.$modal).click(this.save);
@@ -229,6 +230,7 @@ var MDuesRentalPay = {
         MDuesRentalPay.$form.amount_penalty.val(o.amount_penalty);
         MDuesRentalPay.$form.amount_discount.val(o.amount_discount);
         MDuesRentalPay.$form.date_paid.val(o.date_paid==null?o.date_due:o.date_paid);
+        MDuesRentalPay.$form.voucher_code.val(o.voucher_code);
 
         console.log(o.date_paid);
     }

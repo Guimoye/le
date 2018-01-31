@@ -217,6 +217,7 @@
         $amount_penalty     = _POST_INT('amount_penalty');
         $amount_discount    = _POST_INT('amount_discount');
         $date_paid          = _POST('date_paid');
+        $voucher_code       = _POST('voucher_code');
 
         // Obtener actual cuota a pagar
         $SQL = "SELECT dr.*,
@@ -233,7 +234,7 @@
         if(!$due){
             $this->rsp['msg'] = 'No se reconoce el registro';
 
-        } else if($amount <= 0){
+        } else if($amount < 0){
             $this->rsp['msg'] = 'Debe ingresar un monto válido';
 
         } else if(!$this->uu->isDate($date_paid)){
@@ -256,6 +257,7 @@
             $data['amount_penalty']     = $amount_penalty;
             $data['amount_discount']    = $amount_discount;
             $data['date_paid']          = $date_paid;
+            $data['voucher_code']       = $voucher_code;
             $data['state']              = 3; // Pago total
 
             // El pago parcial es cuando el pago de alquiler es menor, solo eso
@@ -264,15 +266,15 @@
             }
 
             // La siguiente cuota
+            $next_amount = 0; // Actualizamos el monto anterior de la siguiente cuota, para garantizar que cuando se actualice
             if($amount < $amount_total){
                 $next_amount = $amount_total - $amount; // A pagar el proximo mes
-
-                // Obtener la siguiente cuota
-                $nextO = $this->db->o("SELECT * FROM dues_rental WHERE id_driver = $due->id_driver AND num_due > $due->num_due AND state != 0 LIMIT 1");
-                if($nextO){
-                    $this->db->update('dues_rental', ['amount_previous' => $next_amount], $nextO->id);
-                    //exit('$nextO: '.$nextO->id);
-                }
+            }
+            // Obtener la siguiente cuota
+            $nextO = $this->db->o("SELECT * FROM dues_rental WHERE id_driver = $due->id_driver AND num_due > $due->num_due AND state != 0 LIMIT 1");
+            if($nextO){
+                $this->db->update('dues_rental', ['amount_previous' => $next_amount], $nextO->id);
+                //exit('$nextO: '.$nextO->id);
             }
 
             if($this->db->update('dues_rental', $data, $id)){
