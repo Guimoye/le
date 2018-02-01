@@ -135,7 +135,7 @@
                                     {/if}
                                     <br>
                                     {if $rental->weeks_late > 0}
-                                        <span class="badge badge-danger">Retraso de {$rental->weeks_late} semanas</span>
+                                        <span class="badge badge-danger">Retraso de {$rental->weeks_late} cuotas</span>
                                     {else}
                                         <span class="font-sm font-green-jungle">Pagos al día</span>
                                     {/if}
@@ -163,7 +163,7 @@
                                     {/if}
                                     <br>
                                     {if $sale->weeks_late > 0}
-                                        <span class="badge badge-danger">Retraso de {$sale->weeks_late} semanas</span>
+                                        <span class="badge badge-danger">Retraso de {$sale->weeks_late} cuotas</span>
                                     {else}
                                         <span class="font-sm font-green-jungle">Pagos al día</span>
                                     {/if}

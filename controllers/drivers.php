@@ -88,7 +88,7 @@
 
             $due_time = strtotime($o->date_due);
 
-            if($o->amount_paid == 0 && $due_time < $today_time){
+            if($o->state == 1 && $due_time < $today_time){
                 $rental->weeks_late += 1;
             }
 

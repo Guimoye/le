@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6ef41d0-86c3-462e-87a4-a986f3ae332a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/76813738-3381-443e-bc21-6aa1b39fb81c.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/76813738-3381-443e-bc21-6aa1b39fb81c.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/_base.php" afterPath="$PROJECT_DIR$/controllers/_base.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/dues_rental.php" afterPath="$PROJECT_DIR$/controllers/dues_rental.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/dues_rental.tpl" afterPath="$PROJECT_DIR$/views/dues_rental.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/js/m_dues_rental.js" afterPath="$PROJECT_DIR$/views/js/m_dues_rental.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/drivers.php" afterPath="$PROJECT_DIR$/controllers/drivers.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/driver.tpl" afterPath="$PROJECT_DIR$/views/driver.tpl" />
     </list>
     <ignored path="SmartRest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,92 +51,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dues_rental.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/dues_rental.php">
+      <file leaf-file-name="drivers.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/drivers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="270" column="81" lean-forward="true" selection-start-line="270" selection-start-column="81" selection-end-line="270" selection-end-column="81" />
+            <state relative-caret-position="414">
+              <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding>
-                <element signature="n#add#0;n#dues_rental#0;n#!!top" expanded="false" />
-                <element signature="n#remove_all#0;n#dues_rental#0;n#!!top" expanded="false" />
-                <element signature="n#set_due_unpaid#0;n#dues_rental#0;n#!!top" expanded="false" />
-                <element signature="n#set_free_days#0;n#dues_rental#0;n#!!top" expanded="false" />
-                <element signature="n#get_pics#0;n#dues_rental#0;n#!!top" expanded="false" />
-                <element signature="n#remove_pic#0;n#dues_rental#0;n#!!top" expanded="false" />
-                <element signature="n#upload_voucher#0;n#dues_rental#0;n#!!top" expanded="false" />
-                <marker date="1517413417000" expanded="true" signature="1137:1550" ph="SELECT dr.*,... dues_rental" />
-                <marker date="1517413417000" expanded="true" signature="4238:4307" ph="SELECT * FRO... dues_rental" />
-                <marker date="1517413417000" expanded="true" signature="6193:6244" ph="UPDATE dues_... " />
-                <marker date="1517413417000" expanded="true" signature="7193:7597" ph="SELECT dr.*,... dues_rental" />
-                <marker date="1517413417000" expanded="true" signature="9250:9360" ph="SELECT * FRO... dues_rental" />
-                <marker date="1517413417000" expanded="true" signature="9744:9975" ph="SELECT dl.* dues_loans" />
-                <marker date="1517413417000" expanded="true" signature="10613:10681" ph="UPDATE dues_... " />
-                <marker date="1517413417000" expanded="true" signature="11119:11341" ph="SELECT du.*,... dues_rental" />
-                <marker date="1517413417000" expanded="true" signature="13321:13474" ph="SELECT * FRO... dues_rental" />
-                <marker date="1517413417000" expanded="true" signature="16027:16095" ph="SELECT * FRO... pics" />
+                <element signature="n#index#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#finish_driver#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#add#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#remove#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#get_models_brand#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#uploadPicToDriverByFile#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#upload_pic#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#import_cabify#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#generate_cabify_template#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#debug#0;n#drivers#0;n#!!top" expanded="false" />
+                <element signature="n#escape#0;n#drivers#0;n#!!top" expanded="false" />
+                <marker date="1517419190000" expanded="true" signature="347:386" ph="SELECT * FRO... vh_brands" />
+                <marker date="1517419190000" expanded="true" signature="437:487" ph="SELECT * FRO... fleets" />
+                <marker date="1517419190000" expanded="true" signature="1835:2052" ph="SELECT dl.* dues_loans" />
+                <marker date="1517419190000" expanded="true" signature="2677:2765" ph="SELECT * FRO... dues_rental" />
+                <marker date="1517419190000" expanded="true" signature="4275:4361" ph="SELECT * FRO... dues_sale" />
+                <marker date="1517419190000" expanded="true" signature="5567:5651" ph="SELECT * FRO... expenses" />
+                <marker date="1517419190000" expanded="true" signature="6804:6885" ph="SELECT * FRO... loans" />
+                <marker date="1517419190000" expanded="true" signature="7808:7923" ph="SELECT * FRO... maintenances" />
+                <marker date="1517419190000" expanded="true" signature="8461:8576" ph="SELECT * FRO... maintenances" />
+                <marker date="1517419190000" expanded="true" signature="9093:9162" ph="SELECT * FRO... obligations" />
+                <marker date="1517419190000" expanded="true" signature="11111:11281" ph="SELECT dr.* drivers" />
+                <marker date="1517419190000" expanded="true" signature="11751:11852" ph="SELECT SUM(a... loans" />
+                <marker date="1517419190000" expanded="true" signature="11954:12058" ph="SELECT SUM(a... expenses" />
+                <marker date="1517419190000" expanded="true" signature="12188:12278" ph="SELECT id FR... dues_rental" />
+                <marker date="1517419190000" expanded="true" signature="12581:12647" ph="SELECT * FRO... maintenances" />
+                <marker date="1517419190000" expanded="true" signature="13441:13506" ph="SELECT * FRO... dues_rental" />
+                <marker date="1517419190000" expanded="true" signature="14365:14389" ph="..." />
+                <marker date="1517419190000" expanded="true" signature="21583:21623" ph="UPDATE drive... " />
+                <marker date="1517419190000" expanded="true" signature="21951:22015" ph="SELECT * FRO... vh_models" />
+                <marker date="1517419190000" expanded="true" signature="25252:25505" ph="SELECT * FRO... dues_rental" />
+                <marker date="1517419190000" expanded="true" signature="27259:27297" ph="SELECT * FRO... drivers" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_base.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/_base.php">
+      <file leaf-file-name="drivers.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/drivers.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dues_rental" pinned="false" current-in-tab="false">
-        <entry file="das://table:/517b3f01/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/leasecapital.dues_rental">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dues_rental.tpl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="39" column="43" lean-forward="true" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+            <state relative-caret-position="742">
+              <caret line="73" column="103" lean-forward="false" selection-start-line="73" selection-start-column="103" selection-end-line="73" selection-end-column="103" />
               <folding>
-                <element signature="e#1017#1040#0#HTML" expanded="true" />
-                <element signature="e#4952#4978#0#HTML" expanded="true" />
-                <element signature="e#9284#12934#0#HTML" expanded="false" />
-                <element signature="e#12980#16980#0#HTML" expanded="false" />
-                <element signature="e#13624#13647#0#HTML" expanded="true" />
-                <element signature="e#13710#13727#0#HTML" expanded="true" />
-                <element signature="e#13768#13801#0#HTML" expanded="true" />
-                <element signature="e#14058#14075#0#HTML" expanded="true" />
-                <element signature="e#14116#14149#0#HTML" expanded="true" />
-                <element signature="e#14406#14423#0#HTML" expanded="true" />
-                <element signature="e#14464#14497#0#HTML" expanded="true" />
-                <element signature="e#14754#14771#0#HTML" expanded="true" />
-                <element signature="e#14812#14845#0#HTML" expanded="true" />
-                <element signature="e#15102#15119#0#HTML" expanded="true" />
-                <element signature="e#15160#15193#0#HTML" expanded="true" />
-                <element signature="e#15450#15467#0#HTML" expanded="true" />
-                <element signature="e#15508#15541#0#HTML" expanded="true" />
-                <element signature="e#15798#15815#0#HTML" expanded="true" />
-                <element signature="e#15856#15889#0#HTML" expanded="true" />
-                <element signature="e#16218#16243#0#HTML" expanded="true" />
+                <element signature="e#2613#27267#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="m_dues_rental.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental.js">
+      <file leaf-file-name="driver.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/driver.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="212" column="20" lean-forward="true" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
+            <state relative-caret-position="305">
+              <caret line="137" column="104" lean-forward="false" selection-start-line="137" selection-start-column="94" selection-end-line="137" selection-end-column="104" />
               <folding>
-                <element signature="e#34#5441#0" expanded="false" />
-                <element signature="e#8225#12317#0" expanded="false" />
+                <element signature="e#5101#5196#0#HTML" expanded="true" />
+                <element signature="e#5282#5316#0#HTML" expanded="true" />
+                <element signature="e#6914#7009#0#HTML" expanded="true" />
+                <element signature="e#7095#7127#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -159,10 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>driver</find>
-      <find>rental_started</find>
-      <find>El programa de alquiler para este conductor se generó previamente.</find>
-      <find>insert</find>
       <find>dues_sale</find>
       <find>dues_ren</find>
       <find>= 1</find>
@@ -189,6 +159,10 @@
       <find>save:</find>
       <find>$form.date_paid</find>
       <find>$next_amount</find>
+      <find>semanas</find>
+      <find>cuotas</find>
+      <find>-&gt;weeks_late</find>
+      <find>rental-&gt;weeks_late</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;tr&gt;</replace>
@@ -259,16 +233,16 @@
         <option value="$PROJECT_DIR$/views/_header.tpl" />
         <option value="$PROJECT_DIR$/views/settings.tpl" />
         <option value="$PROJECT_DIR$/controllers/settings.php" />
-        <option value="$PROJECT_DIR$/views/driver.tpl" />
         <option value="$PROJECT_DIR$/views/drivers.tpl" />
         <option value="$PROJECT_DIR$/views/js/m_driver.js" />
         <option value="$PROJECT_DIR$/views/js/m_import_cabify.js" />
-        <option value="$PROJECT_DIR$/controllers/drivers.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/76813738-3381-443e-bc21-6aa1b39fb81c/console.sql" />
         <option value="$PROJECT_DIR$/views/js/m_dues_rental.js" />
         <option value="$PROJECT_DIR$/controllers/dues_rental.php" />
         <option value="$PROJECT_DIR$/controllers/_base.php" />
         <option value="$PROJECT_DIR$/views/dues_rental.tpl" />
+        <option value="$PROJECT_DIR$/views/driver.tpl" />
+        <option value="$PROJECT_DIR$/controllers/drivers.php" />
       </list>
     </option>
   </component>
@@ -329,7 +303,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -357,7 +331,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -587,27 +561,27 @@
       <workItem from="1512592800064" duration="3424000" />
       <workItem from="1512597049821" duration="496000" />
       <workItem from="1517411867057" duration="1750000" />
+      <workItem from="1517418601418" duration="968000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="926094000" />
+    <option name="totallyTimeSpent" value="927062000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1605" y="-257" width="1605" height="1005" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1605886" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2028151" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32527474" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280363" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22087912" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15866922" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2028151" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2495238" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280363" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39932126" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22617246" sideWeight="0.50653595" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -616,6 +590,7 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="280" y="126" width="1458" height="737" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277592" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22087912" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32524806" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -703,7 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -865,7 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="20" column="55" lean-forward="true" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,24 +849,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/driver.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="53" lean-forward="true" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/js/m_driver.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="71" column="46" lean-forward="true" selection-start-line="71" selection-start-column="46" selection-end-line="71" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/drivers.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="87" column="50" lean-forward="true" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -905,7 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="26" lean-forward="false" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,43 +880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="59" lean-forward="false" selection-start-line="0" selection-start-column="59" selection-end-line="0" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/drivers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="642" column="21" lean-forward="false" selection-start-line="642" selection-start-column="21" selection-end-line="642" selection-end-column="21" />
-          <folding>
-            <element signature="n#item#0;n#drivers#0;n#!!top" expanded="false" />
-            <element signature="n#pager#0;n#drivers#0;n#!!top" expanded="false" />
-            <element signature="n#finish_driver#0;n#drivers#0;n#!!top" expanded="false" />
-            <element signature="n#remove#0;n#drivers#0;n#!!top" expanded="false" />
-            <element signature="n#get_models_brand#0;n#drivers#0;n#!!top" expanded="false" />
-            <element signature="n#import_cabify#0;n#drivers#0;n#!!top" expanded="false" />
-            <marker date="1517411298000" expanded="true" signature="347:386" ph="SELECT * FRO... vh_brands" />
-            <marker date="1517411298000" expanded="true" signature="437:487" ph="SELECT * FRO... fleets" />
-            <marker date="1517411298000" expanded="true" signature="1835:2052" ph="SELECT dl.* dues_loans" />
-            <marker date="1517411298000" expanded="true" signature="2677:2765" ph="SELECT * FRO... dues_rental" />
-            <marker date="1517411298000" expanded="true" signature="4281:4367" ph="SELECT * FRO... dues_sale" />
-            <marker date="1517411298000" expanded="true" signature="5573:5657" ph="SELECT * FRO... expenses" />
-            <marker date="1517411298000" expanded="true" signature="6810:6891" ph="SELECT * FRO... loans" />
-            <marker date="1517411298000" expanded="true" signature="7814:7929" ph="SELECT * FRO... maintenances" />
-            <marker date="1517411298000" expanded="true" signature="8467:8582" ph="SELECT * FRO... maintenances" />
-            <marker date="1517411298000" expanded="true" signature="9099:9168" ph="SELECT * FRO... obligations" />
-            <marker date="1517411298000" expanded="true" signature="11117:11287" ph="SELECT dr.* drivers" />
-            <marker date="1517411298000" expanded="true" signature="11757:11858" ph="SELECT SUM(a... loans" />
-            <marker date="1517411298000" expanded="true" signature="11960:12064" ph="SELECT SUM(a... expenses" />
-            <marker date="1517411298000" expanded="true" signature="12194:12284" ph="SELECT id FR... dues_rental" />
-            <marker date="1517411298000" expanded="true" signature="12587:12653" ph="SELECT * FRO... maintenances" />
-            <marker date="1517411298000" expanded="true" signature="13447:13512" ph="SELECT * FRO... dues_rental" />
-            <marker date="1517411298000" expanded="true" signature="14371:14395" ph="..." />
-            <marker date="1517411298000" expanded="true" signature="21589:21629" ph="UPDATE drive... " />
-            <marker date="1517411298000" expanded="true" signature="21957:22021" ph="SELECT * FRO... vh_models" />
-            <marker date="1517411298000" expanded="true" signature="25258:25511" ph="SELECT * FRO... dues_rental" />
-            <marker date="1517411298000" expanded="true" signature="27265:27303" ph="SELECT * FRO... drivers" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -971,8 +892,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="212" column="20" lean-forward="true" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
+        <state relative-caret-position="884">
+          <caret line="212" column="20" lean-forward="false" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
           <folding>
             <element signature="e#34#5441#0" expanded="false" />
             <element signature="e#8225#12317#0" expanded="false" />
@@ -980,10 +901,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/_base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/dues_rental.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
-          <caret line="270" column="81" lean-forward="true" selection-start-line="270" selection-start-column="81" selection-end-line="270" selection-end-column="81" />
+          <caret line="270" column="81" lean-forward="false" selection-start-line="270" selection-start-column="81" selection-end-line="270" selection-end-column="81" />
           <folding>
             <element signature="n#add#0;n#dues_rental#0;n#!!top" expanded="false" />
             <element signature="n#remove_all#0;n#dues_rental#0;n#!!top" expanded="false" />
@@ -1006,39 +943,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/_base.php">
+    <entry file="file://$PROJECT_DIR$/views/driver.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="305">
+          <caret line="137" column="104" lean-forward="false" selection-start-line="137" selection-start-column="94" selection-end-line="137" selection-end-column="104" />
+          <folding>
+            <element signature="e#5101#5196#0#HTML" expanded="true" />
+            <element signature="e#5282#5316#0#HTML" expanded="true" />
+            <element signature="e#6914#7009#0#HTML" expanded="true" />
+            <element signature="e#7095#7127#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
+    <entry file="file://$PROJECT_DIR$/views/drivers.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="39" column="43" lean-forward="true" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+        <state relative-caret-position="742">
+          <caret line="73" column="103" lean-forward="false" selection-start-line="73" selection-start-column="103" selection-end-line="73" selection-end-column="103" />
           <folding>
-            <element signature="e#1017#1040#0#HTML" expanded="true" />
-            <element signature="e#4952#4978#0#HTML" expanded="true" />
-            <element signature="e#9284#12934#0#HTML" expanded="false" />
-            <element signature="e#12980#16980#0#HTML" expanded="false" />
-            <element signature="e#13624#13647#0#HTML" expanded="true" />
-            <element signature="e#13710#13727#0#HTML" expanded="true" />
-            <element signature="e#13768#13801#0#HTML" expanded="true" />
-            <element signature="e#14058#14075#0#HTML" expanded="true" />
-            <element signature="e#14116#14149#0#HTML" expanded="true" />
-            <element signature="e#14406#14423#0#HTML" expanded="true" />
-            <element signature="e#14464#14497#0#HTML" expanded="true" />
-            <element signature="e#14754#14771#0#HTML" expanded="true" />
-            <element signature="e#14812#14845#0#HTML" expanded="true" />
-            <element signature="e#15102#15119#0#HTML" expanded="true" />
-            <element signature="e#15160#15193#0#HTML" expanded="true" />
-            <element signature="e#15450#15467#0#HTML" expanded="true" />
-            <element signature="e#15508#15541#0#HTML" expanded="true" />
-            <element signature="e#15798#15815#0#HTML" expanded="true" />
-            <element signature="e#15856#15889#0#HTML" expanded="true" />
-            <element signature="e#16218#16243#0#HTML" expanded="true" />
+            <element signature="e#2613#27267#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/drivers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding>
+            <element signature="n#index#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#finish_driver#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#add#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#remove#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#get_models_brand#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#uploadPicToDriverByFile#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#upload_pic#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#import_cabify#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#generate_cabify_template#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#debug#0;n#drivers#0;n#!!top" expanded="false" />
+            <element signature="n#escape#0;n#drivers#0;n#!!top" expanded="false" />
+            <marker date="1517419190000" expanded="true" signature="347:386" ph="SELECT * FRO... vh_brands" />
+            <marker date="1517419190000" expanded="true" signature="437:487" ph="SELECT * FRO... fleets" />
+            <marker date="1517419190000" expanded="true" signature="1835:2052" ph="SELECT dl.* dues_loans" />
+            <marker date="1517419190000" expanded="true" signature="2677:2765" ph="SELECT * FRO... dues_rental" />
+            <marker date="1517419190000" expanded="true" signature="4275:4361" ph="SELECT * FRO... dues_sale" />
+            <marker date="1517419190000" expanded="true" signature="5567:5651" ph="SELECT * FRO... expenses" />
+            <marker date="1517419190000" expanded="true" signature="6804:6885" ph="SELECT * FRO... loans" />
+            <marker date="1517419190000" expanded="true" signature="7808:7923" ph="SELECT * FRO... maintenances" />
+            <marker date="1517419190000" expanded="true" signature="8461:8576" ph="SELECT * FRO... maintenances" />
+            <marker date="1517419190000" expanded="true" signature="9093:9162" ph="SELECT * FRO... obligations" />
+            <marker date="1517419190000" expanded="true" signature="11111:11281" ph="SELECT dr.* drivers" />
+            <marker date="1517419190000" expanded="true" signature="11751:11852" ph="SELECT SUM(a... loans" />
+            <marker date="1517419190000" expanded="true" signature="11954:12058" ph="SELECT SUM(a... expenses" />
+            <marker date="1517419190000" expanded="true" signature="12188:12278" ph="SELECT id FR... dues_rental" />
+            <marker date="1517419190000" expanded="true" signature="12581:12647" ph="SELECT * FRO... maintenances" />
+            <marker date="1517419190000" expanded="true" signature="13441:13506" ph="SELECT * FRO... dues_rental" />
+            <marker date="1517419190000" expanded="true" signature="14365:14389" ph="..." />
+            <marker date="1517419190000" expanded="true" signature="21583:21623" ph="UPDATE drive... " />
+            <marker date="1517419190000" expanded="true" signature="21951:22015" ph="SELECT * FRO... vh_models" />
+            <marker date="1517419190000" expanded="true" signature="25252:25505" ph="SELECT * FRO... dues_rental" />
+            <marker date="1517419190000" expanded="true" signature="27259:27297" ph="SELECT * FRO... drivers" />
           </folding>
         </state>
       </provider>
