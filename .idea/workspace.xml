@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e6ef41d0-86c3-462e-87a4-a986f3ae332a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/drivers.php" afterPath="$PROJECT_DIR$/controllers/drivers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/driver.tpl" afterPath="$PROJECT_DIR$/views/driver.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/mysql.php" afterPath="$PROJECT_DIR$/inc/mysql.php" />
     </list>
     <ignored path="SmartRest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,11 +50,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="drivers.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="drivers.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/drivers.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="414">
-              <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+              <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding>
                 <element signature="n#index#0;n#drivers#0;n#!!top" expanded="false" />
                 <element signature="n#finish_driver#0;n#drivers#0;n#!!top" expanded="false" />
@@ -94,14 +93,36 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="mysql.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/inc/mysql.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding>
+                <marker date="1520958156000" expanded="true" signature="697:735" ph="SELECT * FRO... ${$sql}" />
+                <marker date="1520958156000" expanded="true" signature="776:806" ph="SELECT * FRO... ${$sql}" />
+                <marker date="1520958156000" expanded="true" signature="1379:1425" ph="SELECT * FRO... ${$sql}" />
+                <marker date="1520958156000" expanded="true" signature="1466:1508" ph="SELECT * FRO... ${$sql}" />
+                <marker date="1520958156000" expanded="true" signature="1788:1834" ph="SELECT * FRO... ${$sql}" />
+                <marker date="1520958156000" expanded="true" signature="1875:1917" ph="SELECT * FRO... ${$sql}" />
+                <marker date="1520958156000" expanded="true" signature="2339:2380" ph="SELECT ${$id... ${$sql}" />
+                <marker date="1520958156000" expanded="true" signature="2418:2449" ph="SELECT id FR... ${$sql}" />
+                <marker date="1520958156000" expanded="true" signature="3253:3276" ph="INSERT INTO ${$table}... " />
+                <marker date="1520958156000" expanded="true" signature="3931:3961" ph="UPDATE ${$ta... " />
+                <marker date="1520958156000" expanded="true" signature="4360:4391" ph="SELECT name,... settings" />
+                <marker date="1520958156000" expanded="true" signature="4593:4636" ph="SELECT * FRO... settings" />
+                <marker date="1520958156000" expanded="true" signature="4993:5071" ph="INSERT INTO logs... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="drivers.tpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/drivers.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="742">
+            <state relative-caret-position="1241">
               <caret line="73" column="103" lean-forward="false" selection-start-line="73" selection-start-column="103" selection-end-line="73" selection-end-column="103" />
-              <folding>
-                <element signature="e#2613#27267#0#HTML" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,14 +130,9 @@
       <file leaf-file-name="driver.tpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/driver.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
+            <state relative-caret-position="2329">
               <caret line="137" column="104" lean-forward="false" selection-start-line="137" selection-start-column="94" selection-end-line="137" selection-end-column="104" />
-              <folding>
-                <element signature="e#5101#5196#0#HTML" expanded="true" />
-                <element signature="e#5282#5316#0#HTML" expanded="true" />
-                <element signature="e#6914#7009#0#HTML" expanded="true" />
-                <element signature="e#7095#7127#0#HTML" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -207,7 +223,6 @@
         <option value="$PROJECT_DIR$/views/js/m_maintenance.js" />
         <option value="$PROJECT_DIR$/views/maintenances.tpl" />
         <option value="$PROJECT_DIR$/controllers/maintenances.php" />
-        <option value="$PROJECT_DIR$/inc/mysql.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6c53548d-aad0-4b44-bd2c-d82b1b3bf1b0/console.sql" />
         <option value="$PROJECT_DIR$/controllers/expenses.php" />
         <option value="$PROJECT_DIR$/views/js/m_expense.js" />
@@ -243,6 +258,7 @@
         <option value="$PROJECT_DIR$/views/dues_rental.tpl" />
         <option value="$PROJECT_DIR$/views/driver.tpl" />
         <option value="$PROJECT_DIR$/controllers/drivers.php" />
+        <option value="$PROJECT_DIR$/inc/mysql.php" />
       </list>
     </option>
   </component>
@@ -303,7 +319,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -314,7 +329,7 @@
             <path>
               <item name="LeaseCapital" type="b2602c69:ProjectViewProjectNode" />
               <item name="LeaseCapital" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="inc" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="LeaseCapital" type="b2602c69:ProjectViewProjectNode" />
@@ -331,6 +346,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -562,18 +578,19 @@
       <workItem from="1512597049821" duration="496000" />
       <workItem from="1517411867057" duration="1750000" />
       <workItem from="1517418601418" duration="968000" />
+      <workItem from="1520958127530" duration="45000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="927062000" />
+    <option name="totallyTimeSpent" value="927107000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1605" y="-257" width="1605" height="1005" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1605886" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.162508" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2028151" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -732,14 +749,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inc/mysql.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="60" column="20" lean-forward="false" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -894,10 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
           <caret line="212" column="20" lean-forward="false" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
-          <folding>
-            <element signature="e#34#5441#0" expanded="false" />
-            <element signature="e#8225#12317#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -913,7 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -945,31 +949,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/driver.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
+        <state relative-caret-position="2329">
           <caret line="137" column="104" lean-forward="false" selection-start-line="137" selection-start-column="94" selection-end-line="137" selection-end-column="104" />
-          <folding>
-            <element signature="e#5101#5196#0#HTML" expanded="true" />
-            <element signature="e#5282#5316#0#HTML" expanded="true" />
-            <element signature="e#6914#7009#0#HTML" expanded="true" />
-            <element signature="e#7095#7127#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/drivers.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
+        <state relative-caret-position="1241">
           <caret line="73" column="103" lean-forward="false" selection-start-line="73" selection-start-column="103" selection-end-line="73" selection-end-column="103" />
-          <folding>
-            <element signature="e#2613#27267#0#HTML" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/drivers.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding>
             <element signature="n#index#0;n#drivers#0;n#!!top" expanded="false" />
             <element signature="n#finish_driver#0;n#drivers#0;n#!!top" expanded="false" />
@@ -1003,6 +1000,28 @@
             <marker date="1517419190000" expanded="true" signature="21951:22015" ph="SELECT * FRO... vh_models" />
             <marker date="1517419190000" expanded="true" signature="25252:25505" ph="SELECT * FRO... dues_rental" />
             <marker date="1517419190000" expanded="true" signature="27259:27297" ph="SELECT * FRO... drivers" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/mysql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <marker date="1520958156000" expanded="true" signature="697:735" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1520958156000" expanded="true" signature="776:806" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1520958156000" expanded="true" signature="1379:1425" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1520958156000" expanded="true" signature="1466:1508" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1520958156000" expanded="true" signature="1788:1834" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1520958156000" expanded="true" signature="1875:1917" ph="SELECT * FRO... ${$sql}" />
+            <marker date="1520958156000" expanded="true" signature="2339:2380" ph="SELECT ${$id... ${$sql}" />
+            <marker date="1520958156000" expanded="true" signature="2418:2449" ph="SELECT id FR... ${$sql}" />
+            <marker date="1520958156000" expanded="true" signature="3253:3276" ph="INSERT INTO ${$table}... " />
+            <marker date="1520958156000" expanded="true" signature="3931:3961" ph="UPDATE ${$ta... " />
+            <marker date="1520958156000" expanded="true" signature="4360:4391" ph="SELECT name,... settings" />
+            <marker date="1520958156000" expanded="true" signature="4593:4636" ph="SELECT * FRO... settings" />
+            <marker date="1520958156000" expanded="true" signature="4993:5071" ph="INSERT INTO logs... " />
           </folding>
         </state>
       </provider>

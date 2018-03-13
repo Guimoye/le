@@ -5,7 +5,7 @@ class MySQL{
 
 	private $cn;
 
-	public function MySQL(){
+	public function __construct(){
 
 		if(!isset($this->cn)){  
 			$this->cn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
