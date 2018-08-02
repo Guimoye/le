@@ -647,25 +647,22 @@
 
         $csv = $this->uu->getDataCSV(@$_FILES['file']['tmp_name']);
 
-        $ix_id      = -1;
         $ix_dni     = -1;
         $ix_amount  = -1;
 
         // Obtener los indices de las columnas para identificar datos
         foreach($csv->cols as $ix => $col){
-            if($col == 'ID_DRIVER')         $ix_id      = $ix;
             if($col == 'No. DNI')           $ix_dni     = $ix;
             if($col == 'Cuota recaudada')   $ix_amount  = $ix;
         }
 
         // Indices de columnas corectos
-        if($ix_id != -1 && $ix_dni != -1 && $ix_amount != -1){
+        if($ix_dni != -1 && $ix_amount != -1){
 
             $items = [];
 
             foreach($csv->rows as $row){
                 $item = [];
-                $id     = trim(@$row[$ix_id]);
                 $dni    = trim(@$row[$ix_dni]);
                 $amount = (float) @$row[$ix_amount];
 
@@ -702,7 +699,8 @@
 
                             if($this->db->update('dues_rental', ['amount_cabify'=>$amount], $du->id)){
 
-                                if($this->db->update('drivers',['cabify_id'=>$id], $dv->id)){
+                                // esto es porlas desde la ultima actualizacion
+                                if($this->db->update('drivers',['dni'=>$dni], $dv->id)){
                                     $item['ok'] = true;
 
                                 } else {
@@ -738,12 +736,12 @@
         header('Content-Type: application/csv; charset=UTF-8');
         header('Content-Disposition: attachment; filename="modelo_cabify.csv";');
 
-        echo 'ID_DRIVER,No. DNI,Nombre Completo,Cuota Mensual,Cuota recaudada';
+        echo 'No. DNI,Nombre Completo,Cuota Mensual,Cuota recaudada';
 
         $os = $this->db->get("SELECT * FROM drivers WHERE state != 0");
         while($o = $os->fetch_object()){
             echo "\n";
-            echo $o->cabify_id.','.$o->dni.','.$o->name.' '.$o->surname.',, ';
+            echo $o->dni.','.$o->name.' '.$o->surname.',, ';
         }
 
     }

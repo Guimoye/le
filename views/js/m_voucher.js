@@ -46,6 +46,7 @@ var MVoucher = {
             '                        </thead>' +
             '                        <tbody class="pics"></tbody>' +
             '                    </table>' +
+
             '                </form>' +
             '' +
             '            </div>' +

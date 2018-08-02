@@ -46,6 +46,7 @@ class _base {
         // Asignar valores a los Ajustes
         $this->stg->url_cms     = URL_CMS;
         $this->stg->module      = get_class($this);
+        $this->stg->can_edit    = $this->user->can($this->module);
 
         $ui = new Smarty;
         $ui->setCompileDir('inc/smarty/templates_c');
@@ -56,7 +57,7 @@ class _base {
         $ui->assign('v', '0.0.17'); // Version (para borrar cache de css/js)
         $ui->assign('url_home', $this->user->getHome());
         $ui->assign('menu', $menu);
-        $ui->assign('can_edit', $this->user->can($this->module));
+        $ui->assign('can_edit', $this->stg->can_edit);
 
         return $ui;
     }

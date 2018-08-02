@@ -1,6 +1,6 @@
 {include file='_header.tpl' css=[
-    'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css',
-    'assets/global/plugins/fancybox/source/jquery.fancybox.css'
+'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css',
+'assets/global/plugins/fancybox/source/jquery.fancybox.css'
 ]}
 
 <div class="portlet light">
@@ -24,103 +24,114 @@
                 No hay datos disponibles.
             </div>
         {else}
-            <table class="table table-striped table-bordered table-hover dt-responsive mdl-td" style="margin-top:10px">
-                <thead>
-                <tr>
-                    <th width="1%"> # </th>
-                    <th width="1%"> Fecha </th>
-                    <th> Alquiler <span class="font-xs">c. IGV</span> </th>
-                    <th> Pozo </th>
-                    <th> Cabify </th>
-                    <th> Mora </th>
-                    <th> Dsctos </th>
-                    <th> Préstamos </th>
-                    <th> Anterior </th>
-                    <th> Saldo por pagar </th>
-                    <th> Pago directo </th>
-                    <th width="1%" class="nowrap"> Fecha de pago </th>
-                    <th width="1%">Opciones</th>
-                </tr>
-                </thead>
-                <tbody id="pager_content">
-                {foreach key=i item=o from=$items}
-                    <tr id="num_due_{$o.num_due}">
-                        <td> {$i+1} </td>
-                        <td class="nowrap"> {$o.date_due|date_format:"%d-%m-%Y"} </td>
-                        <td> {$stg->coin}{$o.amount_due|string_format:"%.2f"} </td>
-                        <td> {$stg->coin}{$o.amount_pit|string_format:"%.2f"} </td>
-                        <td> {$stg->coin}{$o.amount_cabify|string_format:"%.2f"} </td>
-                        <td> {$stg->coin}{$o.amount_penalty|string_format:"%.2f"} </td>
-                        <td> {$stg->coin}{$o.amount_discount|string_format:"%.2f"} </td>
-                        <td> {$stg->coin}{$o.amount_loans|string_format:"%.2f"} </td>
-                        <td> {$stg->coin}{$o.amount_previous|string_format:"%.2f"} </td>
-                        <td> {$stg->coin}{$o.amount_total|string_format:"%.2f"} </td>
-                        <td> {$stg->coin}{$o.amount_paid|string_format:"%.2f"} </td>
-                        <td class="nowrap">
-                            {if !empty($o.date_paid)}{$o.date_paid|date_format:"%d-%m-%Y"}<br>{/if}
-                            {if $o.pay_state == 'paid'}
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover dt-responsive mdl-td"
+                       style="margin-top:10px">
+                    <thead>
+                    <tr>
+                        <th width="1%"> #</th>
+                        <th width="1%"> Fecha</th>
+                        <th> Alquiler <span class="font-xs">c. IGV</span></th>
+                        <th> Pozo</th>
+                        <th> Dsctos</th>
+                        <th> Mora</th>
+                        <th> Cabify</th>
+                        <th> Pago directo</th>
+                        <th width="1%" class="nowrap"> Fecha de pago</th>
+                        <th> Total pagado</th>
+                        <th> Adicional</th>
+                        <th> Préstamos</th>
+                        <th> Anterior</th>
+                        <th> Saldo por pagar</th>
+                        <th width="1%" colspan="2">Opciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="pager_content">
+                    {foreach key=i item=o from=$items}
+                        <tr id="num_due_{$o.num_due}">
+                            <td> {$i+1} </td>
+                            <td class="nowrap"> {$o.date_due|date_format:"%d-%m-%Y"} </td>
+                            <td> {$stg->coin}{$o.amount_due|string_format:"%.2f"} </td>
+                            <td> {$stg->coin}{$o.amount_pit|string_format:"%.2f"} </td>
+                            <td> {$stg->coin}{$o.amount_discount|string_format:"%.2f"} </td>
+                            <td> {$stg->coin}{$o.amount_penalty|string_format:"%.2f"} </td>
+                            <td> {$stg->coin}{$o.amount_cabify|string_format:"%.2f"} </td>
+                            <td> {$stg->coin}{$o.amount_paid|string_format:"%.2f"} </td>
+                            <td> {$o.date_paid|date_format:"%d-%m-%Y"} </td>
+                            <td> {$stg->coin}{$o.total_paid|string_format:"%.2f"} </td>
+                            <td> {$stg->coin}{$o.amount_additionals|string_format:"%.2f"} </td>
+                            <td> {$stg->coin}{$o.amount_loans|string_format:"%.2f"} </td>
+                            <td> {$stg->coin}{$o.amount_previous|string_format:"%.2f"} </td>
+                            <td> {$stg->coin}{$o.amount_total|string_format:"%.2f"} </td>
+                            <td class="nowrap">
 
-                                {if $o.all_paid}
-                                    <span {if $can_edit}onclick="MDuesRentalPay.open(items[{$i}]);"{/if}
-                                            class="btn btn-xs green-jungle">Pagado</span>
-                                {else}
-                                    <span {if $can_edit}onclick="MDuesRentalPay.open(items[{$i}]);"{/if}
-                                            class="btn btn-xs green">Pago parcial</span>
+                                {if $o.pay_state == 'paid'}
+
+                                    {if $o.all_paid}
+                                        <span onclick="MDuesRentalPay.open(items[{$i}]);"
+                                              class="btn btn-xs green-jungle">Pagado</span>
+                                    {else}
+                                        <span onclick="MDuesRentalPay.open(items[{$i}]);"
+                                              class="btn btn-xs green">Pago parcial</span>
+                                    {/if}
+                                    <span onclick="MDays.open(items[{$i}],true);"
+                                          class="btn btn-xs grey-salsa">{$o.worked_days_text}</span>
+                                {elseif $o.pay_state == 'pending'}
+                                    <span onclick="MDuesRentalPay.open(items[{$i}]);"
+                                          class="btn btn-xs yellow-crusta">Pendiente</span>
+                                {elseif $o.pay_state == 'expired'}
+                                    <span onclick="MDuesRentalPay.open(items[{$i}]);"
+                                          class="btn btn-xs red-mint">Vencido</span>
                                 {/if}
 
-                                <span onclick="MDays.open(items[{$i}],true);" class="btn btn-xs grey-salsa">{$o.worked_days_text}</span>
+                            </td>
+                            <td class="nowrap">
 
-                            {elseif $o.pay_state == 'pending'}
-                                <span {if $can_edit}onclick="MDuesRentalPay.open(items[{$i}]);"{/if}
-                                      class="btn btn-xs yellow-crusta">Pendiente</span>
+                                {if $can_edit}
+                                    <button class="btn btn-outline btn-circle dark btn-sm font-md hide"
+                                            onclick="MVoucher.open(1, {$o.id});">
+                                        <i class="fa fa-paperclip"></i>
+                                    </button>
+                                    <button class="btn btn-outline btn-circle dark btn-sm font-md"
+                                            onclick="MDays.open(items[{$i}]);">
+                                        <i class="fa fa-calendar-o"></i>
+                                    </button>
+                                {/if}
 
-                            {elseif $o.pay_state == 'expired'}
-                                <span {if $can_edit}onclick="MDuesRentalPay.open(items[{$i}]);"{/if}
-                                      class="btn btn-xs red-mint">Vencido</span>
+                            </td>
+                        </tr>
+                    {/foreach}
 
-                            {/if}
-                        </td>
-                        <td class="nowrap">
+                    {if $can_edit}
+                        <tr style="background:#e7ecf1">
+                            <td colspan="2"></td>
+                            <th>{$stg->coin}{$tts.total_amount_due|string_format:"%.2f"}</th>
+                            <th>{$stg->coin}{$tts.total_amount_pit|string_format:"%.2f"}</th>
+                            <th>{$stg->coin}{$tts.total_amount_discount|string_format:"%.2f"}</th>
+                            <th>{$stg->coin}{$tts.total_amount_penalty|string_format:"%.2f"}</th>
+                            <th>{$stg->coin}{$tts.total_amount_cabify|string_format:"%.2f"}</th>
+                            <th>{$stg->coin}{$tts.total_amount_paid|string_format:"%.2f"}</th>
+                            <td></td>
+                            <th>{$stg->coin}{$tts.total_amount_total|string_format:"%.2f"}</th>
+                            <th>{$stg->coin}{$tts.total_amount_additionals|string_format:"%.2f"}</th>
+                            <th>{$stg->coin}{$tts.total_amount_loans|string_format:"%.2f"}</th>
+                            <th>{$stg->coin}{$tts.total_amount_previous|string_format:"%.2f"}</th>
+                            <td colspan="1"></td>
+                            <td colspan="1"></td>
+                            <td colspan="1"></td>
+                            <th colspan="2">
+                                <button class="btn btn-outline btn-circle red btn-xs font-md tooltips"
+                                        title="Eliminar cronograma de alquiler"
+                                        onclick="MDuesRental.removeAll({$driver->id});">
+                                    <i class="fa fa-trash"></i> Eliminar
+                                </button>
+                            </th>
+                        </tr>
+                    {/if}
 
-                            {if $can_edit}
-                                <span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MVoucher.open(1, {$o.id});">
-                                    <i class="fa fa-paperclip"></i>
-                                </span>
-
-                                <span class="btn btn-outline btn-circle dark btn-sm font-md" onclick="MDays.open(items[{$i}]);">
-                                    <i class="fa fa-calendar-o"></i>
-                                </span>
-                            {/if}
-
-                        </td>
-                    </tr>
-                {/foreach}
-
-                {if $can_edit}
-                    <tr style="background:#e7ecf1">
-                        <td colspan="2"></td>
-                        <th>{$stg->coin}{$tts.total_amount_due|string_format:"%.2f"}</th>
-                        <th>{$stg->coin}{$tts.total_amount_pit|string_format:"%.2f"}</th>
-                        <th>{$stg->coin}{$tts.total_amount_cabify|string_format:"%.2f"}</th>
-                        <th>{$stg->coin}{$tts.total_amount_penalty|string_format:"%.2f"}</th>
-                        <th>{$stg->coin}{$tts.total_amount_discount|string_format:"%.2f"}</th>
-                        <th>{$stg->coin}{$tts.total_amount_loans|string_format:"%.2f"}</th>
-                        <th>{$stg->coin}{$tts.total_amount_previous|string_format:"%.2f"}</th>
-                        <th>{$stg->coin}{$tts.total_amount_total|string_format:"%.2f"}</th>
-                        <th>{$stg->coin}{$tts.total_amount_paid|string_format:"%.2f"}</th>
-                        <td colspan="1"></td>
-                        <th>
-                        <span class="btn btn-outline btn-circle red btn-xs font-md tooltips"
-                              title="Eliminar cronograma de alquiler"
-                              onclick="MDuesRental.removeAll({$driver->id});">
-                            <i class="fa fa-trash"></i> Eliminar
-                        </span>
-                        </th>
-                    </tr>
-                {/if}
-
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         {/if}
 
     </div>
@@ -181,7 +192,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn red pull-left remove">Eliminar</button>
-                <button type="button" data-dismiss="modal" class="btn btn-outline btn-default cancel hide">Cancelar</button>
+                <button type="button" data-dismiss="modal" class="btn btn-outline btn-default cancel hide">Cancelar
+                </button>
                 <button type="button" class="btn blue save">Generar</button>
             </div>
         </div>
@@ -190,7 +202,7 @@
 <!-- END MODAL -->
 
 <!-- MODAL -->
-<div id="modal_pay_dues_rental" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
+<div id="modal_dues_rental_pay" class="modal fade modal-scroll" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <form class="modal-content form-horizontal">
             <div class="modal-header">
@@ -198,6 +210,8 @@
                 <h4 class="modal-title">---</h4>
             </div>
             <div class="modal-body">
+
+                <fieldset {if !$can_edit}disabled{/if}>
 
                     <input type="hidden" name="id" value="">
                     <input type="hidden" name="amount_total" value="">
@@ -252,14 +266,69 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Comprobante de Pago</label>
                         <div class="col-md-6">
-                            <input class="form-control" name="voucher_code" placeholder="Código de comprobante de pago">
+                            <input class="form-control" name="voucher_code" placeholder="">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4"></div>
+                        <label class="col-md-6 bold">Pago adicional</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Monto</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">{$stg->coin}</span>
+                                <input class="form-control" name="amount_additionals" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Comentario</label>
+                        <div class="col-md-6">
+                            <input class="form-control" name="comment_addicionals" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4"></div>
+                        <label class="col-md-6 bold">Comprobantes de pago</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Fecha</label>
+                        <div class="col-md-6">
+                            <input type="date" name="photo_date" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Archivo</label>
+                        <div class="col-md-6">
+                            <input type="file" name="photo" class="form-control">
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <table class="table table-bordered table-hover" style="margin-bottom:0">
+                    <thead>
+                    <tr>
+                        <th width="1%"> ID</th>
+                        <th width="1%"> Fecha</th>
+                        <th> Voucher</th>
+                        <th width="1%"></th>
+                    </tr>
+                    </thead>
+                    <tbody class="pics"></tbody>
+                </table>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn red pull-left remove hide">Eliminar</button>
-                <button type="button" data-dismiss="modal" class="btn btn-outline btn-default cancel">Cancelar</button>
+                <button type="button" data-dismiss="modal" class="btn btn-outline btn-default cancel">Cerrar</button>
                 <button class="btn blue save">Generar</button>
             </div>
         </form>
@@ -352,9 +421,9 @@
 
 
 <script>
-var items = {$items|@json_encode};
-{literal}
-    function $Ready(){
+    var items = {$items|@json_encode};
+    {literal}
+    function $Ready() {
         MDuesRental.init();
         MDays.init();
 
@@ -366,19 +435,20 @@ var items = {$items|@json_encode};
         console.log('can_edit: {$can_edit}');
 
         {if $can_edit && empty($items)}
-            MDuesRental.add();
+        MDuesRental.add();
         {/if}
         {literal}
         //MCar.add(1);
         //MDuesRentalPay.open(items[0]);
     }
-{/literal}
+    {/literal}
 </script>
 
 {include file='_footer.tpl' js=[
-    'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
-    'assets/global/plugins/fancybox/source/jquery.fancybox.pack.js',
-    'assets/global/plugins/jquery.form.min.js',
-    'views/js/m_voucher.js',
-    'views/js/m_dues_rental.js'
+'assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js',
+'assets/global/plugins/fancybox/source/jquery.fancybox.pack.js',
+'assets/global/plugins/jquery.form.min.js',
+'views/js/m_voucher.js',
+'views/js/m_dues_rental.js',
+'views/js/m_dues_rental_pay.js'
 ]}

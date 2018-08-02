@@ -25,35 +25,79 @@ if(isLocal()){
 	define('URL_CMS','http://beta.focusit.pe/leasecapital/');
 }
 
-/**
- * Obtener valores GET
- */
-function _GET($name, $default_value = ''){
-    $val = trim(@$_GET[$name]);
+/* Metodo GET */
+function _GET($name, $default_value = '')
+{
+    $val = @trim(@$_GET[$name]);
     return !empty($val) ? $val : $default_value;
 }
 
-function _GET_INT($name, $default_value = 0){
+function _GET_DATE($name, $default_value = '')
+{
+    $val = @trim(@$_GET[$name]);
+    return !empty($val) && Util::isDate($val) ? $val : $default_value;
+}
+
+function _GET_INT($name, $default_value = 0)
+{
     $val = @$_GET[$name];
     return is_numeric($val) ? $val : $default_value;
 }
 
-/**
- * Obtener valores POST
- */
-function _POST($name, $default_value = ''){
-    $val = trim(@$_POST[$name]);
+/* Metodo POST */
+function _POST($name, $default_value = '')
+{
+    $val = @trim(@$_POST[$name]);
     return !empty($val) ? $val : $default_value;
 }
 
-function _POST_INT($name, $default_value = 0){
+function _POST_DATE($name, $default_value = '')
+{
+    $val = @trim(@$_POST[$name]);
+    return !empty($val) && Util::isDate($val) ? $val : $default_value;
+}
+
+function _POST_INT($name, $default_value = 0)
+{
     $val = @$_POST[$name];
     return is_numeric($val) ? $val : $default_value;
 }
 
-function _POST_ARR($name, $default_value = []){
+function _POST_ARR($name, $default_value = [])
+{
     $val = @$_POST[$name];
     return is_array($val) ? $val : $default_value;
+}
+
+/* Metodo REQUEST */
+function _REQ($name, $default_value = '')
+{
+    $val = @trim(@$_REQUEST[$name]);
+    return !empty($val) ? $val : $default_value;
+}
+
+function _REQ_DATE($name, $default_value = '')
+{
+    $val = @trim(@$_REQUEST[$name]);
+    return !empty($val) && Util::isDate($val) ? $val : $default_value;
+}
+
+function _REQ_INT($name, $default_value = 0)
+{
+    $val = @$_REQUEST[$name];
+    return is_numeric($val) ? $val : $default_value;
+}
+
+function _REQ_ARR($name, $default_value = [])
+{
+    $val = @$_REQUEST[$name];
+    return is_array($val) ? $val : $default_value;
+}
+
+function _REQ_JSON($name)
+{
+    $val = @$_REQUEST[$name];
+    return @json_decode($val) ?: new stdClass();
 }
 
 /**
@@ -215,29 +259,6 @@ class Util{
 		return filter_var($email, FILTER_VALIDATE_EMAIL);
 	}
 
-	/**
-	 * Validar si una fecha es correcta o esta en formato correcto: 2017-12-24
-	 * @param $str_date
-	 * @return bool
-	 */
-	public function isDate($str_date){
-		$arr = explode('-', $str_date);
-		if(count($arr) == 3){
-			if(is_numeric($arr[0]) && $arr[0] > 1000){
-				if(is_numeric($arr[1]) && $arr[1] > 0 && $arr[1] <= 12){
-					if (is_numeric($arr[2]) && $arr[2] > 0 && $arr[2] <= 31){
-						return true;
-					} else return false;
-				} else return false;
-			} else return false;
-		} else return false;
-	}
-
-    public function isDateTime($date_time_str){
-        return (DateTime::createFromFormat('Y-m-d H:i', $date_time_str) !== false) ||
-            (DateTime::createFromFormat('Y-m-d H:i:s', $date_time_str) !== false);
-    }
-
     // Calcular distancia entre 2 puntos
     // $unit: "M" => miles, "K" => kilometers, "N" => nautical miles
     public function getDistance($lat1, $lon1, $lat2, $lon2, $unit = 'K'){
@@ -385,5 +406,30 @@ class Util{
         //return mb_convert_encoding($str, "HTML-ENTITIES","UTF-8");
         //return utf8_decode($str);
         //return @iconv("Windows-1252", "UTF-8", $str);
+    }
+
+    /**
+     * Validar si una fecha es correcta o esta en formato correcto: 2017-12-24
+     * @param $str_date
+     * @return bool
+     */
+    public static function isDate($str_date)
+    {
+        $arr = explode('-', $str_date);
+        if (count($arr) == 3) {
+            if (is_numeric($arr[0]) && $arr[0] > 1000) {
+                if (is_numeric($arr[1]) && $arr[1] > 0 && $arr[1] <= 12) {
+                    if (is_numeric($arr[2]) && $arr[2] > 0 && $arr[2] <= 31) {
+                        return true;
+                    } else return false;
+                } else return false;
+            } else return false;
+        } else return false;
+    }
+
+    public static function isDateTime($date_time_str)
+    {
+        return (DateTime::createFromFormat('Y-m-d H:i', $date_time_str) !== false) ||
+            (DateTime::createFromFormat('Y-m-d H:i:s', $date_time_str) !== false);
     }
 }
