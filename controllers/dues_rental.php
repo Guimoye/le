@@ -40,6 +40,7 @@
         $tts['total_amount_cabify'] = 0;
         $tts['total_amount_penalty'] = 0;
         $tts['total_amount_discount'] = 0;
+        $tts['total_amount_additionals'] = 0;
         $tts['total_amount_loans'] = 0;
         $tts['total_amount_previous'] = 0;
         $tts['total_amount_total'] = 0;
@@ -75,6 +76,7 @@
                 $tts['total_amount_cabify'] += $o['amount_cabify'];
                 $tts['total_amount_penalty'] += $o['amount_penalty'];
                 $tts['total_amount_discount'] += $o['amount_discount'];
+                $tts['total_amount_additionals'] += $o['amount_additionals'];
                 $tts['total_amount_loans'] += $o['amount_loans'];
                 $tts['total_amount_previous'] += $o['amount_previous'];
                 $tts['total_amount_total'] += $o['amount_total'];

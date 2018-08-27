@@ -36,7 +36,7 @@
     <link href="views/css/core.css?v={$v}" rel="stylesheet" type="text/css"/>
 
     <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="favicon.png" />
 
     <script>
         var stg = {$stg|@json_encode};

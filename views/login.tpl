@@ -22,7 +22,7 @@
     <link href="assets/pages/css/login.min.css" rel="stylesheet"/>
     <link href="views/css/core.css?v={$v}" rel="stylesheet"/>
 
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="favicon.png" />
 </head>
 
 <body class=" login">

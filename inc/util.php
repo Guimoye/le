@@ -14,7 +14,7 @@ if(isLocal()){
     define('DB_PASS','root');
     define('DB_NAME','leasecapital');
 
-	define('URL_CMS','http://localhost/leasecapital/');
+	define('URL_CMS','http://'.$_SERVER['HTTP_HOST'].'/leasecapital/');
 
 } else {
     define('DB_HOST','localhost');
