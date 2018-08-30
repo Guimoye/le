@@ -1,3 +1,5 @@
+
+var itemss=null;
 var MDuesRentalPay = {
 
     $modal: null,
@@ -102,7 +104,22 @@ var MDuesRentalPay = {
 
     // Guardar
     save: function () {
-        api('dues_rental/set_due_paid', MDuesRentalPay.$form.serializeObject(), function (rsp) {
+
+        var data = MDuesRentalPay.$form.serializeObject();
+        data.items = [];
+
+        $('.addFileItem').each(function(){
+            var $this = $(this);
+            data.items.push({
+                descripcion: $this.find('input[name=descripcion]').val(),
+                descripcion_date: $this.find('input[name=descripcion_date]').val()
+            });
+        });
+
+        console.log(data);
+
+        api('dues_rental/set_due_paid', data, function (rsp) {
+
             if (rsp.ok == true) {
                 toastr.success('Guardado correctamente');
                 MDuesRentalPay.$modal.modal('hide');
@@ -133,8 +150,9 @@ var MDuesRentalPay = {
         MDuesRentalPay.$form.comment_additionals.val(o.comment_additionals);
         MDuesRentalPay.$form.date_paid.val(o.date_paid == null ? o.date_due : o.date_paid);
         MDuesRentalPay.$form.voucher_code.val(o.voucher_code);
-        MDuesRentalPay.loadPics();
 
+        itemss =  JSON.parse(o.sub_paids);
+        MDuesRentalPay.loadPics();
         console.log(o.date_paid);
 
     },
@@ -142,6 +160,11 @@ var MDuesRentalPay = {
     loadPics: function () {
 
         var id = MDuesRentalPay.$form.id.val();
+
+        var html = '';
+        if(itemss!=null) {
+            console.log(itemss);
+        }
 
         MDuesRentalPay.$form.pics.html('<tr><td colspan="100%">Cargando...</td></tr>');
 
@@ -195,3 +218,15 @@ var MDuesRentalPay = {
     }
 
 };
+
+
+$('.addFieldBtn').on('click', function() {
+    var $template = $('.addField').clone();
+
+         $template
+             .removeClass('hide addField')
+            .addClass('addFileItem')
+            .removeAttr('id')
+            .insertBefore($(".addField"));
+
+});

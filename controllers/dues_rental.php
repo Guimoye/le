@@ -234,6 +234,11 @@
         $date_paid = _POST('date_paid');
         $voucher_code = _POST('voucher_code');
 
+
+        $items = _POST_ARR('items');
+
+        $json_aux = json_encode($items);
+
         // Obtener actual cuota a pagar
         $due = $this->db->o("
             SELECT dr.*,
@@ -277,6 +282,8 @@
             $data['date_paid'] = $date_paid;
             $data['voucher_code'] = $voucher_code;
             $data['state'] = 3; // Pago total
+            $data['sub_paids'] = $json_aux; //subpagos
+
 
             // El pago parcial es cuando el pago de alquiler es menor, solo eso
             if (($amount) < ($due->amount_due - ($amount_cabify - $amount_discount))) {

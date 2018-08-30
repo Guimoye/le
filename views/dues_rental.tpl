@@ -217,6 +217,30 @@
                     <input type="hidden" name="amount_total" value="">
 
                     <div class="form-group">
+                        <div class="col-md-1">
+                            <button class="btn btn-primary addFieldBtn" type="button"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <label class="col-md-offset-1 col-md-5 text-left">Sub Pagos</label>
+                        <label class="col-md-5 text-left">Fecha</label>
+                    </div>
+
+                    <div class="form-group hide addField">
+                        <div class="col-md-offset-1 col-md-5">
+                            <div class="input-group">
+                                <span class="input-group-addon">{$stg->coin}</span>
+                                <input type="text" name="descripcion" class="form-control" placeholder="0.00">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="date" name="descripcion_date" class="form-control">
+                        </div>
+                        <!-- <div class="col-md-1">
+                          <button class="btn btn-danger"><i class="fa fa-minus"></i></button>
+                        </div>
+                        -->
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-md-4 control-label">Monto a pagar</label>
                         <div class="col-md-6">
                             <div class="input-group">

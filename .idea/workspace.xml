@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="794cd8f1-797b-4a0c-a74f-0986d7b2daf7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ffe8e71-9fad-415c-b652-9c7192887676.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/_base.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/_base.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/dues_rental.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dues_rental.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/util.php" beforeDir="false" afterPath="$PROJECT_DIR$/inc/util.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/_header.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/views/_header.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dues_rental.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/views/dues_rental.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/m_dues_rental_pay.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/m_dues_rental_pay.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,63 +28,55 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="LOCAL" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
     <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="leasecapital" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="dues_rental.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/dues_rental.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="34" selection-start-column="34" selection-end-column="34" />
+            <state relative-caret-position="2264">
+              <caret line="554" column="13" selection-start-line="554" selection-start-column="13" selection-end-line="554" selection-end-column="13" />
+              <folding>
+                <element signature="n#add#0;n#dues_rental#0;n#!!top" />
+                <element signature="n#remove_all#0;n#dues_rental#0;n#!!top" />
+                <element signature="n#set_due_paid#0;n#dues_rental#0;n#!!top" />
+                <element signature="n#set_due_unpaid#0;n#dues_rental#0;n#!!top" />
+                <element signature="n#set_free_days#0;n#dues_rental#0;n#!!top" />
+                <element signature="n#get_pics#0;n#dues_rental#0;n#!!top" />
+                <element signature="n#remove_pic#0;n#dues_rental#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_base.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/_base.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="686">
-              <caret line="50" column="25" lean-forward="true" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5ffe8e71-9fad-415c-b652-9c7192887676/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dues_rental.tpl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dues_rental.tpl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="94" column="98" lean-forward="true" selection-start-line="94" selection-start-column="98" selection-end-line="94" selection-end-column="98" />
+            <state relative-caret-position="-697">
+              <caret line="213" column="23" selection-start-line="213" selection-start-column="23" selection-end-line="213" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="m_dues_rental_pay.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental_pay.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="164" column="26" lean-forward="true" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
               <folding>
-                <element signature="e#1079#1102#0#HTML" expanded="true" />
-                <element signature="e#5578#5604#0#HTML" expanded="true" />
-                <element signature="e#15570#15593#0#HTML" expanded="true" />
-                <element signature="e#17039#17062#0#HTML" expanded="true" />
-                <element signature="e#17125#17142#0#HTML" expanded="true" />
-                <element signature="e#17183#17216#0#HTML" expanded="true" />
-                <element signature="e#17473#17490#0#HTML" expanded="true" />
-                <element signature="e#17531#17564#0#HTML" expanded="true" />
-                <element signature="e#17821#17838#0#HTML" expanded="true" />
-                <element signature="e#17879#17912#0#HTML" expanded="true" />
-                <element signature="e#18169#18186#0#HTML" expanded="true" />
-                <element signature="e#18227#18260#0#HTML" expanded="true" />
-                <element signature="e#18517#18534#0#HTML" expanded="true" />
-                <element signature="e#18575#18608#0#HTML" expanded="true" />
-                <element signature="e#18865#18882#0#HTML" expanded="true" />
-                <element signature="e#18923#18956#0#HTML" expanded="true" />
-                <element signature="e#19213#19230#0#HTML" expanded="true" />
-                <element signature="e#19271#19304#0#HTML" expanded="true" />
-                <element signature="e#19633#19658#0#HTML" expanded="true" />
+                <element signature="e#2998#3461#0" />
+                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,20 +86,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$ix_id</find>
-      <find>modal_add_days</find>
-      <find>MDuesRentalPay</find>
-      <find>dues_rental.js</find>
-      <find>modal_pay_dues_rental</find>
+      <find>$form</find>
+      <find>form</find>
+      <find>generar</find>
+      <find>comment_addicionals</find>
+      <find>modal_add_dues_rental</find>
+      <find>description_date</find>
+      <find>descripcion</find>
+      <find>descripcion_date</find>
+      <find>addField</find>
+      <find>no se rec</find>
+      <find>no se reconoc el re</find>
+      <find>no se recon</find>
+      <find>addFileItem</find>
       <find>set_due_paid</find>
-      <find>$amount_cabify</find>
-      <find>$amount_additionals</find>
-      <find>$amount_penalty</find>
-      <find>$amount_total</find>
-      <find>amount_total</find>
-      <find>amount_additionals</find>
-      <find>2288338435af335175bcff8.4824793</find>
-      <find>isDate</find>
+      <find>description</find>
+      <find>addFieldBtn</find>
+      <find>var</find>
+      <find>get_all</find>
+      <find>mduesrentalpay.open</find>
+      <find>item</find>
+      <find>MDuesRentalPay.open</find>
+      <find>$items</find>
+      <find>items</find>
+      <find>m_dues_rental_pay</find>
+      <find>amount_paid</find>
+      <find>obj</find>
+      <find>itemss</find>
+      <find>open</find>
+      <find>pics</find>
+      <find>modal_dues_rental_pay</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -120,20 +128,20 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/controllers/drivers.php" />
-        <option value="$PROJECT_DIR$/views/js/m_dues_rental.js" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2/console.sql" />
         <option value="$PROJECT_DIR$/views/js/m_voucher.js" />
         <option value="$PROJECT_DIR$/views/css/core.css" />
         <option value="$PROJECT_DIR$/controllers/pics.php" />
-        <option value="$PROJECT_DIR$/views/js/m_dues_rental_pay.js" />
         <option value="$PROJECT_DIR$/controllers/protemax.php" />
-        <option value="$PROJECT_DIR$/views/dues_rental.tpl" />
-        <option value="$PROJECT_DIR$/inc/util.php" />
-        <option value="$PROJECT_DIR$/controllers/dues_rental.php" />
         <option value="$PROJECT_DIR$/views/_header.tpl" />
         <option value="$PROJECT_DIR$/views/login.tpl" />
         <option value="$PROJECT_DIR$/controllers/_base.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/5ffe8e71-9fad-415c-b652-9c7192887676/console.sql" />
+        <option value="$PROJECT_DIR$/inc/util.php" />
+        <option value="$PROJECT_DIR$/views/js/m_dues_rental.js" />
+        <option value="$PROJECT_DIR$/controllers/dues_rental.php" />
+        <option value="$PROJECT_DIR$/views/dues_rental.tpl" />
+        <option value="$PROJECT_DIR$/views/js/m_dues_rental_pay.js" />
       </list>
     </option>
   </component>
@@ -146,11 +154,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1594" />
-    <option name="y" value="-257" />
-    <option name="width" value="1594" />
-    <option name="height" value="1008" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="17" />
+    <option name="y" value="3" />
+    <option name="width" value="872" />
+    <option name="height" value="725" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -160,29 +168,41 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="LeaseCapital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LeaseCapital" type="462c0819:PsiDirectoryNode" />
+              <item name="leasecapital" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leasecapital" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="LeaseCapital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LeaseCapital" type="462c0819:PsiDirectoryNode" />
+              <item name="leasecapital" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leasecapital" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="leasecapital" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leasecapital" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="leasecapital" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leasecapital" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="database.console.LAST_STATE" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kia" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
@@ -220,37 +240,61 @@
       <workItem from="1533227465212" duration="3423000" />
       <workItem from="1533572458842" duration="132000" />
       <workItem from="1533572917028" duration="963000" />
+      <workItem from="1535474748820" duration="42907000" />
+      <workItem from="1535650851099" duration="2853000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15800000" />
+    <option name="totallyTimeSpent" value="61560000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1594" y="-257" width="1594" height="1008" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49920508" weight="0.18448023" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="11" visible="true" weight="0.3296146" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1574655" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.17126726" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Database" order="3" weight="0.40995607" />
+      <window_info anchor="bottom" id="Database Changes" order="10" weight="0.3290938" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3290938" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info id="Favorites" order="2" sideWeight="0.5007949" side_tool="true" weight="0.14714494" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="11" visible="true" weight="0.3296146" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14714494" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3290938" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Database" order="3" weight="0.40995607" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.3290938" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="12" visible="true" weight="0.3296146" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -260,10 +304,75 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/controllers/dues_rental.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3128">
+          <caret line="554" column="13" selection-start-line="554" selection-start-column="13" selection-end-line="554" selection-end-column="13" />
+          <folding>
+            <element signature="n#add#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#remove_all#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#set_due_paid#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#set_due_unpaid#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#set_free_days#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#get_pics#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#remove_pic#0;n#dues_rental#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3621">
+          <caret line="213" column="23" selection-start-line="213" selection-start-column="23" selection-end-line="213" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental_pay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3179">
+          <caret line="187" column="20" selection-start-line="187" selection-start-column="20" selection-end-line="187" selection-end-column="20" />
+          <folding>
+            <element signature="e#2998#3461#0" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/dues_rental.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="34" selection-start-column="34" selection-end-column="34" />
+          <folding>
+            <element signature="n#add#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#remove_all#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#set_due_paid#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#set_due_unpaid#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#set_free_days#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#get_pics#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#remove_pic#0;n#dues_rental#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/_base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="25" lean-forward="true" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1598">
+          <caret line="94" column="98" lean-forward="true" selection-start-line="94" selection-start-column="98" selection-end-line="94" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/inc/util.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -271,13 +380,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../SmartCab/inc/util.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="51" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../SmartCab/inc/util.php" />
     <entry file="file://$PROJECT_DIR$/controllers/dues_rental.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -316,13 +419,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2/schema/leasecapital/table/drivers">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2/schema/leasecapital/table/drivers" />
     <entry file="file://$PROJECT_DIR$/controllers/_base.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
@@ -379,9 +476,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2/console.sql" />
     <entry file="uml://PHP//Users/Alvaro/work/web/LeaseCapital">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -413,31 +508,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="837">
-          <caret line="293" column="2" selection-start-line="293" selection-start-column="2" selection-end-line="293" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../ios/ecclubios/ClubSuscriptores/AppDelegate.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="67" column="56" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../../ios/ecclubios/ClubSuscriptores/AppDelegate.swift" />
     <entry file="file://$PROJECT_DIR$/../kia/assets/js/m_modelo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2448">
           <caret line="144" column="43" selection-start-line="144" selection-start-column="43" selection-end-line="165" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/js/m_voucher.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="66" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -469,20 +544,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2/schema/leasecapital/table/drivers">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental_pay.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="164" column="103" lean-forward="true" selection-start-line="164" selection-start-column="103" selection-end-line="164" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2/schema/leasecapital/table/drivers" />
     <entry file="file://$PROJECT_DIR$/controllers/protemax.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -493,34 +555,9 @@
     <entry file="file://$PROJECT_DIR$/cron.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../SmartRest/inc/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../PlanDeViaje/inc/util.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inc/util.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="71" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SmartCab/inc/util.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="14" column="51" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../SmartRest/inc/config.php" />
+    <entry file="file://$PROJECT_DIR$/../PlanDeViaje/inc/util.php" />
+    <entry file="file://$PROJECT_DIR$/../SmartCab/inc/util.php" />
     <entry file="file://$PROJECT_DIR$/views/_header.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -535,59 +572,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2/console.sql" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5ffe8e71-9fad-415c-b652-9c7192887676/console.sql" />
+    <entry file="file://$PROJECT_DIR$/inc/util.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="94" column="98" lean-forward="true" selection-start-line="94" selection-start-column="98" selection-end-line="94" selection-end-column="98" />
+        <state relative-caret-position="34">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/mysql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="59" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/js/m_voucher.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="104" column="4" selection-start-line="104" selection-start-column="4" selection-end-line="104" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/_base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1284">
+          <caret line="86" column="20" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/global/plugins/jquery-ui-autocomplete/jquery-ui.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="5" column="23845" selection-start-line="5" selection-start-column="23845" selection-end-line="5" selection-end-column="23845" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="280" column="30" selection-start-line="280" selection-start-column="30" selection-end-line="280" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental_pay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="164" column="26" lean-forward="true" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
           <folding>
-            <element signature="e#1079#1102#0#HTML" expanded="true" />
-            <element signature="e#5578#5604#0#HTML" expanded="true" />
-            <element signature="e#15570#15593#0#HTML" expanded="true" />
-            <element signature="e#17039#17062#0#HTML" expanded="true" />
-            <element signature="e#17125#17142#0#HTML" expanded="true" />
-            <element signature="e#17183#17216#0#HTML" expanded="true" />
-            <element signature="e#17473#17490#0#HTML" expanded="true" />
-            <element signature="e#17531#17564#0#HTML" expanded="true" />
-            <element signature="e#17821#17838#0#HTML" expanded="true" />
-            <element signature="e#17879#17912#0#HTML" expanded="true" />
-            <element signature="e#18169#18186#0#HTML" expanded="true" />
-            <element signature="e#18227#18260#0#HTML" expanded="true" />
-            <element signature="e#18517#18534#0#HTML" expanded="true" />
-            <element signature="e#18575#18608#0#HTML" expanded="true" />
-            <element signature="e#18865#18882#0#HTML" expanded="true" />
-            <element signature="e#18923#18956#0#HTML" expanded="true" />
-            <element signature="e#19213#19230#0#HTML" expanded="true" />
-            <element signature="e#19271#19304#0#HTML" expanded="true" />
-            <element signature="e#19633#19658#0#HTML" expanded="true" />
+            <element signature="e#2998#3461#0" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/dues_rental.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="34" selection-start-column="34" selection-end-column="34" />
+        <state relative-caret-position="2264">
+          <caret line="554" column="13" selection-start-line="554" selection-start-column="13" selection-end-line="554" selection-end-column="13" />
+          <folding>
+            <element signature="n#add#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#remove_all#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#set_due_paid#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#set_due_unpaid#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#set_free_days#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#get_pics#0;n#dues_rental#0;n#!!top" />
+            <element signature="n#remove_pic#0;n#dues_rental#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2/console.sql">
+    <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="75" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/_base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="50" column="25" lean-forward="true" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5ffe8e71-9fad-415c-b652-9c7192887676/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="-697">
+          <caret line="213" column="23" selection-start-line="213" selection-start-column="23" selection-end-line="213" selection-end-column="23" />
         </state>
       </provider>
     </entry>
