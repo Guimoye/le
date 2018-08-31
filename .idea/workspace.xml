@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="794cd8f1-797b-4a0c-a74f-0986d7b2daf7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ffe8e71-9fad-415c-b652-9c7192887676.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e4b653dd-82b6-4524-b7cd-e5deb2e4b7b2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/dues_rental.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dues_rental.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/util.php" beforeDir="false" afterPath="$PROJECT_DIR$/inc/util.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dues_rental.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/views/dues_rental.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/js/m_dues_rental_pay.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/m_dues_rental_pay.js" afterDir="false" />
-    </list>
+    <list default="true" id="794cd8f1-797b-4a0c-a74f-0986d7b2daf7" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -154,7 +146,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="17" />
     <option name="y" value="3" />
     <option name="width" value="872" />
@@ -241,16 +233,15 @@
       <workItem from="1533572458842" duration="132000" />
       <workItem from="1533572917028" duration="963000" />
       <workItem from="1535474748820" duration="42907000" />
-      <workItem from="1535650851099" duration="2853000" />
+      <workItem from="1535650851099" duration="3373000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61560000" />
+    <option name="totallyTimeSpent" value="62080000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49920508" weight="0.18448023" />
       <window_info anchor="bottom" id="TODO" order="6" />
