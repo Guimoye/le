@@ -28,6 +28,7 @@ var MDuesRentalPay = {
         this.$form.photo_date = $('input[name=photo_date]', this.$form);
         this.$form.photo = $('input[name=photo]', this.$form);
         this.$form.pics = $('.pics', this.$form);
+        this.$form.pics2 = $('.pics2', this.$form);
 
         // Asignar eventos
         //$('.save', this.$modal).click(this.save);
@@ -112,11 +113,14 @@ var MDuesRentalPay = {
             var $this = $(this);
             data.items.push({
                 descripcion: $this.find('input[name=descripcion]').val(),
-                descripcion_date: $this.find('input[name=descripcion_date]').val()
+                descripcion_date: $this.find('input[name=descripcion_date]').val(),
             });
+            console.log('thiiissss: '+ $this.find('pics2').descripcion);
+
         });
 
         console.log(data);
+
 
         api('dues_rental/set_due_paid', data, function (rsp) {
 
@@ -130,6 +134,8 @@ var MDuesRentalPay = {
                 bootbox.alert(rsp.msg);
             }
         }, 'Registrando...');
+
+    
     },
 
     // Pagar
@@ -162,8 +168,34 @@ var MDuesRentalPay = {
         var id = MDuesRentalPay.$form.id.val();
 
         var html = '';
-        if(itemss!=null) {
-            console.log(itemss);
+        if(itemss!=null){
+           html += ' <div class="form-group ">';
+            itemss.length
+            var contador=0;
+            Object.keys(itemss).forEach(function(key) {
+                console.log(key, itemss[key].descripcion);
+
+                html += '<div class="col-md-offset-1 col-md-4"> ';
+                    html += '<div class="input-group">';
+                        html += ' <span class="input-group-addon">S/.</span>';
+                        html += ' <input type="text" name="descripcion" class="form-control" placeholder="0.00" value='+itemss[key].descripcion+'>';
+                    html += '  </div>';
+                html += '   </div>';
+
+                html += '   <div class="col-md-5">';
+                html += '   <input type="date" name="descripcion_date" class="form-control" value='+itemss[key].descripcion_date+'> ';
+
+                if( contador!=(itemss.length-1)){
+                    html+='</br>';
+                }
+                html += '   </div>';
+                contador++;
+            })
+
+            html += '</div>';
+
+            MDuesRentalPay.$form.pics2.html(html);
+            return ;
         }
 
         MDuesRentalPay.$form.pics.html('<tr><td colspan="100%">Cargando...</td></tr>');

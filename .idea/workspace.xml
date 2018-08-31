@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="794cd8f1-797b-4a0c-a74f-0986d7b2daf7" name="Default" comment="" />
+    <list default="true" id="794cd8f1-797b-4a0c-a74f-0986d7b2daf7" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dues_rental.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/views/dues_rental.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/js/m_dues_rental_pay.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/js/m_dues_rental_pay.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +40,8 @@
       <file leaf-file-name="dues_rental.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/dues_rental.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2264">
-              <caret line="554" column="13" selection-start-line="554" selection-start-column="13" selection-end-line="554" selection-end-column="13" />
+            <state relative-caret-position="95">
+              <caret line="527" lean-forward="true" selection-start-line="527" selection-end-line="527" />
               <folding>
                 <element signature="n#add#0;n#dues_rental#0;n#!!top" />
                 <element signature="n#remove_all#0;n#dues_rental#0;n#!!top" />
@@ -51,22 +55,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dues_rental.tpl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dues_rental.tpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-697">
-              <caret line="213" column="23" selection-start-line="213" selection-start-column="23" selection-end-line="213" selection-end-column="23" />
+            <state relative-caret-position="133">
+              <caret line="230" column="37" selection-start-line="230" selection-start-column="32" selection-end-line="230" selection-end-column="37" />
+              <folding>
+                <element signature="e#17273#17593#0#HTML" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="m_dues_rental_pay.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="m_dues_rental_pay.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental_pay.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="164" column="26" lean-forward="true" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
+            <state relative-caret-position="422">
+              <caret line="137" column="4" selection-start-line="137" selection-start-column="4" selection-end-line="137" selection-end-column="4" />
               <folding>
-                <element signature="e#2998#3461#0" />
                 <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
               </folding>
@@ -78,22 +84,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$form</find>
-      <find>form</find>
-      <find>generar</find>
-      <find>comment_addicionals</find>
-      <find>modal_add_dues_rental</find>
-      <find>description_date</find>
-      <find>descripcion</find>
-      <find>descripcion_date</find>
-      <find>addField</find>
-      <find>no se rec</find>
-      <find>no se reconoc el re</find>
-      <find>no se recon</find>
-      <find>addFileItem</find>
-      <find>set_due_paid</find>
       <find>description</find>
-      <find>addFieldBtn</find>
       <find>var</find>
       <find>get_all</find>
       <find>mduesrentalpay.open</find>
@@ -104,10 +95,25 @@
       <find>m_dues_rental_pay</find>
       <find>amount_paid</find>
       <find>obj</find>
-      <find>itemss</find>
       <find>open</find>
+      <find>itemss</find>
+      <find>addField2</find>
       <find>pics</find>
+      <find>form</find>
+      <find>input[name=descripcion]</find>
+      <find>input[name=</find>
+      <find>form-group</find>
       <find>modal_dues_rental_pay</find>
+      <find>addFieldBtn</find>
+      <find>addFiel</find>
+      <find>descr</find>
+      <find>descripcion_date</find>
+      <find>descripcion</find>
+      <find>addFile</find>
+      <find>addFileItem</find>
+      <find>addField</find>
+      <find>$this.find</find>
+      <find>pics2</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -146,9 +152,9 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="17" />
-    <option name="y" value="3" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="449" />
+    <option name="y" value="4" />
     <option name="width" value="872" />
     <option name="height" value="725" />
   </component>
@@ -159,36 +165,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="leasecapital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="leasecapital" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="leasecapital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="leasecapital" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="leasecapital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="leasecapital" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="leasecapital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="leasecapital" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -234,14 +211,16 @@
       <workItem from="1533572917028" duration="963000" />
       <workItem from="1535474748820" duration="42907000" />
       <workItem from="1535650851099" duration="3373000" />
+      <workItem from="1535697242916" duration="8876000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62080000" />
+    <option name="totallyTimeSpent" value="70956000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49920508" weight="0.18448023" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -268,19 +247,19 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14714494" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3290938" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Database" order="3" weight="0.40995607" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.3290938" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3290938" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Database Console" order="12" visible="true" weight="0.3296146" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -327,7 +306,6 @@
         <state relative-caret-position="3179">
           <caret line="187" column="20" selection-start-line="187" selection-start-column="20" selection-end-line="187" selection-end-column="20" />
           <folding>
-            <element signature="e#2998#3461#0" />
             <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
           </folding>
@@ -579,13 +557,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/js/m_voucher.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="104" column="4" selection-start-line="104" selection-start-column="4" selection-end-line="104" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/_base.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1284">
@@ -607,22 +578,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental_pay.js">
+    <entry file="file://$PROJECT_DIR$/views/js/m_voucher.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="164" column="26" lean-forward="true" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
+        <state relative-caret-position="408">
+          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
           <folding>
-            <element signature="e#2998#3461#0" />
+            <element signature="e#1133#1139#0" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/dues_rental.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2264">
-          <caret line="554" column="13" selection-start-line="554" selection-start-column="13" selection-end-line="554" selection-end-column="13" />
+        <state relative-caret-position="95">
+          <caret line="527" lean-forward="true" selection-start-line="527" selection-end-line="527" />
           <folding>
             <element signature="n#add#0;n#dues_rental#0;n#!!top" />
             <element signature="n#remove_all#0;n#dues_rental#0;n#!!top" />
@@ -637,8 +608,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/dues_rental.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-697">
-          <caret line="213" column="23" selection-start-line="213" selection-start-column="23" selection-end-line="213" selection-end-column="23" />
+        <state relative-caret-position="133">
+          <caret line="230" column="37" selection-start-line="230" selection-start-column="32" selection-end-line="230" selection-end-column="37" />
+          <folding>
+            <element signature="e#17273#17593#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/js/m_dues_rental_pay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="137" column="4" selection-start-line="137" selection-start-column="4" selection-end-line="137" selection-end-column="4" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

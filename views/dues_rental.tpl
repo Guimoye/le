@@ -216,16 +216,22 @@
                     <input type="hidden" name="id" value="">
                     <input type="hidden" name="amount_total" value="">
 
+
                     <div class="form-group">
-                        <div class="col-md-1">
+                        <div class="col-md-10 text-align-reverse">
                             <button class="btn btn-primary addFieldBtn" type="button"><i class="fa fa-plus"></i></button>
                         </div>
-                        <label class="col-md-offset-1 col-md-5 text-left">Sub Pagos</label>
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-md-offset-1 col-md-4 text-left">Sub Pagos</label>
                         <label class="col-md-5 text-left">Fecha</label>
                     </div>
 
+                    <div class="pics2"></div>
+
                     <div class="form-group hide addField">
-                        <div class="col-md-offset-1 col-md-5">
+                        <div class="col-md-offset-1 col-md-4">
                             <div class="input-group">
                                 <span class="input-group-addon">{$stg->coin}</span>
                                 <input type="text" name="descripcion" class="form-control" placeholder="0.00">
